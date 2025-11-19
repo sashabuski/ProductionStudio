@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Scrollable Boxes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+         
+            align-items: center;
+            height: 100%;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            height: 80%;
+        }
+
+      
+
+        .content {
+            width: 200%;
+            height: 100%;
+        }
+        .linksbox {
+        margin-top: 1vw;
+        margin-left: 1vw;
+        margin-right: 1vw;
+        position: relative;
+        }
+
+        .headerbox {
+            width: 100%;
+            position: relative;
+        }
+
+        .box h3 {
+            text-align: center;
+            color: #333;
+        }
+        
+        /* Adding some sample content */
+        .box p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .line {
+            width: 100%;    /* or set a custom width */
+            height: 1px;    /* thickness */
+            background-color: black;
+           
+        }
+        .divider{
+            display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 1vw;
+        margin-right: 1vw;
+      
+        gap: 0.5vw; /* spacing between icon and line */
+        }
+
+        .grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .scroll-box {
+   
+    overflow-y: auto; /* vertical scrolling */
+    padding: 1vw;
+    /* fixed height for vertical scroll */
+    padding-right: 2vw;
+  }
+
+  .subtitle{
+    margin-top: 0px;
+    padding-left: 1vw;
+    font-size: 1.5vw;
+  }
+
+  .scroll-box::-webkit-scrollbar {
+    display: none;
+}
+  .box1 {
+    grid-column: span 2; 
+    border-right: 1px solid #000;/* columns 1-2 */
+  }
+
+  .box2 {
+    grid-column: span 2;
+    border-right: 1px solid #000; /* columns 3-4 */
+  }
+
+  .box3 {
+    grid-column: span 4; /* columns 5-8, double width */
+  }
+
+  /* Example content inside the boxes */
+  .item {
+    background-color: #8fa;
+    margin-bottom: 1vw;
+    padding: 1vw;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .akira{
+    font-family: 'akira', sans-serif;
+    font-size: 20px;
+  }
+
+  @font-face {
+        font-family: 'akira';
+        src: url('Akira.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    </style>
+</head>
+<body>
+<div class = "headerbox">
+<div class = "linksbox">
+<button> ahah</button>
+<button> ahah</button>
+<button> ahah</button>
+
+<button style="right:0px; position:absolute"> contacty</button>
+</div>
+<div class="divider" style="margin-top: 1vw;">
+    <img src="g.svg" alt="My Icon" width="10">
+<div class = "line">
+</div>
+<img src="g.svg" alt="My Icon" width="10">
+</div>
+
+<p class = "akira" style="font-size: 4vw; margin-left: 1vw; margin-top: 0;margin-bottom: 0;">BIG STUDIO BIG THIS FUCK YEAH</p>
+<div class="divider">
+<img src="g.svg" alt="My Icon" width="10">
+<div class = "line">
+</div>
+<img src="g.svg" alt="My Icon" width="10">
+</div>
+
+
+
+
+</div>
+<div class="grid-container">
+   
+  <section class = "box1">
+    <p class = "subtitle">About</p>
+  <div class="scroll-box">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+    </div>
+  </section>
+
+  <section  class = "box2">
+    <p class = "subtitle">Projects</p>
+    <div class="scroll-box">
+      <div class="item">A</div>
+      <div class="item">B</div>
+      <div class="item">C</div>
+      <div class="item">D</div>
+      <div class="item">A</div>
+      <div class="item">B</div>
+      <div class="item">C</div>
+      <div class="item">D</div>
+      <div class="item">A</div>
+      <div class="item">B</div>
+      <div class="item">C</div>
+      <div class="item">D</div>
+      <div class="item">A</div>
+      <div class="item">B</div>
+      <div class="item">C</div>
+      <div class="item">D</div>
+    </div>
+  </section>
+
+  <section class = "box3">
+    <p class = "subtitle">Project Details</p>
+    <div class="scroll-box">
+      <div class="item">X</div>
+      <div class="item">Y</div>
+      <div class="item">Z</div>
+      <div class="item">W</div>
+      <div class="item">V</div>
+      <div class="item">U</div>
+    </div>
+  </div>
+  </section>
+
+
+  <footer style=" width: 100%; height: 5.5vw;
+    position: absolute; background-color:#f4f4f4; color:white; text-align:center;  margin-top:0px; bottom: 0px">
+   
+  
+  
+    <div class="divider" style="margin-top: 0px;">
+      <img src="g.svg" alt="My Icon" width="10">
+  <div class = "line">
+  </div>
+  <img src="g.svg" alt="My Icon" width="10">
+  </div>
+  &copy; 2025 BIG STUDIO. All rights reserved.
+  
+  </footer>
+ <script>
+function updateHeight() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    // Measure real header height instead of hard-coded 338px
+    const headerHeight = document.querySelector('.headerbox').offsetHeight;
+
+    // Base height that ALWAYS matches layout regardless of margins
+    let baseHeight = h - headerHeight - 20; // adjust the -20 if needed
+
+    // Width-dependent modifier (unchanged)
+    let widthModifier = (2000 - w) * 0.1;
+
+    const finalHeight = baseHeight + widthModifier;
+
+    document.querySelectorAll('.scroll-box').forEach(box => {
+        box.style.height = finalHeight + "px";
+    });
+}
+
+updateHeight();
+window.addEventListener("resize", updateHeight);
+
+</script>
+
+</body>
+</html>
