@@ -6,33 +6,44 @@
     <title>Three Scrollable Boxes</title>
 
     <style>
-        /* --- PAGE STRUCTURE --- */
+
+        /* --------------------------
+           GLOBAL VARIABLES
+        --------------------------- */
+        :root {
+            --footer-height: calc(3vw + 40px);
+        }
+
+        /* --------------------------
+           PAGE STRUCTURE
+        --------------------------- */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Prevents page scrolling */
+            overflow: hidden;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
         }
 
-        /* HEADER */
-        .headerbox {
-            width: 100%;
-        }
-
-        /* MAIN CONTENT MUST FILL SPACE ABOVE FOOTER */
+        /* MAIN CONTENT automatically stays above footer */
         .main-content {
             position: absolute;
             top: 0;
-            bottom: 5.5vw;  /* same as footer height */
+            bottom: var(--footer-height);
             width: 100%;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        /* HEADER ELEMENTS */
+        /* --------------------------
+           HEADER
+        --------------------------- */
+        .headerbox {
+            width: 100%;
+        }
+
         .linksbox {
             margin: 1vw;
             position: relative;
@@ -61,14 +72,16 @@
             font-family: 'akira', sans-serif;
         }
 
-        /* GRID FITS REMAINING HEIGHT BELOW HEADER */
+        /* --------------------------
+           GRID BELOW HEADER
+        --------------------------- */
         .grid-container {
-            flex: 1; /* fills remaining space under header */
+            flex: 1;
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             gap: 1vw;
             padding: 1vw;
-            overflow: hidden; /* prevent pushing */
+            overflow: hidden;
         }
 
         .box1, .box2, .box3 {
@@ -81,7 +94,9 @@
         .box2 { grid-column: span 2; border-right: 1px solid #000; }
         .box3 { grid-column: span 4; }
 
-        /* SCROLL BOXES FILL THEIR SECTION */
+        /* --------------------------
+           SCROLL BOXES
+        --------------------------- */
         .scroll-box {
             flex: 1;
             overflow-y: auto;
@@ -107,25 +122,27 @@
             font-weight: bold;
         }
 
-        /* FOOTER FIXED TO BOTTOM OF WINDOW */
+        /* --------------------------
+           FOOTER (fixed)
+        --------------------------- */
         footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 5.5vw;
+            height: var(--footer-height);
             background-color: #f4f4f4;
             text-align: center;
+            font-size: 1vw;
         }
+
     </style>
 
 </head>
 <body>
 
-    <!-- MAIN CONTENT (header + grid) -->
     <div class="main-content">
 
-        <!-- HEADER -->
         <div class="headerbox">
             <div class="linksbox">
                 <button>ahah</button>
@@ -151,7 +168,6 @@
             </div>
         </div>
 
-        <!-- GRID -->
         <div class="grid-container">
 
             <section class="box1">
@@ -195,8 +211,7 @@
 
     </div>
 
-    <!-- FIXED FOOTER -->
-    <footer style="font-size: 1vw;">
+    <footer>
         <div class="divider" style="margin-top: 0px;">
             <img src="g.svg" width="10">
             <div class="line"></div>
