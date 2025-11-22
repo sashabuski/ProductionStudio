@@ -23,7 +23,7 @@
             height: 100%;
             overflow: hidden;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #000000;
         }
 
         /* MAIN CONTENT automatically stays above footer */
@@ -60,7 +60,7 @@
         .line {
             width: 100%;
             height: 1px;
-            background-color: black;
+            background-color: #939393;
         }
 
         @font-face {
@@ -90,8 +90,8 @@
             overflow: hidden;
         }
 
-        .box1 { grid-column: span 2; border-right: 1px solid #000; }
-        .box2 { grid-column: span 2; border-right: 1px solid #000; }
+        .box1 { grid-column: span 2; border-right: 1px solid #939393; }
+        .box2 { grid-column: span 2; border-right: 1px solid #939393; }
         .box3 { grid-column: span 4; }
 
         /* --------------------------
@@ -111,15 +111,19 @@
         .subtitle {
             margin-top: 0;
             padding-left: 1vw;
-            font-size: 1.5vw;
+            font-size: 1vw;
+            color: #959595;
+            font-weight: bold;
+            margin-bottom: 0vw;
         }
 
         .item {
-            background-color: #8fa;
+            background-color: #000;
             margin-bottom: 1vw;
             padding: 1vw;
             text-align: center;
             font-weight: bold;
+            border-top: 1px solid #939393;
         }
 
         /* --------------------------
@@ -131,9 +135,16 @@
             left: 0;
             width: 100%;
             height: var(--footer-height);
-            background-color: #f4f4f4;
+            background-color: #000000;
             text-align: center;
             font-size: 1vw;
+            color: #fff;
+        }
+
+        .para
+        {
+          color: white;
+          font-size: 1vw;
         }
 
     </style>
@@ -151,17 +162,17 @@
                 <button style="right:0; position:absolute;">contact</button>
             </div>
 
-            <div class="divider">
+            <div class="divider" style="margin-bottom: 0px;">
                 <img src="g.svg" width="10">
                 <div class="line"></div>
                 <img src="g.svg" width="10">
             </div>
 
-            <p class="akira" style="font-size: 4vw; margin: 0 0 0 1vw;">
-                BIG STUDIO BIG THIS FUCK YEAH
+            <p class="akira" style="font-size: 7.4vw; margin: 0 1vw 0 1vw; text-align: center; color: #fff;">
+                CCX PRODUCTIONS
             </p>
 
-            <div class="divider" style="margin-bottom: 0px;">
+            <div class="divider" style="margin-bottom: 0px; margin-top: 0px;">
                 <img src="g.svg" width="10">
                 <div class="line"></div>
                 <img src="g.svg" width="10">
@@ -171,19 +182,31 @@
         <div class="grid-container">
 
             <section class="box1">
-                <p class="subtitle">About</p>
+                <p class="subtitle">ABOUT</p>
                 <div class="scroll-box">
-                    <div class="item">1</div>
-                    <div class="item">2</div>
-                    <div class="item">3</div>
-                    <div class="item">4</div>
-                    <div class="item">5</div>
+                    <p class="para">CCX Productions is a dynamic and innovative production company dedicated to bringing compelling stories to life. From concept development to final cut, we specialize in creating high-quality content that engages, inspires, and resonates with audiences across multiple platforms. <br><br>  With a passion for creativity and a commitment to excellence, CCX Productions delivers memorable experiences in film, video, and digital media.</p>
                 </div>
             </section>
 
             <section class="box2">
-                <p class="subtitle">Projects</p>
+                <p class="subtitle" style="margin-bottom: 1vw;">PROJECTS</p>
                 <div class="scroll-box">
+                    <div class="item">A</div>
+                    <div class="item">B</div>
+                    <div class="item">C</div>
+                    <div class="item">D</div>
+                    <div class="item">A</div>
+                    <div class="item">B</div>
+                    <div class="item">C</div>
+                    <div class="item">D</div>
+                    <div class="item">A</div>
+                    <div class="item">B</div>
+                    <div class="item">C</div>
+                    <div class="item">D</div>
+                    <div class="item">A</div>
+                    <div class="item">B</div>
+                    <div class="item">C</div>
+                    <div class="item">D</div>
                     <div class="item">A</div>
                     <div class="item">B</div>
                     <div class="item">C</div>
@@ -196,14 +219,9 @@
             </section>
 
             <section class="box3">
-                <p class="subtitle">Project Details</p>
+                <p class="subtitle">PROJECT DETAILS</p>
                 <div class="scroll-box">
-                    <div class="item">X</div>
-                    <div class="item">Y</div>
-                    <div class="item">Z</div>
-                    <div class="item">W</div>
-                    <div class="item">V</div>
-                    <div class="item">U</div>
+                   
                 </div>
             </section>
 
