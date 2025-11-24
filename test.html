@@ -3,46 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Footer Example</title>
+    <title>Header Only</title>
     <style>
-        body {
+        /* --------------------------
+           GLOBAL STYLES
+        --------------------------- */
+        html, body {
             margin: 0;
+            padding: 0;
+            width: 100%;
             font-family: Arial, sans-serif;
+            background-color: #000;
         }
 
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
+        @font-face {
+            font-family: 'akira';
+            src: url('Akira.otf') format('opentype');
+        }
+
+        .akira {
+            font-family: 'akira', sans-serif;
+        }
+
+        /* --------------------------
+           HEADER STYLES
+        --------------------------- */
+        .headerbox {
+            width: 100%;
+        }
+
+        .linksbox {
+            margin: 1vw;
+            margin-bottom: calc(1vw - 5px);
+            display: flex;           /* horizontal row */
+            align-items: center;     /* vertical centering */
+            justify-content: flex-start; /* left align buttons */
+            gap: 0.5vw;              /* space between buttons */
+        }
+
+        .cornerbutton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding-right: 0.1vw;
+        }
+
+        .contact {
+            background-color: #000;
+            border: 1px solid greenyellow;
+            color: greenyellow;
+            border-radius: 8px;
+            font-size: 2vw;
+            font-weight: bold;
+            margin-left: auto;       /* push to right */
+        }
+
+        .whiteicon {
+            width: 2vw;
+            height: 2vw;
+            filter: brightness(0) invert(1);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1vw 0;
+            gap: 0.5vw;
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            background-color: #939393;
+        }
+
+        .header-title {
+            font-size: 7.4vw;
+            margin: 0 1vw;
             text-align: center;
-        }
-
-        footer a {
-            color: #ffcc00;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <div style="min-height: 80vh;">
-        <h1>Page Content</h1>
-        <p>This is the main page content above the footer.</p>
-    </div>
+    <div class="headerbox">
 
-    <footer>
-        <p>&copy; 2025 Your Website Name</p>
-        <p>
-            <a href="#">Privacy Policy</a> |
-            <a href="#">Terms of Service</a> |
-            <a href="#">Contact</a>
+        <div class="linksbox">
+            <button class="cornerbutton"><img class="whiteicon" src="1.svg" alt="icon 1"></button>
+            <button class="cornerbutton"><img class="whiteicon" src="2.svg" alt="icon 2"></button>
+            <button class="cornerbutton"><img class="whiteicon" src="3.svg" alt="icon 3"></button>
+            <button class="contact">CONTACT</button>
+        </div>
+
+        <div class="divider" style="margin-top: 0px; margin-bottom: 0px;">
+            <img src="g.svg" width="10" alt="divider icon">
+            <div class="line"></div>
+            <img src="g.svg" width="10" alt="divider icon">
+        </div>
+
+        <p class="akira header-title">
+            CCX PRODUCTIONS
         </p>
-    </footer>
+
+        <div class="divider" style="margin-bottom: 0px; margin-top: 0px;">
+            <img src="g.svg" width="10" alt="divider icon">
+            <div class="line"></div>
+            <img src="g.svg" width="10" alt="divider icon">
+        </div>
+
+    </div>
 
 </body>
 </html>
