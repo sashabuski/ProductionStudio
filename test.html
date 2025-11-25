@@ -3,42 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header Only</title>
+    <title>Header Only with Seamless Scrolling Text</title>
+
     <style>
-        /* --------------------------
-           GLOBAL STYLES
-        --------------------------- */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
-            font-family: Arial, sans-serif;
             background-color: #000;
+            font-family: Arial, sans-serif;
         }
 
-        @font-face {
-            font-family: 'akira';
-            src: url('Akira.otf') format('opentype');
-        }
-
-        .akira {
-            font-family: 'akira', sans-serif;
-        }
-
-        /* --------------------------
-           HEADER STYLES
-        --------------------------- */
         .headerbox {
             width: 100%;
         }
 
         .linksbox {
-            margin: 1vw;
-            margin-bottom: calc(1vw - 5px);
-            display: flex;           /* horizontal row */
-            align-items: center;     /* vertical centering */
-            justify-content: flex-start; /* left align buttons */
-            gap: 0.5vw;              /* space between buttons */
+            margin: 1.5vw;
+            margin-bottom: calc(1vw - 0.35vw);
+            margin-top: 1vw;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5vw;
         }
 
         .cornerbutton {
@@ -48,27 +35,71 @@
             padding-right: 0.1vw;
         }
 
-        .contact {
-            background-color: #000;
-            border: 1px solid greenyellow;
-            color: greenyellow;
-            border-radius: 8px;
-            font-size: 2vw;
-            font-weight: bold;
-            margin-left: auto;       /* push to right */
-        }
-
         .whiteicon {
             width: 2vw;
             height: 2vw;
             filter: brightness(0) invert(1);
         }
 
+        .contact {
+            background-color: #000;
+            border: 1px solid greenyellow;
+            color: greenyellow;
+            border-radius: 8px;
+            font-size: 1.1vw;
+            font-weight: bold;
+            padding: 0.3vw 0.6vw;
+            padding-top: 0.4vw;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .contact:hover {
+            background-color: greenyellow;
+            color: #000;
+        }
+
+        /* ------------------ Seamless Horizontal Scrolling ------------------ */
+        .scrolling-text-container {
+            overflow: hidden;
+    flex: 1;
+    margin-left: 40vw;
+    margin-right: 5vw;
+    position: relative;
+    height: 1.5vw; /* adjust for your text size */
+
+    /* Add these for vertical centering */
+    display: flex;
+    align-items: center; /* vertically centers the text */
+        }
+
+        .scrolling-text {
+            display: inline-block;
+            white-space: nowrap;
+            color: greenyellow;
+            font-size: 1vw;
+            font-weight: bold;
+            animation: scroll 20s linear infinite;
+        }
+
+        .scrolling-text span {
+            /* spacing between repeats */
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         .divider {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 1vw 0;
+            margin: 1.5vw 0;
             gap: 0.5vw;
         }
 
@@ -78,11 +109,21 @@
             background-color: #939393;
         }
 
-        .header-title {
-            font-size: 7.4vw;
-            margin: 0 1vw;
-            text-align: center;
-            color: #fff;
+        .headerstyle {
+            filter: brightness(0) invert(1);
+            width: calc(100% - 3vw);
+            height: auto;
+            display: block;
+            margin-left: 1.5vw;
+            margin-right: 1.5vw;
+            margin-top: 0.65vw;
+            margin-bottom: 0.65vw;
+        }
+
+        .white-g {
+            filter: brightness(0) invert(1);
+            width: 0.7vw;
+            height: auto;
         }
     </style>
 </head>
@@ -91,26 +132,41 @@
     <div class="headerbox">
 
         <div class="linksbox">
-            <button class="cornerbutton"><img class="whiteicon" src="1.svg" alt="icon 1"></button>
-            <button class="cornerbutton"><img class="whiteicon" src="2.svg" alt="icon 2"></button>
-            <button class="cornerbutton"><img class="whiteicon" src="3.svg" alt="icon 3"></button>
+            <button class="cornerbutton"><img class="whiteicon" src="1.svg" alt="icon1"></button>
+            <button class="cornerbutton"><img class="whiteicon" src="2.svg" alt="icon2"></button>
+            <button class="cornerbutton"><img class="whiteicon" src="3.svg" alt="icon3"></button>
+
+            <!-- Seamless Horizontal Scrolling Text -->
+            <div class="scrolling-text-container">
+                <div class="scrolling-text">
+                    <span>
+                        01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                        </span>
+                                 
+                    
+                        <span>
+                            01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                            </span>
+                            
+
+                    </div>
+            </div>
+
             <button class="contact">CONTACT</button>
         </div>
 
-        <div class="divider" style="margin-top: 0px; margin-bottom: 0px;">
-            <img src="g.svg" width="10" alt="divider icon">
+        <div class="divider" style="margin-top: 0; margin-bottom: 0;">
+            <img src="g.svg" class="white-g" alt="g-left">
             <div class="line"></div>
-            <img src="g.svg" width="10" alt="divider icon">
+            <img src="g.svg" class="white-g" alt="g-right">
         </div>
 
-        <p class="akira header-title">
-            CCX PRODUCTIONS
-        </p>
+        <img src="header.svg" class="headerstyle" alt="header">
 
-        <div class="divider" style="margin-bottom: 0px; margin-top: 0px;">
-            <img src="g.svg" width="10" alt="divider icon">
+        <div class="divider" style="margin-bottom: 0; margin-top: 0;">
+            <img src="g.svg" class="white-g" alt="g-left">
             <div class="line"></div>
-            <img src="g.svg" width="10" alt="divider icon">
+            <img src="g.svg" class="white-g" alt="g-right">
         </div>
 
     </div>
