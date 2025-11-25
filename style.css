@@ -122,11 +122,28 @@ color: #000;
     .box3 { grid-column: span 4; }
 
     .scroll-box {
-        flex: 1;
-        overflow-y: auto;
-        padding: 0.75vw;
-        padding-right: 1.5vw;
-    }
+    position: relative;
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.75vw;
+    padding-right: 1.5vw;
+    padding-top: 0px;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0px,
+        black 2vw,
+        black calc(100% - 2vw),
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0px,
+        black 1vw,
+        black calc(100% - 2vw),
+        transparent 100%
+    );
+}
+
 
     .scroll-box::-webkit-scrollbar {
         display: none;
@@ -138,7 +155,7 @@ color: #000;
         font-size: 1vw;
         color: #959595;
         font-weight: bold;
-        margin-bottom: 0vw;
+        margin-bottom: 1vw;
     }
 
     .project-list {
@@ -150,10 +167,11 @@ color: #000;
     .item {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-
+        align-items: center; 
+        padding: 1vw 0px 1vw 0px;
+       
         background-color: #000;
-        padding: 1vw;
+      
         font-weight: bold;
         color: #fff;
         border-top: 1px solid #939393;
@@ -162,12 +180,23 @@ color: #000;
     .item .left {
         text-align: left;
         font-size: 1vw;
+        transition: color 0.1s ease; 
+        
+    }
+
+    @font-face {
+        font-family: 'ConsolasCustom';
+        src: url('consolas.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
     }
 
     .item .right {
         text-align: right;
         opacity: 0.7;
-        font-size: 1vw;
+        font-size: 0.8vw;
+        font-family: 'ConsolasCustom', monospace;
+        transition: color 0.1s ease; 
     }
 
     footer {
@@ -272,3 +301,10 @@ pointer-events: none;
 background: linear-gradient(to bottom, transparent, black);
 z-index: 10;
 }    
+
+.clickable {
+    display: flex;                   /* flex container */
+    justify-content: space-between;   /* push left/right to edges */
+    width: 100%;                      /* span full width of li */
+    cursor: pointer;
+}

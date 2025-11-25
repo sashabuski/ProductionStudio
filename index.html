@@ -83,8 +83,8 @@
         <div class="grid-container">
 
             <section class="box1">
-                <p class="subtitle">ABOUT</p>
-                <div class="scroll-box">
+                <p class="subtitle" style="">ABOUT</p>
+                <div class="scroll-box" style="">
                     <p class="para">
                         CCX Productions is an independent production company creating bold visuals and unforgettable stories. We mix creativity, technical skill, and a bit of chaos to bring ideas to life in a way that feels fresh and real.
                         <br><br>
@@ -117,24 +117,25 @@
 
             <section class="box2">
                 <p class="subtitle" style="margin-bottom: 1vw;">PROJECTS</p>
-                <div class="scroll-box">
+                <div class="scroll-box" style="padding-top: 1vw;">
                     <ul class="project-list">
-                        <li class="item"><span class="left">A</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">B</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">C</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">D</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">A</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">B</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">C</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">D</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">A</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">B</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">C</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">D</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">A</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">B</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">C</span><span class="right">Details</span></li>
-                        <li class="item"><span class="left">D</span><span class="right">Details</span></li>
+                      <li class="item"><div class="clickable"><span class="left">NEON PEAK</span><span class="right">MEDIA PRODUCTION</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">SILVERLINE</span><span class="right">ADVERTISING</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">GHOSTBIRD</span><span class="right">MUSIC VIDEO</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">HOLOFRAME</span><span class="right">XR / IMMERSIVE</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">NIGHT TRANSIT</span><span class="right">FILM</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">STATIC PUNCH</span><span class="right">BRAND CONTENT</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">VELVET ROCKET</span><span class="right">FASHION</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">GRAINWAVE</span><span class="right">DOCUMENTARY</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">ORBIT HOUSE</span><span class="right">ANIMATION</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">PINE & PIXEL</span><span class="right">PHOTOGRAPHY</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">SIGNAL WEST</span><span class="right">COMMERCIAL</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">MOONSET</span><span class="right">CREATIVE DIRECTION</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">FLUXFRAME</span><span class="right">POST-PRODUCTION</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">RED LANTERN</span><span class="right">SHORT FILM</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">STUDIO WIRE</span><span class="right">MOTION DESIGN</span></div></li>
+                      <li class="item"><div class="clickable"><span class="left">FABLE NORTH</span><span class="right">NARRATIVE</span></div></li>
+                      
                         <!-- your long list unchanged -->
                     </ul>
                 </div>
@@ -157,6 +158,36 @@
         </div>
         &copy; 2025 BIG STUDIO. All rights reserved.
     </footer>
-
+   
+    <script>
+      window.onload = function () {
+          let currentListItem = null; // stores the currently selected item
+      
+          const clickables = document.querySelectorAll('.clickable');
+      
+          clickables.forEach(item => {
+              item.onclick = () => {
+                  // If there is a previously selected item, reset its color
+                  if (currentListItem) {
+                      const prevLeft = currentListItem.querySelector('.left');
+                      const prevRight = currentListItem.querySelector('.right');
+                      prevLeft.style.color = '#fff';   // white
+                      prevRight.style.color = '#fff';  // white
+                  }
+      
+                  // Set the clicked item as current
+                  currentListItem = item;
+      
+                  // Change its color to greenyellow
+                  const left = item.querySelector('.left');
+                  const right = item.querySelector('.right');
+                  left.style.color = 'greenyellow';
+                  right.style.color = 'greenyellow';
+              };
+          });
+      };
+      </script>
+      
+      
 </body>
 </html>
