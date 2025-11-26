@@ -1,127 +1,115 @@
-
-    :root {
-        --footer-height: calc(3vw + 40px);
-    }
-
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-        font-family: Arial, sans-serif;
-        background-color: #000000;
-    }
-
-    .main-content {
-        position: absolute;
-        top: 0;
-        bottom: var(--footer-height);
-        width: 100%;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* --------------------------
-       UPDATED HEADER SECTION
-    --------------------------- */
-    .headerbox {
-        width: 100%;
-    }
-
-    .linksbox {
-        margin: 1.5vw;
-        margin-bottom: calc(1vw - 0.35vw);
-        margin-top: 1vw;
-        display: flex;          /* NEW: flexbox */
-        align-items: center;    /* NEW: vertical centering */
-        justify-content: flex-start;
-        gap: 0.5vw;
-    }
-
-    .contact {
-        background-color: #000;
-        border: 1px solid greenyellow;
-        color: greenyellow;
-        border-radius: 8px;
-        font-size: 1.1vw;          /* smaller font */
-        font-weight: bold;
-        padding: 0.3vw 0.6vw;   
-        padding-top: 0.4vw;   /* more padding */
-        margin-left: auto; 
-        align-items: center;
-        justify-content: center;       /* push to the right */
-        transition: background-color 0.1s ease, color 0.3s ease;
-    }
-
-    .contact:hover {
-background-color: greenyellow;
-color: #000;
+:root {
+    --footer-height: calc(3vw + 40px);
 }
-    .cornerbutton {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding-right: 0.1vw;
-    }
 
-    .whiteicon {
-        width: 2vw;
-        height: 2vw;
-        filter: brightness(0) invert(1);
-    }
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+}
 
-    /* --------------------------
-       REST OF YOUR ORIGINAL CSS
-       (UNCHANGED)
-    --------------------------- */
+.main-content {
+    position: absolute;
+    top: 0;
+    bottom: var(--footer-height);
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
 
-    .divider {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 1.5vw;
-        gap: 0.5vw;
-    }
+/* -------------------------- HEADER --------------------------- */
+.headerbox { width: 100%; }
 
-    .line {
-        width: 100%;
-        height: 1px;
-        background-color: #939393;
-    }
+.linksbox {
+    margin: 1.5vw;
+    margin-bottom: calc(1vw - 0.35vw);
+    margin-top: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5vw;
+}
 
-    @font-face {
-        font-family: 'akira';
-        src: url('Akira.otf') format('opentype');
-    }
+.contact {
+    background-color: #000;
+    border: 1px solid greenyellow;
+    color: greenyellow;
+    border-radius: 8px;
+    font-size: 1.1vw;
+    font-weight: bold;
+    padding: 0.3vw 0.6vw;
+    padding-top: 0.4vw;
+    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s ease, color 0.3s ease;
+}
 
-    .akira {
-        font-family: 'akira', sans-serif;
-    }
+.contact:hover {
+    background-color: greenyellow;
+    color: #000;
+}
 
-    .grid-container {
-        flex: 1;
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        gap: 1vw;
-        padding: 0.75vw;
-        padding-top: 1vw;
-        padding-bottom: 1vw;
-        
-        overflow: hidden;
-    }
+.cornerbutton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding-right: 0.1vw;
+}
 
-    .box1, .box2, .box3 {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
+.whiteicon {
+    width: 2vw;
+    height: 2vw;
+    filter: brightness(0) invert(1);
+}
 
-    .box1 { grid-column: span 2; border-right: 1px solid #939393; }
-    .box2 { grid-column: span 2; border-right: 1px solid #939393; }
-    .box3 { grid-column: span 4; }
+/* -------------------------- REST --------------------------- */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5vw;
+    gap: 0.5vw;
+}
 
-    .scroll-box {
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #939393;
+}
+
+@font-face {
+    font-family: 'akira';
+    src: url('Akira.otf') format('opentype');
+}
+.akira { font-family: 'akira', sans-serif; }
+
+.grid-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1vw;
+    padding: 0.75vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    overflow: hidden;
+}
+
+.box1, .box2, .box3 {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.box1 { grid-column: span 2; border-right: 1px solid #939393; }
+.box2 { grid-column: span 2; border-right: 1px solid #939393; }
+.box3 { grid-column: span 4; }
+
+.scroll-box {
     position: relative;
     flex: 1;
     overflow-y: auto;
@@ -144,167 +132,180 @@ color: #000;
     );
 }
 
+.scroll-box::-webkit-scrollbar { display: none; }
 
-    .scroll-box::-webkit-scrollbar {
-        display: none;
-    }
+.subtitle {
+    margin-top: 0;
+    padding-left: 0.75vw;
+    font-size: 1vw;
+    color: #959595;
+    font-weight: bold;
+    margin-bottom: 1vw;
+}
 
-    .subtitle {
-        margin-top: 0;
-        padding-left: 0.75vw;
-        font-size: 1vw;
-        color: #959595;
-        font-weight: bold;
-        margin-bottom: 1vw;
-    }
+.project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-    .project-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+.item {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1vw 0;
+    background-color: #000;
+    font-weight: bold;
+    color: #fff;
+    border-top: 1px solid #939393;
+}
 
-    .item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center; 
-        padding: 1vw 0px 1vw 0px;
-       
-        background-color: #000;
-      
-        font-weight: bold;
-        color: #fff;
-        border-top: 1px solid #939393;
-    }
+/* SVG stacked behind left text */
+.bg-icon {
+    position: absolute;
+    left: 0;
+    top: 49%;
+    width: 1.2vw;
+    height: 1.2vw;
+    transform: translateY(-50%) scale(0.9);
+    opacity: 0;
+  
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    z-index: 0;
+    pointer-events: none;
+}
 
-    .item .left {
-        text-align: left;
-        font-size: 1vw;
-        transition: color 0.1s ease; 
-        
-    }
+.item.active .bg-icon {
+    opacity: 0.95;
+    transform: translateY(-50%) scale(1);
+}
 
-    @font-face {
-        font-family: 'ConsolasCustom';
-        src: url('consolas.ttf') format('truetype');
-        font-weight: 700;
-        font-style: normal;
-    }
+/* clickable text */
+.clickable {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative; /* for absolute left */
+    align-items: center;
+    cursor: pointer;
+    padding-left: 2vw; /* leave space for left + SVG */
+}
 
-    .item .right {
-        text-align: right;
-        opacity: 0.7;
-        font-size: 0.8vw;
-        font-family: 'ConsolasCustom', monospace;
-        transition: color 0.1s ease; 
-    }
+/* left text */
+.item .left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1vw;
+    z-index: 2;
+    transition: transform 0.25s ease, color 0.15s ease;
+}
 
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: var(--footer-height);
-        background-color: #000000;
-        text-align: center;
-        font-size: 1vw;
-        color: #fff;
-    }
+/* right text pinned to far right */
+.item .right {
+    margin-left: auto; /* push to far right */
+    text-align: right;
+    opacity: 0.7;
+    font-size: 0.8vw;
+    font-family: 'ConsolasCustom', monospace;
+    transition: color 0.1s ease;
+}
 
-    .para {
-        color: white;
-        font-size: 1vw;
-    }
+@font-face {
+    font-family: 'ConsolasCustom';
+    src: url('consolas.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
 
-    .headerstyle{
-      filter: brightness(0) invert(1);
-        width: calc(100% - 3vw); /* keeps perfect margin */
-        height: auto;
-        display: block;
-        margin-left: 1.5vw;
-        margin-right: 1.5vw;
-        margin-top: 0.65vw;
-        margin-bottom:0.65vw;
-    }
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height);
+    background-color: #000000;
+    text-align: center;
+    font-size: 1vw;
+    color: #fff;
+}
 
-    .white-g {
-        filter: brightness(0) invert(1);
-        width: 0.7vw;        /* responsive size */
-        height: auto;  
-     }
+.para { color: white; font-size: 1vw; }
 
+.headerstyle {
+    filter: brightness(0) invert(1);
+    width: calc(100% - 3vw);
+    height: auto;
+    display: block;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    margin-top: 0.65vw;
+    margin-bottom: 0.65vw;
+}
 
-        /* ------------------ Seamless Horizontal Scrolling ------------------ */
-    .scrolling-text-container {
-        overflow: hidden;
-flex: 1;
-margin-left: 40vw;
-margin-right: 5vw;
-position: relative;
-height: 1.5vw; /* adjust for your text size */
+.white-g {
+    filter: brightness(0) invert(1);
+    width: 0.7vw;
+    height: auto;
+}
 
-/* Add these for vertical centering */
-display: flex;
-align-items: center; /* vertically centers the text */
-    }
+/* scrolling text */
+.scrolling-text-container {
+    overflow: hidden;
+    flex: 1;
+    margin-left: 40vw;
+    margin-right: 5vw;
+    position: relative;
+    height: 1.5vw;
+    display: flex;
+    align-items: center;
+}
 
-    .scrolling-text {
-        display: inline-block;
-        white-space: nowrap;
-        color: greenyellow;
-        font-size: 1vw;
-        font-weight: bold;
-        animation: scroll 20s linear infinite;
-        filter: blur(1.2px);
-    }
+.scrolling-text {
+    display: inline-block;
+    white-space: nowrap;
+    color: greenyellow;
+    font-size: 1vw;
+    font-weight: bold;
+    animation: scroll 20s linear infinite;
+    filter: blur(1.2px);
+}
 
-    .scrolling-text span {
-        /* spacing between repeats */
-    }
-
-/* --- fade edges --- */
 .scrolling-text-container::before,
 .scrolling-text-container::after {
-content: "";
-position: absolute;
-top: 0;
-width: 0.5vw;        /* fade width – adjust if you want */
-height: 100%;
-z-index: 3;
-pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 0.5vw;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
 }
 
 .scrolling-text-container::before {
-left: 0;
-background: linear-gradient(to right, #000, transparent);
+    left: 0;
+    background: linear-gradient(to right, #000, transparent);
 }
 
 .scrolling-text-container::after {
-right: 0;
-background: linear-gradient(to left, #000, transparent);
+    right: 0;
+    background: linear-gradient(to left, #000, transparent);
 }
 
-    @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 
-
-
-    .grid-fade-bottom {
-position: absolute;
-bottom: 0;
-left: 0;
-width: 100%;
-height: 4vw; /* adjust fade height */
-pointer-events: none;
-background: linear-gradient(to bottom, transparent, black);
-z-index: 10;
-}    
-
-.clickable {
-    display: flex;                   /* flex container */
-    justify-content: space-between;   /* push left/right to edges */
-    width: 100%;                      /* span full width of li */
-    cursor: pointer;
+.grid-fade-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4vw;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, black);
+    z-index: 10;
 }

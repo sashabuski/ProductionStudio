@@ -6,7 +6,8 @@
     <title>Three Scrollable Boxes</title>
     <script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script> 
     <link rel="stylesheet" href="style.css">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.1/lottie.min.js"></script>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
       
@@ -31,7 +32,25 @@
           });
       
       });
+
+
+      document.addEventListener("DOMContentLoaded", () => {
+  const bgIcons = document.querySelectorAll(".bg-icon");
+
+  bgIcons.forEach(icon => {
+    const path = icon.dataset.lottie;
+    lottie.loadAnimation({
+      container: icon,      // the div
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: path             // path to your JSON
+    });
+  });
+});
     </script>
+
+
    
 
 </head>
@@ -119,22 +138,24 @@
                 <p class="subtitle" style="margin-bottom: 1vw;">PROJECTS</p>
                 <div class="scroll-box" style="padding-top: 1vw;">
                     <ul class="project-list">
-                      <li class="item"><div class="clickable"><span class="left">NEON PEAK</span><span class="right">MEDIA PRODUCTION</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">SILVERLINE</span><span class="right">ADVERTISING</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">GHOSTBIRD</span><span class="right">MUSIC VIDEO</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">HOLOFRAME</span><span class="right">XR / IMMERSIVE</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">NIGHT TRANSIT</span><span class="right">FILM</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">STATIC PUNCH</span><span class="right">BRAND CONTENT</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">VELVET ROCKET</span><span class="right">FASHION</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">GRAINWAVE</span><span class="right">DOCUMENTARY</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">ORBIT HOUSE</span><span class="right">ANIMATION</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">PINE & PIXEL</span><span class="right">PHOTOGRAPHY</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">SIGNAL WEST</span><span class="right">COMMERCIAL</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">MOONSET</span><span class="right">CREATIVE DIRECTION</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">FLUXFRAME</span><span class="right">POST-PRODUCTION</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">RED LANTERN</span><span class="right">SHORT FILM</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">STUDIO WIRE</span><span class="right">MOTION DESIGN</span></div></li>
-                      <li class="item"><div class="clickable"><span class="left">FABLE NORTH</span><span class="right">NARRATIVE</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">NEON PEAK</span><span class="right">MEDIA PRODUCTION</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">SILVERLINE</span><span class="right">ADVERTISING</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">GHOSTBIRD</span><span class="right">MUSIC VIDEO</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">HOLOFRAME</span><span class="right">XR / IMMERSIVE</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">NIGHT TRANSIT</span><span class="right">FILM</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">STATIC PUNCH</span><span class="right">BRAND CONTENT</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">VELVET ROCKET</span><span class="right">FASHION</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">GRAINWAVE</span><span class="right">DOCUMENTARY</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">ORBIT HOUSE</span><span class="right">ANIMATION</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">PINE & PIXEL</span><span class="right">PHOTOGRAPHY</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">SIGNAL WEST</span><span class="right">COMMERCIAL</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">MOONSET</span><span class="right">CREATIVE DIRECTION</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">FLUXFRAME</span><span class="right">POST-PRODUCTION</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">RED LANTERN</span><span class="right">SHORT FILM</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">STUDIO WIRE</span><span class="right">MOTION DESIGN</span></div></li>
+                      <li class="item"><div class="bg-icon" data-lottie="globe.json"></div><div class="clickable"><span class="left">FABLE NORTH</span><span class="right">NARRATIVE</span></div></li>
+                      
+                      
                       
                         <!-- your long list unchanged -->
                     </ul>
@@ -159,34 +180,44 @@
         &copy; 2025 BIG STUDIO. All rights reserved.
     </footer>
    
-    <script>
-      window.onload = function () {
-          let currentListItem = null; // stores the currently selected item
-      
-          const clickables = document.querySelectorAll('.clickable');
-      
-          clickables.forEach(item => {
-              item.onclick = () => {
-                  // If there is a previously selected item, reset its color
-                  if (currentListItem) {
-                      const prevLeft = currentListItem.querySelector('.left');
-                      const prevRight = currentListItem.querySelector('.right');
-                      prevLeft.style.color = '#fff';   // white
-                      prevRight.style.color = '#fff';  // white
-                  }
-      
-                  // Set the clicked item as current
-                  currentListItem = item;
-      
-                  // Change its color to greenyellow
-                  const left = item.querySelector('.left');
-                  const right = item.querySelector('.right');
-                  left.style.color = 'greenyellow';
-                  right.style.color = 'greenyellow';
-              };
-          });
-      };
-      </script>
+    
+<script>
+  window.onload = function () {
+      let currentListItem = null; // currently selected <li>
+  
+      const items = document.querySelectorAll('.item');
+  
+      items.forEach(item => {
+          const clickable = item.querySelector('.clickable');
+          const left = item.querySelector('.left');
+          const right = item.querySelector('.right');
+          const svg = item.querySelector('.bg-icon');
+  
+          clickable.onclick = () => {
+              // Reset previous selection
+              if (currentListItem) {
+                  currentListItem.classList.remove('active');
+                  const prevLeft = currentListItem.querySelector('.left');
+                  const prevRight = currentListItem.querySelector('.right');
+                  prevLeft.style.transform = 'translateY(-50%) translateX(0vw)';
+                  prevLeft.style.color = '#fff';
+                  prevRight.style.color = '#fff';
+              }
+  
+              // Set new selection
+              currentListItem = item;
+              item.classList.add('active');
+  
+              // Animate left text
+              left.style.transform = 'translateY(-50%) translateX(1.5vw)';
+  
+              // Change colors
+              left.style.color = 'greenyellow';
+              right.style.color = 'greenyellow';
+          };
+      });
+  };
+  </script>
       
       
 </body>
