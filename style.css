@@ -165,20 +165,28 @@ html, body {
 .bg-icon {
     position: absolute;
     left: 0;
-    top: 49%;
-    width: 1.2vw;
-    height: 1.2vw;
-    transform: translateY(-50%) scale(0.9);
+    top: 50%;
+    width: 1.2vw;          /* scales with viewport width */
+    height: 1.2vw;         /* scales with viewport width */
+    min-width: 5px;        /* prevents being too small */
+    min-height: 5px;
+    transform: translateY(-50%);
     opacity: 0;
-  
     transition: opacity 0.28s ease, transform 0.28s ease;
     z-index: 0;
     pointer-events: none;
 }
 
+.bg-icon img {
+    width: 100%;            /* fill the container */
+    height: 100%;           /* fill the container */
+    object-fit: contain;    /* maintain aspect ratio */
+    display: block;         /* remove inline spacing */
+}
+
 .item.active .bg-icon {
     opacity: 0.95;
-    transform: translateY(-50%) scale(1);
+    transform: translateY(-50%);
 }
 
 /* clickable text */
@@ -243,6 +251,7 @@ footer {
     margin-right: 1.5vw;
     margin-top: 0.65vw;
     margin-bottom: 0.65vw;
+    
 }
 
 .white-g {
