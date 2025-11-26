@@ -230,14 +230,14 @@
           data[i] = shade;     // R
           data[i + 1] = shade; // G
           data[i + 2] = shade; // B
-          data[i + 3] = 40;    // Alpha for subtlety
+          data[i + 3] = 20;    // Alpha for subtlety
       }
 
       ctx.putImageData(imageData, 0, 0);
       requestAnimationFrame(drawNoise);
   }
 
-  //drawNoise();
+  drawNoise();
 </script>
 
 <style>
