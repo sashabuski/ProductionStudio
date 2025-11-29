@@ -550,6 +550,7 @@ footer {
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-bottom: 8vw;
 }
 
 .item-mobile {
@@ -584,8 +585,8 @@ footer {
 
 .subtitle-mobile {
     z-index: 99999;
-    margin-left: 2vw;
-    padding-left: 0.75vw;
+    margin-left: 3vw;
+    
     font-size: 4vw;
     color: #959595;
     font-weight: bold;
@@ -629,4 +630,32 @@ footer {
   width:auto;
    
     transition: color 0.1s ease;
+}
+
+.para-mobile { 
+    color: white; 
+    font-size: calc(4vw + 2px); 
+    margin-left: 3vw; 
+    margin-right: 3vw;
+    margin-top: 0px;
+    margin-bottom: 0px;}
+
+.footer-mobile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* 2 equal columns */
+    gap: 2vw;                          /* space between items */
+    padding: 4vw 3vw;                  /* side padding */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-link-mobile {
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: calc(3.7vw + 2px);
+    transition: color 0.2s ease;
+    font-family: 'ConsolasCustom', monospace;
+    text-align: left;
+
+    position: relative; /* required for pseudo-element positioning */
 }
