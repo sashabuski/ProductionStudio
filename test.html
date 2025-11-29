@@ -2,30 +2,154 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BG Icon Only</title>
+<title>Perfect Responsive Footer</title>
+
 <style>
-  body {
+:root {
+    --footer-height: calc(6vw + 60px);
+}
+
+html, body {
     margin: 0;
     padding: 0;
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+    background: #000;
+    height: 100%;
+}
 
-  .bg-icon {
-    width: 2vw;
-    height: 2vw;
-    background-color: red;
-    object-fit: contain; /* ensures GIF scales nicely */
-  }
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height);
+    background: #000;
+    color: white;
+    font-size: 1vw;
+    padding: 1vw 1.5vw;       /* padding replaces margins */
+    box-sizing: border-box;
+}
+
+.footer-grid {
+    height: 100%;             /* fill footer height */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr 1fr;  /* 2 equal rows */
+    gap: 0.5vw 2vw;
+    align-items: center;      /* vertical centering */
+}
+
+.footer-col {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8vw;
+    font-family: 'ConsolasCustom', monospace;
+    position: relative;
+    display: inline-block;
+}
+
+/* underline animation */
+.footer-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    background: yellowgreen;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.footer-link:hover {
+    color: yellowgreen;
+}
+.footer-link:hover::after {
+    transform: scaleX(1);
+}
+
+.accent {
+    color: yellowgreen;
+}
+
+.footer-muted {
+    opacity: 0.5;
+    font-size: 0.8vw;
+}
+
+.divider {
+    text-align: center;
+    margin-bottom: .5vw;
+}
+
+.divider .line {
+    width: 40px;
+    height: 1px;
+    background: white;
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.white-g {
+    width: 20px;
+    vertical-align: middle;
+}
 </style>
 </head>
+
 <body>
 
-<img src="globe.gif" class="bg-icon" alt="Globe Animation">
+<footer>
+
+    <div class="divider">
+        <img src="g.svg" class="white-g">
+        <span class="line"></span>
+        <img src="g.svg" class="white-g">
+    </div>
+
+    <div class="footer-grid">
+
+        <!-- Row 1 -->
+        <a class="footer-link accent">CAPABILITIES DECK ↓</a>
+
+        <ul class="footer-col"></ul>
+
+        <ul class="footer-col">
+            <li><a class="footer-link" href="#">GITHUB</a></li>
+            <li><a class="footer-link" href="#">LENIS</a></li>
+        </ul>
+
+        <ul class="footer-col">
+            <li><a class="footer-link" href="#">AWWWARDS</a></li>
+            <li><a class="footer-link" href="#">TWITTER</a></li>
+        </ul>
+
+        <ul class="footer-col">
+            <li><a class="footer-link" href="#">INSTAGRAM</a></li>
+            <li><a class="footer-link" href="#">VIMEO</a></li>
+        </ul>
+
+        <ul class="footer-col">
+            <li><a class="footer-link" href="#">P: +1 380.238.9363</a></li>
+            <li><a class="footer-link" href="#">E: hello@email.com</a></li>
+        </ul>
+
+        <!-- Row 2 -->
+        <ul class="footer-col"></ul>
+
+        <ul class="footer-col">
+            <li class="footer-muted">© 2025</li>
+        </ul>
+
+    </div>
+</footer>
 
 </body>
 </html>

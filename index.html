@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three Scrollable Boxes</title>
+    <title>CCX Productions</title>
     <script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script> 
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.1/lottie.min.js"></script>
@@ -33,15 +33,112 @@
       
       });
 
+      document.addEventListener("DOMContentLoaded", () => {
 
+const lenis = new Lenis({
+    smooth: true,
+    smoothTouch: true,
+    wheelMultiplier: 0.8,
+    touchMultiplier: 1.2,
+    lerp: 0.08    // you can tweak this
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+});
     </script>
-
 
    
 
 </head>
 <body>
+  <div class="main-content-mobile" style="color: white; position: absolute;">
 
+    <div class="headerbox-mobile">
+      <div class="linksbox-mobile">
+          <button class="cornerbutton-mobile"><img class="whiteicon-mobile" src="1.svg"></button>
+          <button class="cornerbutton-mobile"><img class="whiteicon-mobile" src="2.svg"></button>
+          <button class="cornerbutton-mobile"><img class="whiteicon-mobile" src="3.svg"></button>
+         
+        
+         
+          <button class="contact-mobile">CONTACT</button>
+      </div>
+
+      <div class="divider-mobile" >
+          <img src="g.svg" class="white-g-mobile">
+          <div class="line-mobile"></div>
+          <img src="g.svg" class="white-g-mobile">
+      </div>
+
+      <img src="headermobile.svg" class="headerstyle-mobile" style="z-index: 10; position: relative;">
+
+      <div class="divider-mobile" >
+          <img src="g.svg" class="white-g-mobile">
+          <div class="line-mobile"></div>
+          <img src="g.svg" class="white-g-mobile">
+      </div>
+
+  
+      <div class="scrolling-text-container-mobile">
+        <div class="scrolling-text-mobile">
+            <span>
+                01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                </span>
+                         
+            
+                <span>
+                    01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                    </span>
+                    
+    
+            </div>
+      </div>
+
+
+
+  </div>
+
+ 
+  <div class = "mobile-content-container">
+    <img src="art.svg" class="mobile-art">
+
+
+    <ul class="project-list-mobile">
+      <p class="subtitle-mobile" style="margin-bottom: 6vw;">PROJECTS</p>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">NEON PEAK</span><span class="right">MEDIA PRODUCTION</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">SILVERLINE</span><span class="right">ADVERTISING</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">GHOSTBIRD</span><span class="right">MUSIC VIDEO</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">HOLOFRAME</span><span class="right">XR / IMMERSIVE</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">NIGHT TRANSIT</span><span class="right">FILM</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">STATIC PUNCH</span><span class="right">BRAND CONTENT</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">VELVET ROCKET</span><span class="right">FASHION</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">GRAINWAVE</span><span class="right">DOCUMENTARY</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">ORBIT HOUSE</span><span class="right">ANIMATION</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">PINE & PIXEL</span><span class="right">PHOTOGRAPHY</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">SIGNAL WEST</span><span class="right">COMMERCIAL</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">MOONSET</span><span class="right">CREATIVE DIRECTION</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">FLUXFRAME</span><span class="right">POST-PRODUCTION</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">RED LANTERN</span><span class="right">SHORT FILM</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">STUDIO WIRE</span><span class="right">MOTION DESIGN</span><img src="exp.svg" class="exp-button"></div></li>
+      <li class="item-mobile"><div class="bg-icon-mobile"><img src="globe.gif" alt="globe"></div><div class="clickable-mobile"><span class="left">FABLE NORTH</span><span class="right">NARRATIVE</span><img src="exp.svg" class="exp-button"></div></li>
+      
+      
+      
+        <!-- your long list unchanged -->
+    </ul>
+
+  </div>
+
+ 
+
+  </div>
+
+  
     <div class="main-content" >
 
         <div class="headerbox">
@@ -84,6 +181,7 @@
                 <img src="g.svg" class="white-g">
             </div>
         </div>
+
 
         <div class="grid-container">
 
@@ -157,14 +255,50 @@
 
     </div>
 
-    <footer>
-        <div class="divider" style="margin-top: 0px;">
-            <img src="g.svg" class="white-g">
-            <div class="line"></div>
-            <img src="g.svg" class="white-g">
-        </div>
-        &copy; 2025 BIG STUDIO. All rights reserved.
-    </footer>
+    <footer class="main-footer">
+      <div class="divider" style="margin-top: 0px; margin-bottom: 0px">
+          <img src="g.svg" class="white-g">
+          <div class="line"></div>
+          <img src="g.svg" class="white-g">
+      </div>
+  
+      <div class="footer-grid">
+
+        <li style = "list-style: none; text-align: left;">
+          <a href="/Capabilities.pdf" download class="footer-link accent" >CAPABILITIES DECK ↓</a>
+         </li>
+          <ul class="footer-col">
+          </ul>
+
+          <ul class="footer-col">
+              <li><a target="_blank" class="footer-link" href="https://youtube.com/">YOUTUBE</a></li>
+              <li><a target="_blank" class="footer-link" href="https://youtu.be/YUuSdrCojPE?si=_Y3Ug0-S9QlNucpN">HEAVEN</a></li>
+          </ul>
+  
+          <ul class="footer-col">
+              <li><a target="_blank" class="footer-link" href="https://www.awwwards.com/">AWWWARDS</a></li>
+              <li><a target="_blank" class="footer-link" href="https://twitter.com/">TWITTER</a></li>
+          </ul>
+  
+          <ul class="footer-col">
+              <li><a target="_blank" class="footer-link" href="https://www.instagram.com/">INSTAGRAM</a></li>
+              <li><a target="_blank" class="footer-link" href="https://vimeo.com/">VIMEO</a></li>
+          </ul>
+  
+          <ul class="footer-col">
+              <li><a class="footer-link" href="tel:+13802389363">P: +1 380.238.9363</a></li>
+              <li><a class="footer-link" href="mailto:hello@email.com">E: hello@email.com</a></li>
+          </ul>
+  
+          <ul class="footer-col">
+          </ul>
+
+          <ul class="footer-col">
+              <li class="footer-muted">© 2025</li>
+          </ul>
+      </div>
+  </footer>
+  
    
     
 <script>
@@ -240,17 +374,27 @@
   drawNoise();
 </script>
 
-<style>
-  /* Make canvas sit on top but allow clicks to pass through */
-  #noiseCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 5;
-    }
-</style>
+
+<script>
+  function updateOverflow() {
+      if (window.innerWidth < 800) {
+          // allow vertical scroll only
+          document.documentElement.style.overflowY = "auto";
+          document.documentElement.style.overflowX = "hidden";
+  
+          document.body.style.overflowY = "auto";
+          document.body.style.overflowX = "hidden";
+      } else {
+          // lock all scrolling
+          document.documentElement.style.overflow = "hidden";
+          document.body.style.overflow = "hidden";
+      }
+  }
+  
+  updateOverflow();
+  window.addEventListener("resize", updateOverflow);
+</script>
+  
+ 
 </body>
 </html>
