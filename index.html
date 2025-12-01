@@ -105,7 +105,7 @@ requestAnimationFrame(raf);
 
  
   <div class = "mobile-content-container">
-    <img src="art.svg" class="mobile-art">
+    <img src="art4.svg" class="mobile-art">
 
 
     <ul class="project-list-mobile">
@@ -131,7 +131,7 @@ requestAnimationFrame(raf);
       
         <!-- your long list unchanged -->
     </ul>
-    <img src="art2.svg" class="mobile-art">
+    <img src="art6.svg" class="mobile-art">
 
 
     <p class="subtitle-mobile" style=" margin-bottom: 6vw;">ABOUT</p>
@@ -190,7 +190,7 @@ requestAnimationFrame(raf);
       <a class="footer-link-mobile" href="#">E: hello@email.com</a>
     </div>
     
-    <img src="art3.svg" class="mobile-art" style="margin-bottom: 0px; margin-top: 6vw;">
+    <img src="art5.svg" class="mobile-art" style="margin-bottom: 0px; margin-top: 6vw;">
   </div>
  
   
@@ -248,6 +248,69 @@ requestAnimationFrame(raf);
         </div>
 
 
+
+
+
+
+
+              <!-- Overlay Dim Background -->
+        <div id="overlay"></div>
+
+        <!-- Contact Panel -->
+        <div id="contact-panel">
+            <button id="close-contact" >CLOSE</button>
+            
+            <div class="divider" style="margin: 1vw 0 0 0">
+              <img src="g.svg" class="white-g">
+              <div class="line"></div>
+              <img src="g.svg" class="white-g">
+          </div>
+          <h2 class="subtitle" style="margin-top: 2vw; padding-left: 0px;">PROJECT INQUIRY</h2>
+
+<p class="para">Hey! We’d love to learn more about what you’re creating so we can determine whether we’re the right production partner. As a next step, please review the information below and submit our Project Kickoff form.<br><br>
+
+  <strong style="font-weight: 800;">Timing.</strong> We’re a hands-on production company focused on delivering exceptional craft, so we take on only a limited number of projects at a time. Because of this, last-minute turnarounds or rushed timelines are not typically feasible — we prefer to plan ahead to ensure the highest production quality.<br><br>
+  
+  <strong style="font-weight: 800;">Scope.</strong> Our core work includes creative development, cinematography, directing, full-service production, and post-production (editing, VFX, sound, and color). We’re open to unconventional or experimental requests (!) but generally focus on meaningful, high-impact projects rather than small fixes or minor content updates.<br><br>
+  
+  <strong style="font-weight: 800;">Budget.</strong> Production budgets vary depending on concept, locations, talent, crew size, and post-production needs. Our smallest engagements typically begin around $15k–$20k, with larger campaigns and multi-deliverable productions ranging from $50k–$150k+. If your expectations differ, you’re still encouraged to reach out — we’re happy to hear your ideas and discuss budget realities.<br><br>
+  
+  If you have questions or aren’t sure whether we’re a fit, please feel free to start a conversation with us anytime.</p>
+  <form>
+    
+    <div class="two-col">
+      <div class="col">
+          <label>Name</label>
+          <input type="text" class="contact-panel-input" required>
+      </div>
+
+      <div class="col">
+          <label>Email</label>
+          <input type="email" class="contact-panel-input" required>
+      </div>
+  </div>
+    
+    <label>Name</label>
+    <input type="text" class="contact-panel-input" required>
+
+    <label>Email</label>
+    <input type="email" class="contact-panel-input" required>
+
+    <label>Message</label>
+    <textarea class="contact-panel-textarea" required></textarea>
+
+    <button type="submit">Send</button>
+</form>
+
+        </div>
+
+      
+
+
+        
+        
+
+
         <div class="grid-container">
 
             <section class="box1">
@@ -269,7 +332,7 @@ requestAnimationFrame(raf);
                         → Visual Effects<br>
                         → Campaign Development<br>
                         → Concept Sprints</p>
-                        <br><br>
+                        <br>
                         <p class="subtitle" style="padding: 0px; margin-bottom: 2vw;">MENTIONS</p>
                         
                         <p class="para">
@@ -460,6 +523,47 @@ requestAnimationFrame(raf);
   window.addEventListener("resize", updateOverflow);
 </script>
   
- 
+
+<script>
+  const openBtn = document.querySelector(".contact");
+  const closeBtn = document.getElementById("close-contact");
+  const panel = document.getElementById("contact-panel");
+  const overlay = document.getElementById("overlay");
+  const body = document.body;
+  const noiseCanvas = document.getElementById("noiseCanvas");  
+  const scrollBoxes = document.querySelectorAll(".scroll-box");
+  // Open panel
+  openBtn.addEventListener("click", () => {
+      panel.classList.add("active");
+      overlay.classList.add("active");
+      body.classList.add("body-lock");
+      noiseCanvas.classList.add("noise-lowered");
+  });
+  
+  // Close panel
+  function closePanel() {
+      panel.classList.remove("active");
+
+
+       overlay.style.opacity = "0";
+
+    // after transition, hide visibility
+    setTimeout(() => {
+        overlay.classList.remove("active");
+        overlay.style.opacity = "";
+    }, 300);
+
+
+      body.classList.remove("body-lock");
+      noiseCanvas.classList.remove("noise-lowered");
+  }
+  
+  closeBtn.addEventListener("click", closePanel);
+  
+  // Click on dim background closes panel
+  overlay.addEventListener("click", closePanel);
+  </script> 
+
+
 </body>
 </html>
