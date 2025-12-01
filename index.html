@@ -11,6 +11,26 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
       
+        const contactPanel = document.getElementById("contact-panel");
+
+if (contactPanel) {
+    const contactScroller = new Lenis({
+        wrapper: contactPanel,
+        content: contactPanel,
+        smooth: true,
+        smoothWheel: true,
+        smoothTouch: true,
+        wheelMultiplier: 0.8,
+        touchMultiplier: 1.2,
+    });
+
+    function rafContact(time) {
+        contactScroller.raf(time);
+        requestAnimationFrame(rafContact);
+    }
+    requestAnimationFrame(rafContact);
+}
+
           // Select all scrollable divs
           const scrollBoxes = document.querySelectorAll(".scroll-box");
       
@@ -87,12 +107,12 @@ requestAnimationFrame(raf);
       <div class="scrolling-text-container-mobile">
         <div class="scrolling-text-mobile">
             <span>
-                01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 ANNA POOPOO HEAD &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
                 </span>
                          
             
                 <span>
-                    01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                    01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 ANNA POOPOO HEAD &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
                     </span>
                     
     
@@ -208,20 +228,20 @@ requestAnimationFrame(raf);
 
         <div class="headerbox">
             <div class="linksbox">
-                <button class="cornerbutton"><img class="whiteicon" src="1.svg"></button>
-                <button class="cornerbutton"><img class="whiteicon" src="2.svg"></button>
-                <button class="cornerbutton"><img class="whiteicon" src="3.svg"></button>
+                <button class="cornerbutton"><img class="whiteicon" src="4.svg"></button>
+                <button class="cornerbutton"><img class="whiteicon" src="4.svg"></button>
+                <button class="cornerbutton"><img class="whiteicon" src="4.svg"></button>
                
                
                 <div class="scrolling-text-container">
                   <div class="scrolling-text">
                       <span>
-                          01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                          01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 ANNA POO POO HEAD &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
                           </span>
                                    
                       
                           <span>
-                              01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                              01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 ANNA POOPOO HEAD &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
                               </span>
                               
   
@@ -258,14 +278,18 @@ requestAnimationFrame(raf);
 
         <!-- Contact Panel -->
         <div id="contact-panel">
-            <button id="close-contact" >CLOSE</button>
+          
+          <div class = "contact-header">
+          <button id="close-contact" >CLOSE</button>
             
             <div class="divider" style="margin: 1vw 0 0 0">
               <img src="g.svg" class="white-g">
               <div class="line"></div>
               <img src="g.svg" class="white-g">
-          </div>
-          <h2 class="subtitle" style="margin-top: 2vw; padding-left: 0px;">PROJECT INQUIRY</h2>
+            </div>
+        </div>
+
+          <h2 class="subtitle" style="margin-top: 7vw; padding-left: 0px;">PROJECT INQUIRY</h2>
 
 <p class="para">Hey! We’d love to learn more about what you’re creating so we can determine whether we’re the right production partner. As a next step, please review the information below and submit our Project Kickoff form.<br><br>
 
@@ -279,27 +303,66 @@ requestAnimationFrame(raf);
   <form>
     
     <div class="two-col">
+      
+  
       <div class="col">
-          <label>Name</label>
+          <label>YOUR NAME *</label>
           <input type="text" class="contact-panel-input" required>
       </div>
 
       <div class="col">
-          <label>Email</label>
+          <label>YOUR EMAIL *</label>
           <input type="email" class="contact-panel-input" required>
       </div>
   </div>
     
-    <label>Name</label>
+    <label>COMPANY NAME *</label>
     <input type="text" class="contact-panel-input" required>
 
-    <label>Email</label>
-    <input type="email" class="contact-panel-input" required>
+<div style="display: flex; flex-direction: row; width: 100%; margin-top: 2vw;">
+<button class="formbox">VIDEO</button>
+<button class="formbox">FILM</button>
+<button class="formbox">ANIMATION</button>
+<button class="formbox">PHOTO</button>
+<button class="formbox">LIVE</button>
+<button class="formbox">OTHER</button>
+ </div>   
 
-    <label>Message</label>
-    <textarea class="contact-panel-textarea" required></textarea>
+<label style="margin-top: 2vw;">PROJECT DESCRIPTION *</label>
+    <textarea type="email" class="contact-panel-input" style="height: 8vw;" required></textarea>
 
-    <button type="submit">Send</button>
+
+
+
+    <div class="two-col">
+      
+  
+      <div class="col">
+          <label>BUDGET EXPECTATION *</label>
+          <input type="text" class="contact-panel-input" required>
+      </div>
+
+      <div class="col">
+          <label>TIMELINE EXPECTATION *</label>
+          <input type="email" class="contact-panel-input" required>
+      </div>
+  </div>
+  
+  <div class="two-col">
+      
+  
+    <div class="col">
+        <label>HOW YOU FOUND US *</label>
+        <input type="text" class="contact-panel-input" required>
+    </div>
+
+    <div class="col">
+        <label>FAVORITE MOVIE OR ALBUM</label>
+        <input type="email" class="contact-panel-input">
+    </div>
+</div>
+    
+    <button type="submit" style="margin: 2vw 0 2vw 0;"> <strong>SEND</strong> </button>
 </form>
 
         </div>
@@ -562,8 +625,24 @@ requestAnimationFrame(raf);
   
   // Click on dim background closes panel
   overlay.addEventListener("click", closePanel);
+  
+  
+  
+  
+  
   </script> 
 
+<script>
+  // Select all formbox buttons
+  const formBoxes = document.querySelectorAll('.formbox');
+
+  formBoxes.forEach(box => {
+    box.addEventListener('click', () => {
+      // Toggle the active class
+      box.classList.toggle('active');
+    });
+  });
+</script>
 
 </body>
 </html>

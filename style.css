@@ -61,6 +61,32 @@ body::-webkit-scrollbar {
     cursor: pointer;
 }
 
+.formbox {
+    z-index: 90;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid white;
+    color: white;
+    border-radius: 20px;
+    font-size: 1.1vw;
+    font-weight: bold;
+    padding: 0.3vw 0.6vw;
+    padding-top: 0.4vw;
+    margin: 0 1vw 0 0;
+ 
+    transition: background-color 0.1s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.formbox:hover {
+    border-color: greenyellow;
+    color: greenyellow;
+}
+
+.formbox.active {
+    border-color: greenyellow;
+    color: greenyellow;
+}
+
 .contact:hover {
     background-color: greenyellow;
     color: #000;
@@ -703,13 +729,16 @@ footer {
     background: #000;
     color: white;
     padding: 1.5vw;
-    padding-top: 1vw;
+    padding-top: 0vw;
     box-sizing: border-box;
     transition: right 0.4s ease;
     z-index: 100;
     display: flex;
     flex-direction: column;
+    scrollbar-width: 0px;
 }
+
+#contact-panel::-webkit-scrollbar { display: none; }
 
 /* Close button */
 #close-contact {
@@ -736,10 +765,10 @@ footer {
 
 /* Form styling */
 #contact-panel form {
-    margin-top: 4vw;
+  
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    
 }
 
 .contact-panel-input,
@@ -750,6 +779,12 @@ footer {
     background: #222;
     color: white;
     border-radius: .4vw;
+}
+
+.contact-panel-input:focus,
+.contact-panel-textarea:focus {
+    border-color: greenyellow; /* Change to any color you like */
+    outline: none; /* Optional: removes default focus outline */
 }
 
 #contact-panel button[type="submit"] {
@@ -778,14 +813,34 @@ footer {
 }
 
 .wide-input{
-width:96%;
+    width:96%;
 }
 
 .two-col {
     display: flex;
-    gap: 2%;
+    gap: 5%;
 }
 
 .two-col .col {
-    width: 50%;
+    width: 46.5%;
+    display: flex;         /* NEW */
+    flex-direction: column;/* NEW */
+}
+
+label{
+    font-family: 'ConsolasCustom', monospace;
+    font-size: 0.8vw;
+    margin-top: 1.5vw;
+    margin-bottom: 0.4vw;
+}
+.contact-header{
+    padding-bottom: 0.5vw;
+z-index: 130; 
+padding-top: 1vw;
+position: fixed; 
+width: 47.5vw; 
+height: auto; 
+background-color: black; 
+display: flex; 
+flex-direction: column;
 }
