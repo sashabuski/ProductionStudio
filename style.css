@@ -563,7 +563,7 @@ footer {
 
 .mobile-art{
     position: relative;
-    z-index: 90;
+    z-index: 0;
     width: 100vw;
     height: auto;
     margin-bottom: 3vw;
