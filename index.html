@@ -504,6 +504,8 @@ if (contactPanel) {
     
     });
 
+
+
     document.addEventListener("DOMContentLoaded", () => {
 
         const lenis = new Lenis({
@@ -565,12 +567,23 @@ if (contactPanel) {
             `;
         
             videoBox.innerHTML = newContent;
-            
-            if (videoBoxLenis) {
+            const videos = videoBox.querySelectorAll("video");
+            let loadedCount = 0;
 
-                console.log("56");
-                 videoBoxLenis.resize();
-            }
+            videos.forEach(video => {
+                video.addEventListener("loadedmetadata", () => {
+                    loadedCount++;
+
+                    if (loadedCount === videos.length) {
+                        // All videos have loaded perfectly
+                        console.log("All videos loaded, resizing Lenis…");
+
+                        if (videoBoxLenis) {
+                            videoBoxLenis.resize();
+                        }
+                    }
+                });
+            });
         }
     
         // ------------------------------------------------------
