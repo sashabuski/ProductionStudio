@@ -451,11 +451,81 @@
   
    
     
-  <script>
+<script>
+
+let videoBoxLenis = null;
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const contactPanel = document.getElementById("contact-panel");
+
+if (contactPanel) {
+  const contactScroller = new Lenis({
+      wrapper: contactPanel,
+      content: contactPanel,
+      smooth: true,
+      smoothWheel: true,
+      smoothTouch: true,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.2,
+  });
+
+  function rafContact(time) {
+      contactScroller.raf(time);
+      requestAnimationFrame(rafContact);
+  }
+  requestAnimationFrame(rafContact);
+}
+
+        // Select all scrollable divs
+        const scrollBoxes = document.querySelectorAll(".scroll-box");
+    
+        scrollBoxes.forEach(box => {
+            const scroller = new Lenis({
+                wrapper: box,
+                content: box,
+                wheelMultiplier: 0.8,
+                touchMultiplier: 1.2,
+                smoothWheel: true,
+                smoothTouch: true,
+            });
+
+            if (box.id === 'video-scroll-box') {
+                videoBoxLenis = scroller;
+            }
+    
+            function raf(time) {
+                scroller.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        });
+    
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const lenis = new Lenis({
+        smooth: true,
+        smoothTouch: true,
+        wheelMultiplier: 0.8,
+        touchMultiplier: 1.2,
+        lerp: 0.08    // you can tweak this
+        });
+
+        function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+        });
+        
     window.onload = function () {
     
 
-        let videoBoxLenis = null;
+        
 
         let currentListItem = null;
         const items = document.querySelectorAll('.item');
@@ -493,9 +563,12 @@
     
                 </div>
             `;
-    
+        
             videoBox.innerHTML = newContent;
+            
             if (videoBoxLenis) {
+
+                console.log("56");
                  videoBoxLenis.resize();
             }
         }
@@ -672,72 +745,5 @@
 </script>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-    
-      const contactPanel = document.getElementById("contact-panel");
-
-if (contactPanel) {
-  const contactScroller = new Lenis({
-      wrapper: contactPanel,
-      content: contactPanel,
-      smooth: true,
-      smoothWheel: true,
-      smoothTouch: true,
-      wheelMultiplier: 0.8,
-      touchMultiplier: 1.2,
-  });
-
-  function rafContact(time) {
-      contactScroller.raf(time);
-      requestAnimationFrame(rafContact);
-  }
-  requestAnimationFrame(rafContact);
-}
-
-        // Select all scrollable divs
-        const scrollBoxes = document.querySelectorAll(".scroll-box");
-    
-        scrollBoxes.forEach(box => {
-            const scroller = new Lenis({
-                wrapper: box,
-                content: box,
-                wheelMultiplier: 0.8,
-                touchMultiplier: 1.2,
-                smoothWheel: true,
-                smoothTouch: true,
-            });
-
-            if (box.id === 'video-scroll-box') {
-                videoBoxLenis = scroller;
-            }
-    
-            function raf(time) {
-                scroller.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-        });
-    
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-
-const lenis = new Lenis({
-  smooth: true,
-  smoothTouch: true,
-  wheelMultiplier: 0.8,
-  touchMultiplier: 1.2,
-  lerp: 0.08    // you can tweak this
-});
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-
-requestAnimationFrame(raf);
-});
-  </script>
 </body>
 </html>
