@@ -439,9 +439,30 @@ requestAnimationFrame(raf);
 
             <section class="box3">
                 <p class="subtitle">PROJECT DETAILS</p>
-                <div class="scroll-box"></div>
+                <div id="video-scroll-box" class="scroll-box">
+                    
+ 
+
+                </div>
             </section>
            
+
+            <style>
+                #video-scroll-box {
+                    mask-image: linear-gradient(
+                        to bottom,
+                        black 0px,
+                        black calc(100% - 2vw),
+                        transparent 100%
+                    );
+                    -webkit-mask-image: linear-gradient(
+                        to bottom,
+                        black 0px,
+                        black calc(100% - 2vw),
+                        transparent 100%
+                    );
+                }
+                </style>
         </div>
 
     </div>
@@ -492,43 +513,105 @@ requestAnimationFrame(raf);
   
    
     
-<script>
-  window.onload = function () {
-      let currentListItem = null; // currently selected <li>
-  
-      const items = document.querySelectorAll('.item');
-  
-      items.forEach(item => {
-          const clickable = item.querySelector('.clickable');
-          const left = item.querySelector('.left');
-          const right = item.querySelector('.right');
-          
-  
-          clickable.onclick = () => {
-              // Reset previous selection
-              if (currentListItem) {
-                  currentListItem.classList.remove('active');
-                  const prevLeft = currentListItem.querySelector('.left');
-                  const prevRight = currentListItem.querySelector('.right');
-                  prevLeft.style.transform = 'translateY(-50%) translateX(0vw)';
-                  prevLeft.style.color = '#fff';
-                  prevRight.style.color = '#fff';
-              }
-  
-              // Set new selection
-              currentListItem = item;
-              item.classList.add('active');
-  
-              // Animate left text
-              left.style.transform = 'translateY(-50%) translateX(1.5vw)';
-  
-              // Change colors
-              left.style.color = 'greenyellow';
-              right.style.color = 'greenyellow';
-          };
-      });
-  };
-  </script>
+  <script>
+    window.onload = function () {
+    
+        let currentListItem = null;
+        const items = document.querySelectorAll('.item');
+        const videoBox = document.getElementById('video-scroll-box');
+    
+        // ------------------------------------------------------
+        // FUNCTION: builds and inserts new videos for a project
+        // ------------------------------------------------------
+        function loadProjectVideos(folder) {
+    
+            let newContent = `
+                <div style="display: flex; flex-direction: column;">
+    
+                    <video autoplay muted loop playsinline class="wide-video">
+                        <source src="${folder}/1.mp4" type="video/mp4">
+                    </video>
+    
+                    <div style="display: flex; flex-direction: row; width: 100%; gap: 0.4vw;">
+                        <video autoplay muted loop playsinline class="half-video">
+                            <source src="${folder}/2.mp4" type="video/mp4">
+                        </video>
+    
+                        <video autoplay muted loop playsinline class="half-video">
+                            <source src="${folder}/3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+    
+                    <video autoplay muted loop playsinline class="wide-video">
+                        <source src="${folder}/4.mp4" type="video/mp4">
+                    </video>
+    
+                    <video autoplay muted loop playsinline class="wide-video">
+                        <source src="${folder}/5.mp4" type="video/mp4">
+                    </video>
+    
+                </div>
+            `;
+    
+            videoBox.innerHTML = newContent;
+        }
+    
+        // ------------------------------------------------------
+        // MAIN CLICK HANDLER FOR EACH ITEM
+        // ------------------------------------------------------
+        items.forEach(item => {
+    
+            const clickable = item.querySelector('.clickable');
+            const left = item.querySelector('.left');
+            const right = item.querySelector('.right');
+    
+            clickable.onclick = () => {
+    
+                // Reset previous selection
+                if (currentListItem) {
+                    currentListItem.classList.remove('active');
+                    const prevLeft = currentListItem.querySelector('.left');
+                    const prevRight = currentListItem.querySelector('.right');
+                    prevLeft.style.transform = 'translateY(-50%) translateX(0vw)';
+                    prevLeft.style.color = '#fff';
+                    prevRight.style.color = '#fff';
+                }
+    
+                // Set new selection
+                currentListItem = item;
+                item.classList.add('active');
+    
+                left.style.transform = 'translateY(-50%) translateX(1.5vw)';
+                left.style.color = 'greenyellow';
+                right.style.color = 'greenyellow';
+    
+                // Load videos for this project
+                let folder = left.textContent.trim().toLowerCase();
+                loadProjectVideos(folder);
+            };
+        });
+    
+        // ------------------------------------------------------
+        // INITIAL LOAD — select and load the first item
+        // ------------------------------------------------------
+        const firstItem = items[0];
+        if (firstItem) {
+            const firstLeft = firstItem.querySelector('.left');
+            const firstRight = firstItem.querySelector('.right');
+    
+            currentListItem = firstItem;
+            firstItem.classList.add('active');
+    
+            firstLeft.style.transform = 'translateY(-50%) translateX(1.5vw)';
+            firstLeft.style.color = 'greenyellow';
+            firstRight.style.color = 'greenyellow';
+    
+            let firstFolder = firstLeft.textContent.trim().toLowerCase();
+            loadProjectVideos(firstFolder);
+        }
+    };
+    </script>
+    
       
       
 
