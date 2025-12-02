@@ -537,54 +537,59 @@ if (contactPanel) {
         // FUNCTION: builds and inserts new videos for a project
         // ------------------------------------------------------
         function loadProjectVideos(folder) {
-    
-            let newContent = `
-                <div style="display: flex; flex-direction: column;">
-    
-                    <video autoplay muted loop playsinline class="wide-video">
-                        <source src="${folder}/1.mp4" type="video/mp4">
-                    </video>
-    
-                    <div style="display: flex; flex-direction: row; width: 100%; gap: 0.4vw;">
-                        <video autoplay muted loop playsinline class="half-video">
-                            <source src="${folder}/2.mp4" type="video/mp4">
-                        </video>
-    
-                        <video autoplay muted loop playsinline class="half-video">
-                            <source src="${folder}/3.mp4" type="video/mp4">
-                        </video>
-                    </div>
-    
-                    <video autoplay muted loop playsinline class="wide-video">
-                        <source src="${folder}/4.mp4" type="video/mp4">
-                    </video>
-    
-                    <video autoplay muted loop playsinline class="wide-video">
-                        <source src="${folder}/5.mp4" type="video/mp4">
-                    </video>
-    
-                </div>
-            `;
-        
-            videoBox.innerHTML = newContent;
-            const videos = videoBox.querySelectorAll("video");
-            let loadedCount = 0;
 
-            videos.forEach(video => {
-                video.addEventListener("loadedmetadata", () => {
-                    loadedCount++;
+let newContent = `
+    <div style="display: flex; flex-direction: column;">
 
-                    if (loadedCount === videos.length) {
-                        // All videos have loaded perfectly
-                        console.log("All videos loaded, resizing Lenis…");
+        <video autoplay muted loop playsinline class="wide-video">
+            <source src="${folder}/1.mp4" type="video/mp4">
+        </video>
 
-                        if (videoBoxLenis) {
-                            videoBoxLenis.resize();
-                        }
-                    }
-                });
-            });
+        <div style="display: flex; flex-direction: row; width: 100%; gap: 0.4vw;">
+            <video autoplay muted loop playsinline class="half-video">
+                <source src="${folder}/2.mp4" type="video/mp4">
+            </video>
+
+            <video autoplay muted loop playsinline class="half-video">
+                <source src="${folder}/3.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <video autoplay muted loop playsinline class="wide-video">
+            <source src="${folder}/4.mp4" type="video/mp4">
+        </video>
+
+        <video autoplay muted loop playsinline class="wide-video">
+            <source src="${folder}/5.mp4" type="video/mp4">
+        </video>
+
+    </div>
+`;
+
+videoBox.innerHTML = newContent;
+
+const videos = videoBox.querySelectorAll("video");
+let loadedCount = 0;
+
+videos.forEach(video => {
+    video.addEventListener("loadeddata", () => {
+        loadedCount++;
+
+        if (loadedCount === videos.length) {
+            console.log("All videos displayed a frame — resizing Lenis");
+
+            if (videoBoxLenis) {
+                // Primary resize
+                videoBoxLenis.resize();
+
+                // Safety resize after layout fully settles
+                setTimeout(() => videoBoxLenis.resize(), 120);
+            }
         }
+    });
+});
+}
+
     
         // ------------------------------------------------------
         // MAIN CLICK HANDLER FOR EACH ITEM
