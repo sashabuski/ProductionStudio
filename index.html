@@ -454,6 +454,9 @@
   <script>
     window.onload = function () {
     
+
+        let videoBoxLenis = null;
+
         let currentListItem = null;
         const items = document.querySelectorAll('.item');
         const videoBox = document.getElementById('video-scroll-box');
@@ -492,6 +495,9 @@
             `;
     
             videoBox.innerHTML = newContent;
+            if (videoBoxLenis) {
+                 videoBoxLenis.resize();
+            }
         }
     
         // ------------------------------------------------------
@@ -701,6 +707,10 @@ if (contactPanel) {
                 smoothWheel: true,
                 smoothTouch: true,
             });
+
+            if (box.id === 'video-scroll-box') {
+                videoBoxLenis = scroller;
+            }
     
             function raf(time) {
                 scroller.raf(time);
