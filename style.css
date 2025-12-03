@@ -210,7 +210,7 @@ body::-webkit-scrollbar {
     align-items: center;
     padding: calc(1vw + 5px) 0;
     background-color: rbga(0,0,0,0);
-    font-weight: bold;
+   
     color: #fff;
     border-top: 1px solid #939393;
 }
@@ -263,6 +263,7 @@ body::-webkit-scrollbar {
     font-size: calc(1vw + 2px);
     z-index: 2;
     transition: transform 0.25s ease, color 0.15s ease;
+    font-weight: bold;
 }
 
 /* right text pinned to far right */
