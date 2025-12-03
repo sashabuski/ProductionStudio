@@ -547,25 +547,25 @@ if (contactPanel) {
     <div id="video-box-content" style="display: flex; flex-direction: column; transition: opacity 0.3s ease;">
 
         <video autoplay muted loop playsinline class="wide-video">
-            <source src="${folder}/1.mp4" type="video/mp4">
+            <source src="projects/${folder}/1.mp4" type="video/mp4">
         </video>
 
         <div style="display: flex; flex-direction: row; width: 100%; gap: 0.4vw;">
             <video autoplay muted loop playsinline class="half-video">
-                <source src="${folder}/2.mp4" type="video/mp4">
+                <source src="projects/${folder}/2.mp4" type="video/mp4">
             </video>
 
             <video autoplay muted loop playsinline class="half-video">
-                <source src="${folder}/3.mp4" type="video/mp4">
+                <source src="projects/${folder}/3.mp4" type="video/mp4">
             </video>
         </div>
 
         <video autoplay muted loop playsinline class="wide-video">
-            <source src="${folder}/4.mp4" type="video/mp4">
+            <source src="projects/${folder}/4.mp4" type="video/mp4">
         </video>
 
         <video autoplay muted loop playsinline class="wide-video">
-            <source src="${folder}/5.mp4" type="video/mp4">
+            <source src="projects/${folder}/5.mp4" type="video/mp4">
         </video>
 
     </div>
@@ -602,7 +602,7 @@ if (contactPanel) {
 
 
 
-                                        fetch(`${folder}/info.txt`)
+                                        fetch(`projects/${folder}/info.txt`)
                         .then(res => res.text())
                         .then(txt => {
                             const infoDiv = videoBox.querySelector("#info-text");
@@ -623,6 +623,14 @@ if (contactPanel) {
     
             clickable.onclick = () => {
     
+                const infoButton = document.querySelector(".info-butt");
+
+                // Check the text
+                if (infoButton.textContent.trim().toLowerCase() === "close") {
+                    // Change the text to "INFO"
+                    infoButton.textContent = "INFO";
+                }
+
                 // Reset previous selection
                 if (currentListItem) {
                     currentListItem.classList.remove('active');
