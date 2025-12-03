@@ -45,12 +45,12 @@
       <div class="scrolling-text-container-mobile">
         <div class="scrolling-text-mobile">
             <span>
-                01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 ANNA POO POO HEAD &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
                 </span>
                          
             
                 <span>
-                    01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 ANNA POO POO HEAD &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                    01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
                     </span>
                     
     
@@ -174,12 +174,12 @@
                 <div class="scrolling-text-container">
                   <div class="scrolling-text">
                       <span>
-                          01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 ANNA POO POO HEAD &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                          01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
                           </span>
                                    
                       
                           <span>
-                              01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 ANNA POO POO HEAD &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
+                              01 DESIGN EVERYTHING &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 02 ADOPT NEW REALITIES &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 03 USE YOUR HEADLIGHTS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 04 MAKE IT MATTER &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 05 RALLY OTHERS ON &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 06 CHOOSE THE FUTURE &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; 07 SEEK OUT SHADOWS &nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;
                               </span>
                               
   
@@ -376,7 +376,12 @@
             </section>
 
             <section class="box3">
-                <p class="subtitle">PROJECT DETAILS</p>
+                
+                <div style="display: flex; flex-direction: row; width: 98.5%; margin-bottom: 1vw;">
+                <p class="subtitle" style="margin-bottom: 0px;">PROJECT DETAILS</p> 
+                <button class="info-butt">INFO</button>
+                </div>
+                
                 <div id="video-scroll-box" class="scroll-box" style="padding-right: 0.75vw;">
                     
  
@@ -538,8 +543,8 @@ if (contactPanel) {
         // ------------------------------------------------------
         function loadProjectVideos(folder) {
             videoBoxLenis.scrollTo(0); 
-let newContent = `
-    <div style="display: flex; flex-direction: column;">
+    let newContent = `
+    <div id="video-box-content" style="display: flex; flex-direction: column; transition: opacity 0.3s ease;">
 
         <video autoplay muted loop playsinline class="wide-video">
             <source src="${folder}/1.mp4" type="video/mp4">
@@ -564,30 +569,46 @@ let newContent = `
         </video>
 
     </div>
-`;
 
-videoBox.innerHTML = newContent;
+    <div id = "info-text" class = "info-text"  style = "">
 
-const videos = videoBox.querySelectorAll("video");
-let loadedCount = 0;
+      
 
-videos.forEach(video => {
-    video.addEventListener("loadeddata", () => {
-        loadedCount++;
+    </div>
+                    `;
 
-        if (loadedCount === videos.length) {
-            console.log("All videos displayed a frame — resizing Lenis");
+                    videoBox.innerHTML = newContent;
 
-            if (videoBoxLenis) {
-                // Primary resize
-                videoBoxLenis.resize();
+                    const videos = videoBox.querySelectorAll("video");
+                    let loadedCount = 0;
 
-                // Safety resize after layout fully settles
-                setTimeout(() => videoBoxLenis.resize(), 120);
-            }
-        }
-    });
-});
+                    videos.forEach(video => {
+                        video.addEventListener("loadeddata", () => {
+                            loadedCount++;
+
+                            if (loadedCount === videos.length) {
+                                console.log("All videos displayed a frame — resizing Lenis");
+
+                                if (videoBoxLenis) {
+                                    // Primary resize
+                                    videoBoxLenis.resize();
+
+                                    // Safety resize after layout fully settles
+                                    setTimeout(() => videoBoxLenis.resize(), 120);
+                                }
+                            }
+                        });
+                    });
+
+
+
+                                        fetch(`${folder}/info.txt`)
+                        .then(res => res.text())
+                        .then(txt => {
+                            const infoDiv = videoBox.querySelector("#info-text");
+                            infoDiv.textContent = txt;   // or .innerHTML if needed
+                        })
+                        .catch(err => console.error("Could not load info.txt:", err));     
 }
 
     
@@ -625,6 +646,12 @@ videos.forEach(video => {
                 loadProjectVideos(folder);
             };
         });
+
+
+
+
+
+        
     
         // ------------------------------------------------------
         // INITIAL LOAD — select and load the first item
@@ -715,16 +742,26 @@ videos.forEach(video => {
   const scrollBoxes = document.querySelectorAll(".scroll-box");
   // Open panel
   openBtn.addEventListener("click", () => {
-      panel.classList.add("active");
-      overlay.classList.add("active");
+     
+    
+    
+   
+   
+    panel.style.display = "flex"; 
+  
+    requestAnimationFrame(() => {
+    panel.classList.add("active");
+});
+   
+    overlay.classList.add("active");
       body.classList.add("body-lock");
       noiseCanvas.classList.add("noise-lowered");
   });
   
   // Close panel
   function closePanel() {
-      panel.classList.remove("active");
-
+     
+    panel.classList.remove("active");
 
        overlay.style.opacity = "0";
 
@@ -732,6 +769,7 @@ videos.forEach(video => {
     setTimeout(() => {
         overlay.classList.remove("active");
         overlay.style.opacity = "";
+        panel.style.display = "none"; 
     }, 300);
 
 
@@ -760,6 +798,61 @@ videos.forEach(video => {
       box.classList.toggle('active');
     });
   });
+
+const infoButton = document.querySelector(".info-butt");
+
+
+infoButton.addEventListener("click", () => {
+    const videoContent = document.getElementById("video-box-content");
+   videoBoxLenis.scrollTo(0);
+    const infoText = document.getElementById("info-text");
+
+    // If hidden, fade in
+    if (infoText.style.display === "none" || !infoText.style.display) {
+      
+        videoContent.style.opacity = "0";
+        
+            videoContent.style.display = "none";
+      
+      
+      
+        infoButton.textContent = "CLOSE"
+        infoText.style.display = "block"; // make element exist
+        requestAnimationFrame(() => {      // wait for render
+            infoText.style.opacity = "1";  // then fade in
+        });
+    }
+    else{
+
+        videoContent.style.display = "flex";
+       
+        requestAnimationFrame(() => {      // wait for render
+            videoContent.style.opacity = "1";  // then fade in
+        });
+    
+        infoButton.textContent = "INFO";
+        infoText.style.opacity = "0";
+        setTimeout(() => {
+            infoText.style.display = "none";
+        
+      
+        }, 300);
+        
+    }
+
+
+    videoBoxLenis.resize();
+    setTimeout(() => {
+           
+    videoBoxLenis.resize();
+        
+      
+        }, 300);
+});
+
+
+
+
 </script>
 
 

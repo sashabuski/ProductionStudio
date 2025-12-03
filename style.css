@@ -329,7 +329,7 @@ footer {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -2px;      /* distance from text */
+    bottom: -0.1vw;      /* distance from text */
     width: 0%;
     height: 1px;       /* thickness of underline */
     background-color: yellowgreen;
@@ -379,7 +379,7 @@ footer {
 .scrolling-text-container {
     overflow: hidden;
     flex: 1;
-    margin-left: 40vw;
+    margin-left: 41vw;
     margin-right: 5vw;
     position: relative;
     height: 1.5vw;
@@ -734,6 +734,7 @@ footer {
 
 /* --- Slide-in Contact Panel --- */
 #contact-panel {
+    display: none;
     position: fixed;
     top: 0;
     right: -50.5vw; /* Initially hidden off-screen */
@@ -746,7 +747,7 @@ footer {
     box-sizing: border-box;
     transition: right 0.4s ease;
     z-index: 100;
-    display: flex;
+    
     flex-direction: column;
     scrollbar-width: 0px;
 }
@@ -869,4 +870,47 @@ label{
     margin-bottom: 0.3vw;   
     border-radius: 10px;
     overflow: hidden; 
+}
+
+
+
+.info-text {
+    padding-top: 0.75vw;
+    padding-bottom: 0.75vw;
+    white-space: pre-line;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding-right: calc(40vw - 400px);
+    font-size: calc(1vw + 2px);
+    display: none; /* start hidden */
+}
+
+.info-butt {
+    position: relative; /* <<< add this */
+    padding-right: 0px; 
+    padding-left: 0px; 
+    cursor: pointer; 
+    border: 0; 
+    background-color: rgba(0,0,0,0); 
+    margin-left: auto; 
+    color: greenyellow;
+    font-family: 'ConsolasCustom', monospace;
+    font-size: 0.9vw;
+}
+
+.info-butt::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;   
+    bottom: -0.1vw;      /* distance from text */
+    width: 0%;
+    height: 1px;       /* thickness of underline */
+    background-color: yellowgreen;
+    transition: width 0.3s ease;
+}
+
+.info-butt:hover::after {
+    width: 100%;       /* animate underline to full width */
 }
