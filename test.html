@@ -1,665 +1,361 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project List Mobile Demo</title>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>True Circular Carousel — No Duplicates Demo</title>
 <style>
+  :root{
+    --gap: 0px;
+  }
 
-body {
-    background:black;
+  html,body{
+    height:100%;
     margin:0;
-    font-family: Arial, sans-serif;
-}
+    background:#0b0b0b;
+    color:#fff;
+    font-family: Inter, system-ui, Arial;
+  }
 
-/* ---------------- LIST ---------------- */
+  .wrap{
+    padding:20px;
+  }
 
-.project-list-mobile {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 8vw;
-}
+  h1{font-size:18px;margin:0 0 12px 0;color:#fff;font-weight:600}
 
-.item-mobile {
+  /* Carousel viewport */
+  .carousel {
     position: relative;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: calc(3.5vw + 5px) 0;
-    background-color: rgba(0,0,0,0);
-    font-weight: bold;
-    color: #fff;
-    border-top: 1px solid #939393;
-    margin-left: 3vw;
-    margin-right: 3vw;
-    
-    overflow: hidden;
-    max-height: 14vw;
-    transition: all 0.35s ease;
-}
-
-.expand-content {
-    opacity: 0;
-    transform: translateY(-5px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    z-index: 130;
-}
-
-.item-mobile.open .expand-content {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ICON BEHIND TEXT */
-
-.bg-icon-mobile {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 1.2vw;
-    height: 1.2vw;
-    min-width: 5px;
-    min-height: 5px;
-    transform: translateY(-50%);
-    opacity: 0;
-    transition: opacity 0.28s ease, transform 0.28s ease;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* SUBTITLE */
-
-.subtitle-mobile {
-    z-index: 90;
-    margin-left: 3vw;
-    font-size: 4vw;
-    color: #959595;
-    font-weight: bold;
-}
-
-/* CLICKABLE ROW */
-
-.clickable-mobile {
-    display: flex;
-    justify-content: flex-start;
     width: 100%;
-    position: relative;
-    align-items: center;
-    cursor: pointer;
-}
+    max-width: 980px;
+    height: 56vw;             /* responsive demo height */
+    max-height: 560px;
+    margin: 12px auto;
+    overflow: hidden;
+    border-radius:16px;
+    background: #111;
+    touch-action: pan-y; /* allow vertical page scroll but capture horizontal gestures */
+  }
 
-.item-mobile .left {
+  /* Each slide is absolutely positioned and full-viewport-width */
+  .slide {
     position: absolute;
+    top: 0;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: calc(3vw + 2px);
-    z-index: 2;
-    transition: transform 0.25s ease, color 0.15s ease;
-}
-
-.item-mobile .right {
-    margin-left: 40vw;
-    text-align: left;
-    opacity: 0.7;
-    font-size: calc(2.8vw + 2px);
-    font-family: 'ConsolasCustom', monospace;
-    transition: color 0.1s ease;
-}
-
-.item-mobile .exp-button {
-    margin-left: auto;
-    height: 6vw;
-    width: auto;
-    transition: color 0.1s ease;
-}
-
-
-.carousel-track {
+    width: 100%;
+    height: 100%;
+    will-change: transform;
     display: flex;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-}
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(24px, 4vw, 48px);
+    color: white;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
 
-.carousel-track::-webkit-scrollbar {
-    display: none;
-}
+  /* demo backgrounds */
+  .s0{ background:linear-gradient(180deg,#7b2ff7,#2b7cff); }
+  .s1{ background:linear-gradient(180deg,#ff6b6b,#ff9a6b); }
+  .s2{ background:linear-gradient(180deg,#21d19f,#069c6f); }
+  .s3{ background:linear-gradient(180deg,#ffd24a,#ff8a00); }
+  .s4{ background:linear-gradient(180deg,#9b6eff,#4affc7); }
 
-.slide {
-    flex: 0 0 auto;
-}
+  /* a subtle caption overlay */
+  .caption {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 10px;
+    font-size: 14px;
+    backdrop-filter: blur(4px);
+  }
 
+  /* small controls */
+  .controls {
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    margin-top:12px;
+  }
+  button {
+    background:#1a1a1a;color:#fff;border:1px solid #333;padding:8px 10px;border-radius:8px;cursor:pointer;
+  }
+  button:active{transform:translateY(1px)}
+  small.hint{display:block;margin-top:8px;color:#aaa}
+  
+  /* Make videos fill slide if you add <video> elements */
+  .slide video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:16px;
+    pointer-events:none;
+  }
 </style>
-
 </head>
 <body>
+  <div class="wrap">
+    <h1>True Circular Carousel (no duplicated DOM nodes) — demo</h1>
 
-<ul class="project-list-mobile">
-    <p class="subtitle-mobile" style="margin-bottom: 6vw;">PROJECTS</p>
+    <div id="carousel" class="carousel" aria-roledescription="carousel">
+      <!-- 5 slides: replace each inner content with <video> if you want real videos -->
+      <div class="slide s0" data-index="0"><div>Slide 1</div><div class="caption">Replace content with &lt;video&gt; to play</div></div>
+      <div class="slide s1" data-index="1"><div>Slide 2</div><div class="caption">Swipe or let it auto-scroll</div></div>
+      <div class="slide s2" data-index="2"><div>Slide 3</div><div class="caption">No clones — modular teleport trick</div></div>
+      <div class="slide s3" data-index="3"><div>Slide 4</div><div class="caption">Works with <video> elements</div></div>
+      <div class="slide s4" data-index="4"><div>Slide 5</div><div class="caption">Each slide crosses viewport every 5 seconds</div></div>
+    </div>
 
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">NEON PEAK</span>
-                <span class="right">MEDIA PRODUCTION</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">SILVERLINE</span>
-                <span class="right">ADVERTISING</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">GHOSTBIRD</span>
-                <span class="right">MUSIC VIDEO</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">HOLOFRAME</span>
-                <span class="right">XR / IMMERSIVE</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">NIGHT TRANSIT</span>
-                <span class="right">FILM</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">STATIC PUNCH</span>
-                <span class="right">BRAND CONTENT</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">VELVET ROCKET</span>
-                <span class="right">FASHION</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">GRAINWAVE</span>
-                <span class="right">DOCUMENTARY</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">ORBIT HOUSE</span>
-                <span class="right">ANIMATION</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">PINE & PIXEL</span>
-                <span class="right">PHOTOGRAPHY</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">SIGNAL WEST</span>
-                <span class="right">COMMERCIAL</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">MOONSET</span>
-                <span class="right">CREATIVE DIRECTION</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">FLUXFRAME</span>
-                <span class="right">POST-PRODUCTION</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">RED LANTERN</span>
-                <span class="right">SHORT FILM</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">STUDIO WIRE</span>
-                <span class="right">MOTION DESIGN</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-    <li class="item-mobile" style="border-bottom: 1px solid #939393; display: flex; flex-direction: column;">
-        <div class="mobile-item-content" style="width: 100%;">
-            <div class="bg-icon-mobile"><img src="globe.gif"></div>
-            <div class="clickable-mobile">
-                <span class="left">FABLE NORTH</span>
-                <span class="right">NARRATIVE</span>
-                <img src="exp.svg" class="exp-button">
-            </div>
-        </div>
-        <div class="expand-content"></div>
-    </li>
-    
-</ul>
-
-
+    <div class="controls">
+      <button id="playPause">Pause</button>
+      <button id="faster">Faster</button>
+      <button id="slower">Slower</button>
+    </div>
+    <small class="hint">Tip: drag horizontally or use the buttons. Replace slide inner HTML with &lt;video muted playsinline&gt; for real videos (the script will auto-play the visible one).</small>
+  </div>
 
 <script>
-    (() => {
-      const COLLAPSED_MAX = "14vw"; // same collapsed height you used
-    
-      // helper: safely get numeric height in px
-      function px(n){ return n + "px"; }
-    
-      function cleanupVideos(container) {
-        if (!container) return;
-        const vids = container.querySelectorAll('video');
-        vids.forEach(v => {
-          try {
-            v.pause();
-            v.removeAttribute('src');
-            v.load && v.load();
-          } catch (e) {}
-        });
-      }
-    
-      function closeItem(item) {
-        return new Promise(resolve => {
-          if (!item.classList.contains('open')) {
-            // already closed; still clear content
-            const ec0 = item.querySelector('.expand-content');
-            if (ec0) {
-              cleanupVideos(ec0);
-              ec0.innerHTML = "";
-            }
-            item.style.maxHeight = COLLAPSED_MAX;
-            item.classList.remove('open');
-            return resolve();
-          }
-    
-          const ec = item.querySelector('.expand-content');
-             
-          const fontleft = item.querySelector('.left');
-          fontleft.style.color = 'white';
-          
-          // Freeze current height (in px) so transition has a start
-          item.style.maxHeight = px(item.offsetHeight);
-    
-          // Force layout
-          void item.offsetHeight;
-    
-          // Now animate to collapsed height
-          item.style.transition = "max-height 0.35s ease";
-          item.style.maxHeight = COLLAPSED_MAX;
-    
-          // remove 'open' immediately so CSS styles that depend on .open toggle (eg. expand-content) can change
-          item.classList.remove('open');
-    
-          // when transition ends, clear content and cleanup
-          function onEnd(ev) {
-            if (ev.propertyName !== "max-height") return;
-            item.removeEventListener("transitionend", onEnd);
-    
-            // Pause / remove video sources to stop playback & free memory
-            if (ec) cleanupVideos(ec);
-    
-            // clear DOM for the closed item
-            if (ec) ec.innerHTML = "";
-    
-            // ensure collapsed fixed height remains (so subsequent opens animate predictably)
-            item.style.maxHeight = COLLAPSED_MAX;
-    
-            // remove inline transition so later opens can set their own
-            item.style.transition = "";
-    
-            resolve();
-          }
-    
-          item.addEventListener("transitionend", onEnd);
-        });
-      }
-    
-      async function openItem(item, folder) {
-        const expandContent = item.querySelector('.expand-content');
-    
-        // fill content (same template you had)
-        let infoText = "";
-        try {
-          const r = await fetch(`projects/${folder}/info.txt`);
-          infoText = r.ok ? await r.text() : "Info not found.";
-        } catch {
-          infoText = "Error loading info.";
+/* -------------------------
+   True circular carousel JS
+   - Each slide keeps its own x position (in pixels)
+   - Slides move left continuously; when a slide goes left of -slideWidth it is teleported to right
+   - No DOM duplication
+   - Visible slide's <video> is played, others are paused
+   - Each slide crosses viewport in ~5 seconds (auto speed)
+   ------------------------- */
+
+(function(){
+  const carousel = document.getElementById('carousel');
+  const slideEls = Array.from(carousel.querySelectorAll('.slide'));
+  let slideCount = slideEls.length;
+
+  // state per-slide
+  const slides = slideEls.map((el, i) => ({
+    el,
+    x: 0,             // will set initial x later
+    index: i,
+  }));
+
+  let viewportW = carousel.clientWidth;
+  let lastTimestamp = null;
+  // speed in pixels per millisecond so that one full slide width travels in 5000ms (5s)
+  function computeSpeed() {
+    return viewportW / 5000; // px per ms
+  }
+  let speedPxPerMs = computeSpeed();
+
+  // dragging state
+  let isPointerDown = false;
+  let pointerStartX = 0;
+  let dragStartPositions = null;
+  let isDragging = false;
+  let dragDelta = 0;
+
+  // paused flag
+  let paused = false;
+
+  // initialize positions (0, +w, +2w, ...)
+  function layoutInit() {
+    viewportW = carousel.clientWidth;
+    speedPxPerMs = computeSpeed();
+    slides.forEach((s, i) => {
+      s.x = i * viewportW;
+      s.el.style.transform = `translateX(${s.x}px)`;
+    });
+  }
+
+  // on resize recalc
+  window.addEventListener('resize', () => {
+    // recompute positions proportionally so layout remains consistent
+    const oldW = viewportW || carousel.clientWidth;
+    const newW = carousel.clientWidth;
+    slides.forEach(s => {
+      // scale current x by newW/oldW, keeping relative order
+      s.x = (s.x / oldW) * newW;
+    });
+    viewportW = newW;
+    speedPxPerMs = computeSpeed();
+    // snap transforms
+    slides.forEach(s => s.el.style.transform = `translateX(${s.x}px)`);
+  });
+
+  // play/pause visible video and pause others
+  function updateVideoPlayback() {
+    // Find the slide closest to x in [0, viewportW)
+    // Visible slide is the one whose center is nearest to viewport center
+    const center = viewportW / 2;
+    let best = null;
+    let bestDist = Infinity;
+    slides.forEach(s => {
+      // compute slide's left relative to viewport: left = s.x
+      // center of slide = s.x + viewportW/2
+      const slideCenter = s.x + viewportW / 2;
+      const dist = Math.abs(slideCenter - center);
+      if (dist < bestDist) { bestDist = dist; best = s; }
+    });
+
+    // play video inside 'best', pause others
+    slides.forEach(s => {
+      const vid = s.el.querySelector('video');
+      if (!vid) return;
+      if (s === best) {
+        // play if not playing
+        if (vid.paused) {
+          vid.muted = true; // ensure autoplay allowed
+          vid.play().catch(()=>{});
         }
-    
-        expandContent.innerHTML = `
-          <div class="video-carousel" style="position: relative; width: 100%; border-radius: 10px; overflow: hidden; margin-top: calc(3.5vw + 5px); aspect-ratio: 16/9;">
-             <div class="video-track" style="display: flex; gap: 10px; width: 600%; transition: transform 0.5s ease; height: 100%;">
+      } else {
+        try { vid.pause(); vid.currentTime = 0; } catch(e){}
+      }
+    });
+  }
 
-                  ${[1,2,3,4,5].map(i => `
-                      <video muted playsinline class="wide-video" 
-                          style="width: 17%; flex-shrink: 0; height: 100%; object-fit: cover;">
-                          <source src="projects/${folder}/${i}.mp4" type="video/mp4">
-                      </video>
-                  `).join('')}
-                  <!-- duplicate first video for seamless loop -->
-                  <video muted playsinline class="wide-video" 
-                      style="width: 17%; flex-shrink: 0; height: 100%; object-fit: cover;">
-                      <source src="projects/${folder}/1.mp4" type="video/mp4">
-                  </video>
-              </div>
-          </div>
-          <p style="font-weight: normal; white-space: pre-line; margin-top: calc(7vw + 10px); font-size: 4vw">${infoText}</p>
-        `;
-    
-        // set up carousel playback (same logic but safer)
-        const track = expandContent.querySelector('.video-track');
-        const videos = Array.from(expandContent.querySelectorAll('.wide-video'));
-        const totalVideos = 5; // real videos only
-        let index = 0;
-    
-        // Calculate widths dynamically
-        const slideWidthPercent = 100 / (totalVideos + 1); // +1 for duplicate
-        videos.forEach(v => v.style.width = slideWidthPercent + "%");
-        track.style.width = (totalVideos + 1) * 100 + "%";
-    
-        // ensure only first video auto-plays to start
-        videos.forEach((v, i) => {
-          v.pause();
-          v.currentTime = 0;
-          v.removeEventListener('ended', v._playNextHandler);
-        });
-    
-        let currentVideo = videos[index];
-        currentVideo.play().catch(()=>{});
-    
-        function playNextVideo() {
-          index++;
-          track.style.transition = "transform 0.5s ease";
-          track.style.transform = `translateX(-${index * slideWidthPx}px)`;
-    
-          if (index === totalVideos) {
-            // When we hit the duplicate slide, snap back after animation
-            setTimeout(() => {
-              // snap back without transition
-              track.style.transition = "none";
-              track.style.transform = "translateX(0)";
-              index = 0;
-              // reset video playback to first
-              videos.forEach(v => {
-                v.pause();
-                v.currentTime = 0;
-              });
-              currentVideo = videos[index];
-              currentVideo.play().catch(()=>{});
-              // rebind ended handler
-              currentVideo.addEventListener('ended', playNextVideo);
-            }, 500);
-            return;
-          }
-    
-          // normal next
-          if (currentVideo) currentVideo.removeEventListener('ended', playNextVideo);
-          currentVideo = videos[index];
-          currentVideo.currentTime = 0;
-          currentVideo.play().catch(()=>{});
-          currentVideo.addEventListener('ended', playNextVideo);
-        }
-    
-        // bind
-        currentVideo.addEventListener('ended', playNextVideo);
-        // store handler ref in case we want to remove later
-        currentVideo._playNextHandler = playNextVideo;
-    
+  // Core animation frame loop
+  function tick(ts) {
+    if (!lastTimestamp) lastTimestamp = ts;
+    const dt = ts - lastTimestamp;
+    lastTimestamp = ts;
 
+    if (!paused && !isDragging) {
+      // move left by speed * dt
+      const delta = speedPxPerMs * dt;
+      slides.forEach(s => s.x -= delta);
+    } else if (isDragging) {
+      // when dragging, positions are updated directly on pointermove
+      // nothing here — pointermove already updated s.x
+    }
 
+    // wrap-around teleport: if a slide fully left of -viewportW, teleport it right by slideCount*viewportW
+    slides.forEach(s => {
+      if (s.x < -viewportW) {
+        s.x += slideCount * viewportW;
+      } else if (s.x >= slideCount * viewportW) {
+        // safety: if somehow a slide got too far right, move it left
+        s.x -= slideCount * viewportW;
+      }
+      s.el.style.transform = `translateX(${Math.round(s.x)}px)`;
+    });
 
-        // ------------------------------------------
-// MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE
-// ------------------------------------------
-// ------------------------------------------
-// MOBILE SWIPE-TO-SCRUB (horizontal only)
-// Vertical scrolling still works normally
-// ------------------------------------------
+    // update video playback occasionally (not every frame to save work)
+    if (ts % 250 < 16) updateVideoPlayback();
 
-let startX = 0;
-let startY = 0;
-let isDragging = false;
-let isHorizontal = false;
-let initialTranslate = 0;
-let currentTranslate = 0;
+    requestAnimationFrame(tick);
+  }
 
-const threshold = 10;
-const slideWidthPx = videos[0].offsetWidth + 10;
-
-track.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    isDragging = true;
-    isHorizontal = false;
-
-    const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
-    initialTranslate = matrix.m41;
-
-    track.style.transition = "none";
-}, { passive: true });
-
-track.addEventListener("touchmove", (e) => {
+  // Pointer (mouse/touch) handling for drag
+  function onPointerDown(e) {
+    const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
+    isPointerDown = true;
+    isDragging = false;
+    pointerStartX = clientX;
+    dragStartPositions = slides.map(s => s.x);
+    // when user touches, pause automatic movement temporarily
+    lastTimestamp = null; // reset timing so dt doesn't spike
+    e.preventDefault && e.preventDefault();
+  }
+  function onPointerMove(e) {
+    if (!isPointerDown) return;
+    const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
+    dragDelta = clientX - pointerStartX;
+    // if moved enough, consider this a drag
+    if (!isDragging && Math.abs(dragDelta) > 6) isDragging = true;
     if (!isDragging) return;
 
-    const x = e.touches[0].clientX;
-    const y = e.touches[0].clientY;
-    const dx = x - startX;
-    const dy = y - startY;
+    // apply drag delta to all slides based on their start positions
+    slides.forEach((s, i) => {
+      s.x = dragStartPositions[i] + dragDelta;
+      s.el.style.transform = `translateX(${Math.round(s.x)}px)`;
+    });
 
-    if (!isHorizontal) {
-        if (Math.abs(dx) > threshold && Math.abs(dx) > Math.abs(dy)) {
-            isHorizontal = true;
-        } else if (Math.abs(dy) > threshold) {
-            isDragging = false; 
-            return;
-        }
-    }
-
-    if (!isHorizontal) return;
-
-    e.preventDefault();
-
-    currentTranslate = initialTranslate + dx;
-    track.style.transform = `translateX(${currentTranslate}px)`;
-}, { passive: false });
-
-track.addEventListener("touchend", () => {
-    if (!isHorizontal) {
-        isDragging = false;
-        return;
-    }
-
-    isDragging = false;
-
-    let newIndex = Math.round(-currentTranslate / slideWidthPx);
-    if (newIndex < 0) newIndex = 0;
-    if (newIndex > totalVideos) newIndex = totalVideos;
-
-    index = newIndex;
-
-    track.style.transition = "transform 0.3s ease";
-    track.style.transform = `translateX(${-index * slideWidthPx}px)`;
-
-    if (index === totalVideos) {
-        setTimeout(() => {
-            track.style.transition = "none";
-            track.style.transform = "translateX(0)";
-            index = 0;
-        }, 300);
-    }
-});
-
-
-
-        // ---------------------------
-        // HEIGHT ANIMATION (open)
-        // ---------------------------
-    
-        // Freeze current height (px)
-        item.style.maxHeight = px(item.offsetHeight);
-        void item.offsetHeight; // force layout
-    
-        // set content visible (by adding .open, CSS handles opacity/transform of inner expand-content)
-        item.classList.add('open');
-    
-        // compute full height
-        const fullHeight = item.scrollHeight;
-        item.style.transition = "max-height 0.35s ease";
-        item.style.maxHeight = px(fullHeight);
-    
-        function onOpenEnd(ev) {
-          if (ev.propertyName !== "max-height") return;
-          item.removeEventListener("transitionend", onOpenEnd);
-          // let it grow naturally after the transition
-          item.style.maxHeight = "none"; // allow auto height after animation completes
-          item.style.transition = ""; // clear explicit transition
-        }
-        item.addEventListener("transitionend", onOpenEnd);
-      }
-    
-      // Main click handler
-      document.querySelectorAll('.project-list-mobile').forEach(list => {
-        list.addEventListener('click', async (e) => {
-          const clickable = e.target.closest('.clickable-mobile');
-          if (!clickable) return;
-    
-          const li = clickable.closest('.item-mobile');
-          
-          const fontleft = li.querySelector('.left');
-          fontleft.style.color = 'yellowgreen';
-          
-          
-            const leftText = li.querySelector('.left').textContent.trim();
-          const folder = leftText.toLowerCase();
-          const alreadyOpen = li.classList.contains('open');
-    
-          // Close any currently open items with animation (but keep their content until close completes)
-          const openItems = Array.from(document.querySelectorAll('.item-mobile.open'));
-          // If the clicked item is the only open item and we're toggling it closed, just close it
-          if (alreadyOpen && openItems.length === 1) {
-            await closeItem(li);
-            return;
-          }
-    
-          // Close others (not the clicked one) first
-                    // Close others in parallel (do NOT await)
-            const othersToClose = openItems.filter(it => it !== li);
-            othersToClose.forEach(closeItem); // fire & forget
-
-            // If clicked item was already open, do nothing more
-            if (alreadyOpen) return;
-
-            // Open clicked item immediately
-            openItem(li, folder);
-
-        });
+    // while dragging, pause the automatic progression
+    // (we will resume on pointer up)
+  }
+  function onPointerUp(e) {
+    if (!isPointerDown) return;
+    isPointerDown = false;
+    // if it was a drag, when released we want to "snap" to nearest slide
+    if (isDragging) {
+      // compute which slide is nearest to viewport center
+      const center = viewportW / 2;
+      let best = null; let bestDist=Infinity;
+      slides.forEach(s => {
+        const slideCenter = s.x + viewportW / 2;
+        const dist = Math.abs(slideCenter - center);
+        if (dist < bestDist) { bestDist = dist; best = s; }
       });
-    })();
-    </script>
-    
-    
-    
 
+      // compute offset needed to bring best slide exactly to x === 0
+      // We want best.x to be 0 (left aligned), because our canonical positions are 0, +w, +2w...
+      const neededShift = -best.x;
+
+      // animate all slides smoothly by neededShift over 300ms
+      const duration = 300;
+      const start = performance.now();
+      const starts = slides.map(s => s.x);
+
+      function snapAnim(now){
+        const t = Math.min(1, (now - start) / duration);
+        const ease = 0.5 - Math.cos(Math.PI * t) / 2; // smooth ease
+        slides.forEach((s, i) => {
+          s.x = starts[i] + neededShift * ease;
+          s.el.style.transform = `translateX(${Math.round(s.x)}px)`;
+        });
+        if (t < 1) requestAnimationFrame(snapAnim);
+        else {
+          // after snap, resume normal movement
+          // normalize positions into the canonical range [0 .. slideCount*viewportW)
+          slides.forEach(s => {
+            // reduce s.x modulo slideCount*viewportW
+            while (s.x < 0) s.x += slideCount * viewportW;
+            while (s.x >= slideCount * viewportW) s.x -= slideCount * viewportW;
+          });
+          updateVideoPlayback();
+        }
+      }
+      requestAnimationFrame(snapAnim);
+    }
+    // reset drag flags
+    isDragging = false;
+    dragDelta = 0;
+  }
+
+  // wire pointer events (support touch & mouse)
+  carousel.addEventListener('touchstart', onPointerDown, {passive:false});
+  carousel.addEventListener('touchmove', onPointerMove, {passive:false});
+  carousel.addEventListener('touchend', onPointerUp);
+  carousel.addEventListener('mousedown', onPointerDown);
+  window.addEventListener('mousemove', onPointerMove);
+  window.addEventListener('mouseup', onPointerUp);
+
+  // buttons
+  const btn = {
+    playPause: document.getElementById('playPause'),
+    faster: document.getElementById('faster'),
+    slower: document.getElementById('slower')
+  };
+  btn.playPause.addEventListener('click', () => {
+    paused = !paused;
+    btn.playPause.textContent = paused ? 'Play' : 'Pause';
+  });
+  btn.faster.addEventListener('click', () => { speedPxPerMs *= 1.3; });
+  btn.slower.addEventListener('click', () => { speedPxPerMs /= 1.3; });
+
+  // init and start
+  layoutInit();
+
+  // if slides contain video elements, attempt to autoplay the first visible one
+  // (videos should be muted to allow autoplay)
+  updateVideoPlayback();
+
+  requestAnimationFrame(tick);
+
+  // helpful: let user quickly replace demo content with video via console:
+  window.__carousel = { slides, layoutInit, updateVideoPlayback };
+})();
+</script>
 </body>
 </html>
- 

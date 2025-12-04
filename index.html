@@ -1155,9 +1155,7 @@ infoButton.addEventListener("click", () => {
         const track = expandContent.querySelector('.video-track');
         const videos = Array.from(expandContent.querySelectorAll('.wide-video'));
         const totalVideos = 5; // real videos only
-        let index = 0;
-
-                
+        let index = 0;    
         let autoScrollTimer = null;
         const autoScrollDelay = 5000; // ms between automatic slides
     
@@ -1227,64 +1225,64 @@ function startAutoScroll() {
 
 
         // ------------------------------------------
-// MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE
-// ------------------------------------------
-// ---------------------------
-// MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE (with flick support)
-// ---------------------------
-// ---------------------------
-// MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE (gap-aware)
-// ---------------------------
-let startX = 0;
-let startY = 0;
-let isDragging = false;
-let isHorizontal = false;
-let initialTranslate = 0;
-let currentTranslate = 0;
+        // MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE
+        // ------------------------------------------
+        // ---------------------------
+        // MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE (with flick support)
+        // ---------------------------
+        // ---------------------------
+        // MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE (gap-aware)
+        // ---------------------------
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+        let isHorizontal = false;
+        let initialTranslate = 0;
+        let currentTranslate = 0;
 
-const threshold = 5; // min horizontal swipe to count
-const gapPx = 10; // same gap as in CSS
-const slideWidthPx = videos[0].offsetWidth + gapPx; // one slide + gap
+        const threshold = 5; // min horizontal swipe to count
+        const gapPx = 10; // same gap as in CSS
+        const slideWidthPx = videos[0].offsetWidth + gapPx; // one slide + gap
 
-track.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    isDragging = true;
-    isHorizontal = false;
+        track.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isDragging = true;
+            isHorizontal = false;
 
-    const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
-    initialTranslate = matrix.m41;
-    track.style.transition = "none";
+            const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
+            initialTranslate = matrix.m41;
+            track.style.transition = "none";
 
-    if (autoScrollTimer) clearTimeout(autoScrollTimer);
-}, { passive: true });
+            if (autoScrollTimer) clearTimeout(autoScrollTimer);
+        }, { passive: true });
 
-track.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
+        track.addEventListener("touchmove", (e) => {
+            if (!isDragging) return;
 
-    const x = e.touches[0].clientX;
-    const y = e.touches[0].clientY;
-    const dx = x - startX;
-    const dy = y - startY;
+            const x = e.touches[0].clientX;
+            const y = e.touches[0].clientY;
+            const dx = x - startX;
+            const dy = y - startY;
 
-    if (!isHorizontal) {
-        if (Math.abs(dx) > threshold && Math.abs(dx) > Math.abs(dy)) {
-            isHorizontal = true;
-        } else if (Math.abs(dy) > threshold) {
-            isDragging = false;
-            return;
-        }
-    }
+            if (!isHorizontal) {
+                if (Math.abs(dx) > threshold && Math.abs(dx) > Math.abs(dy)) {
+                    isHorizontal = true;
+                } else if (Math.abs(dy) > threshold) {
+                    isDragging = false;
+                    return;
+                }
+            }
 
-    if (!isHorizontal) return;
+            if (!isHorizontal) return;
 
-    e.preventDefault();
+            e.preventDefault();
 
-    currentTranslate = initialTranslate + dx;
-    track.style.transform = `translateX(${currentTranslate}px)`;
-}, { passive: false });
+            currentTranslate = initialTranslate + dx;
+            track.style.transform = `translateX(${currentTranslate}px)`;
+        }, { passive: false });
 
-track.addEventListener("touchend", (e) => {
+       track.addEventListener("touchend", (e) => {
     if (!isHorizontal) {
         isDragging = false;
         return;
@@ -1292,15 +1290,12 @@ track.addEventListener("touchend", (e) => {
 
     isDragging = false;
 
-    // detect swipe distance
     const swipeDistance = e.changedTouches[0].clientX - startX;
     let newIndex = index;
 
-    // if swipe distance is > 30px in either direction, move one slide
     if (swipeDistance < -30 && index < totalVideos) newIndex++;
     else if (swipeDistance > 30 && index > 0) newIndex--;
 
-    // snap to nearest slide if small drag
     const nearestIndex = Math.round(-currentTranslate / slideWidthPx);
     if (Math.abs(swipeDistance) < 30) newIndex = nearestIndex;
 
@@ -1312,16 +1307,40 @@ track.addEventListener("touchend", (e) => {
     track.style.transition = "transform 0.3s ease";
     track.style.transform = `translateX(${-index * slideWidthPx}px)`;
 
+
+    // ----------------------------------
+    // ⭐️ FIX: NOW UPDATE VIDEO PLAYBACK
+    // ----------------------------------
+    videos.forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+        v.removeEventListener('ended', playNextVideo);
+    });
+
+    currentVideo = videos[index];
+    currentVideo.play().catch(()=>{});
+    currentVideo.addEventListener('ended', playNextVideo);
+
+
     if (index === totalVideos) {
         setTimeout(() => {
             track.style.transition = "none";
             track.style.transform = "translateX(0)";
             index = 0;
+
+            videos.forEach(v => {
+                v.pause();
+                v.currentTime = 0;
+                v.removeEventListener('ended', playNextVideo);
+            });
+
+            currentVideo = videos[0];
+            currentVideo.play().catch(()=>{});
+            currentVideo.addEventListener('ended', playNextVideo);
         }, 300);
     }
-
-  
 });
+
 
 
 
