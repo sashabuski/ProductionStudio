@@ -1217,54 +1217,69 @@ infoButton.addEventListener("click", () => {
 // ------------------------------------------
 
 let startX = 0;
+let startY = 0;
 let isDragging = false;
+let isHorizontal = false;
 let initialTranslate = 0;
 let currentTranslate = 0;
 
-// actual pixel width of one slide
+const threshold = 10;
 const slideWidthPx = track.offsetWidth / (totalVideos + 1);
 
 track.addEventListener("touchstart", (e) => {
-    isDragging = true;
     startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isDragging = true;
+    isHorizontal = false;
 
-    // current transform translateX → number
     const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
     initialTranslate = matrix.m41;
 
-    track.style.transition = "none"; // disable snapping during drag
+    track.style.transition = "none";
 }, { passive: true });
 
 track.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
 
     const x = e.touches[0].clientX;
-    const delta = x - startX;
+    const y = e.touches[0].clientY;
+    const dx = x - startX;
+    const dy = y - startY;
 
-    currentTranslate = initialTranslate + delta;
-    track.style.transform = `translateX(${currentTranslate}px)`;
+    if (!isHorizontal) {
+        if (Math.abs(dx) > threshold && Math.abs(dx) > Math.abs(dy)) {
+            isHorizontal = true;
+        } else if (Math.abs(dy) > threshold) {
+            isDragging = false; 
+            return;
+        }
+    }
+
+    if (!isHorizontal) return;
 
     e.preventDefault();
+
+    currentTranslate = initialTranslate + dx;
+    track.style.transform = `translateX(${currentTranslate}px)`;
 }, { passive: false });
 
 track.addEventListener("touchend", () => {
-    if (!isDragging) return;
+    if (!isHorizontal) {
+        isDragging = false;
+        return;
+    }
+
     isDragging = false;
 
-    // Determine nearest slide index
     let newIndex = Math.round(-currentTranslate / slideWidthPx);
-
-    // Clamp (0–5) because last one is duplicate
     if (newIndex < 0) newIndex = 0;
     if (newIndex > totalVideos) newIndex = totalVideos;
 
     index = newIndex;
 
-    // snap
     track.style.transition = "transform 0.3s ease";
     track.style.transform = `translateX(${-index * slideWidthPx}px)`;
 
-    // handle duplicate (index=5)
     if (index === totalVideos) {
         setTimeout(() => {
             track.style.transition = "none";
@@ -1273,6 +1288,8 @@ track.addEventListener("touchend", () => {
         }, 300);
     }
 });
+
+
 
 
         // ---------------------------
