@@ -601,7 +601,7 @@ footer {
     align-items: center;
     padding: calc(3.5vw + 5px) 0;
     background-color: rgba(0,0,0,0);
-    font-weight: bold;
+ 
     color: #fff;
     border-top: 1px solid #939393;
     margin-left: 3vw;
@@ -651,6 +651,7 @@ footer {
     position: absolute;
     left: 0;
     top: 50%;
+    font-weight: bold;
     transform: translateY(-50%);
     font-size: calc(3vw + 2px);
     z-index: 2;
@@ -665,6 +666,7 @@ footer {
     font-size: calc(2.8vw + 2px);
     font-family: 'ConsolasCustom', monospace;
     transition: color 0.1s ease;
+    font-weight: normal;
 }
 
 
