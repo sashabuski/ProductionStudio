@@ -595,18 +595,23 @@ footer {
 }
 
 .item-mobile {
-    position: relative;
+   position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: calc(3.5vw + 5px) 0;
-    background-color: rbga(0,0,0,0);
+    background-color: rgba(0,0,0,0);
     font-weight: bold;
     color: #fff;
     border-top: 1px solid #939393;
     margin-left: 3vw;
     margin-right: 3vw;
+    
+    overflow: hidden;
+    max-height: 14vw;
+    transition: all 0.35s ease;
 }
+
 
 /* SVG stacked behind left text */
 .bg-icon-mobile {
@@ -626,8 +631,7 @@ footer {
 
 .subtitle-mobile {
     z-index: 90;
-    margin-left: 3vw;
-    
+    margin-left: 3vw;  
     font-size: 4vw;
     color: #959595;
     font-weight: bold;
@@ -663,13 +667,24 @@ footer {
     transition: color 0.1s ease;
 }
 
+
+.expand-content {
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.item-mobile.open .expand-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
 .item-mobile .exp-button {
-    margin-left: auto; /* push to far right */
-   
-    
-  height:6vw;
-  width:auto;
-   
+    margin-left: auto;
+    height: 6vw;
+    width: auto;
     transition: color 0.1s ease;
 }
 
@@ -914,4 +929,19 @@ label{
 
 .info-butt:hover::after {
     width: 100%;       /* animate underline to full width */
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    flex: 0 0 auto;
 }

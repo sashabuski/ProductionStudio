@@ -2,154 +2,642 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Perfect Responsive Footer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project List Mobile Demo</title>
 
 <style>
-:root {
-    --footer-height: calc(6vw + 60px);
+
+body {
+    background:black;
+    margin:0;
+    font-family: Arial, sans-serif;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    background: #000;
-    height: 100%;
-}
+/* ---------------- LIST ---------------- */
 
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: var(--footer-height);
-    background: #000;
-    color: white;
-    font-size: 1vw;
-    padding: 1vw 1.5vw;       /* padding replaces margins */
-    box-sizing: border-box;
-}
-
-.footer-grid {
-    height: 100%;             /* fill footer height */
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: 1fr 1fr;  /* 2 equal rows */
-    gap: 0.5vw 2vw;
-    align-items: center;      /* vertical centering */
-}
-
-.footer-col {
+.project-list-mobile {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: left;
+    margin-bottom: 8vw;
 }
 
-.footer-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.8vw;
-    font-family: 'ConsolasCustom', monospace;
+.item-mobile {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: calc(3.5vw + 5px) 0;
+    background-color: rgba(0,0,0,0);
+    font-weight: bold;
+    color: #fff;
+    border-top: 1px solid #939393;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    
+    overflow: hidden;
+    max-height: 14vw;
+    transition: all 0.35s ease;
 }
 
-/* underline animation */
-.footer-link::after {
-    content: '';
+.expand-content {
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.item-mobile.open .expand-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ICON BEHIND TEXT */
+
+.bg-icon-mobile {
     position: absolute;
     left: 0;
-    bottom: -2px;
-    height: 1px;
+    top: 50%;
+    width: 1.2vw;
+    height: 1.2vw;
+    min-width: 5px;
+    min-height: 5px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* SUBTITLE */
+
+.subtitle-mobile {
+    z-index: 90;
+    margin-left: 3vw;
+    font-size: 4vw;
+    color: #959595;
+    font-weight: bold;
+}
+
+/* CLICKABLE ROW */
+
+.clickable-mobile {
+    display: flex;
+    justify-content: flex-start;
     width: 100%;
-    background: yellowgreen;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+    position: relative;
+    align-items: center;
+    cursor: pointer;
 }
 
-.footer-link:hover {
-    color: yellowgreen;
-}
-.footer-link:hover::after {
-    transform: scaleX(1);
-}
-
-.accent {
-    color: yellowgreen;
-}
-
-.footer-muted {
-    opacity: 0.5;
-    font-size: 0.8vw;
+.item-mobile .left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: calc(3vw + 2px);
+    z-index: 2;
+    transition: transform 0.25s ease, color 0.15s ease;
 }
 
-.divider {
-    text-align: center;
-    margin-bottom: .5vw;
+.item-mobile .right {
+    margin-left: 40vw;
+    text-align: left;
+    opacity: 0.7;
+    font-size: calc(2.8vw + 2px);
+    font-family: 'ConsolasCustom', monospace;
+    transition: color 0.1s ease;
 }
 
-.divider .line {
-    width: 40px;
-    height: 1px;
-    background: white;
-    display: inline-block;
-    margin: 0 8px;
+.item-mobile .exp-button {
+    margin-left: auto;
+    height: 6vw;
+    width: auto;
+    transition: color 0.1s ease;
 }
 
-.white-g {
-    width: 20px;
-    vertical-align: middle;
+
+.carousel-track {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    flex: 0 0 auto;
+}
+
 </style>
-</head>
 
+</head>
 <body>
 
-<footer>
+<ul class="project-list-mobile">
+    <p class="subtitle-mobile" style="margin-bottom: 6vw;">PROJECTS</p>
 
-    <div class="divider">
-        <img src="g.svg" class="white-g">
-        <span class="line"></span>
-        <img src="g.svg" class="white-g">
-    </div>
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">NEON PEAK</span>
+                <span class="right">MEDIA PRODUCTION</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">SILVERLINE</span>
+                <span class="right">ADVERTISING</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">GHOSTBIRD</span>
+                <span class="right">MUSIC VIDEO</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">HOLOFRAME</span>
+                <span class="right">XR / IMMERSIVE</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">NIGHT TRANSIT</span>
+                <span class="right">FILM</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">STATIC PUNCH</span>
+                <span class="right">BRAND CONTENT</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">VELVET ROCKET</span>
+                <span class="right">FASHION</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">GRAINWAVE</span>
+                <span class="right">DOCUMENTARY</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">ORBIT HOUSE</span>
+                <span class="right">ANIMATION</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">PINE & PIXEL</span>
+                <span class="right">PHOTOGRAPHY</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">SIGNAL WEST</span>
+                <span class="right">COMMERCIAL</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">MOONSET</span>
+                <span class="right">CREATIVE DIRECTION</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">FLUXFRAME</span>
+                <span class="right">POST-PRODUCTION</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">RED LANTERN</span>
+                <span class="right">SHORT FILM</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">STUDIO WIRE</span>
+                <span class="right">MOTION DESIGN</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+    <li class="item-mobile" style="border-bottom: 1px solid #939393; display: flex; flex-direction: column;">
+        <div class="mobile-item-content" style="width: 100%;">
+            <div class="bg-icon-mobile"><img src="globe.gif"></div>
+            <div class="clickable-mobile">
+                <span class="left">FABLE NORTH</span>
+                <span class="right">NARRATIVE</span>
+                <img src="exp.svg" class="exp-button">
+            </div>
+        </div>
+        <div class="expand-content"></div>
+    </li>
+    
+</ul>
 
-    <div class="footer-grid">
 
-        <!-- Row 1 -->
-        <a class="footer-link accent">CAPABILITIES DECK ↓</a>
 
-        <ul class="footer-col"></ul>
+<script>
+    (() => {
+      const COLLAPSED_MAX = "14vw"; // same collapsed height you used
+    
+      // helper: safely get numeric height in px
+      function px(n){ return n + "px"; }
+    
+      function cleanupVideos(container) {
+        if (!container) return;
+        const vids = container.querySelectorAll('video');
+        vids.forEach(v => {
+          try {
+            v.pause();
+            v.removeAttribute('src');
+            v.load && v.load();
+          } catch (e) {}
+        });
+      }
+    
+      function closeItem(item) {
+        return new Promise(resolve => {
+          if (!item.classList.contains('open')) {
+            // already closed; still clear content
+            const ec0 = item.querySelector('.expand-content');
+            if (ec0) {
+              cleanupVideos(ec0);
+              ec0.innerHTML = "";
+            }
+            item.style.maxHeight = COLLAPSED_MAX;
+            item.classList.remove('open');
+            return resolve();
+          }
+    
+          const ec = item.querySelector('.expand-content');
+             
+          const fontleft = item.querySelector('.left');
+          fontleft.style.color = 'white';
+          
+          // Freeze current height (in px) so transition has a start
+          item.style.maxHeight = px(item.offsetHeight);
+    
+          // Force layout
+          void item.offsetHeight;
+    
+          // Now animate to collapsed height
+          item.style.transition = "max-height 0.35s ease";
+          item.style.maxHeight = COLLAPSED_MAX;
+    
+          // remove 'open' immediately so CSS styles that depend on .open toggle (eg. expand-content) can change
+          item.classList.remove('open');
+    
+          // when transition ends, clear content and cleanup
+          function onEnd(ev) {
+            if (ev.propertyName !== "max-height") return;
+            item.removeEventListener("transitionend", onEnd);
+    
+            // Pause / remove video sources to stop playback & free memory
+            if (ec) cleanupVideos(ec);
+    
+            // clear DOM for the closed item
+            if (ec) ec.innerHTML = "";
+    
+            // ensure collapsed fixed height remains (so subsequent opens animate predictably)
+            item.style.maxHeight = COLLAPSED_MAX;
+    
+            // remove inline transition so later opens can set their own
+            item.style.transition = "";
+    
+            resolve();
+          }
+    
+          item.addEventListener("transitionend", onEnd);
+        });
+      }
+    
+      async function openItem(item, folder) {
+        const expandContent = item.querySelector('.expand-content');
+    
+        // fill content (same template you had)
+        let infoText = "";
+        try {
+          const r = await fetch(`projects/${folder}/info.txt`);
+          infoText = r.ok ? await r.text() : "Info not found.";
+        } catch {
+          infoText = "Error loading info.";
+        }
+    
+        expandContent.innerHTML = `
+          <div class="video-carousel" style="position: relative; width: 100%; border-radius: 10px; overflow: hidden; margin-top: calc(3.5vw + 5px); aspect-ratio: 16/9;">
+              <div class="video-track" style="display: flex; width: 600%; transition: transform 0.5s ease; height: 100%;">
+                  ${[1,2,3,4,5].map(i => `
+                      <video muted playsinline class="wide-video" 
+                          style="width: 17%; flex-shrink: 0; height: 100%; object-fit: cover;">
+                          <source src="projects/${folder}/${i}.mp4" type="video/mp4">
+                      </video>
+                  `).join('')}
+                  <!-- duplicate first video for seamless loop -->
+                  <video muted playsinline class="wide-video" 
+                      style="width: 17%; flex-shrink: 0; height: 100%; object-fit: cover;">
+                      <source src="projects/${folder}/1.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <p style="font-weight: normal; white-space: pre-line; margin-top: calc(7vw + 10px); font-size: 4vw">${infoText}</p>
+        `;
+    
+        // set up carousel playback (same logic but safer)
+        const track = expandContent.querySelector('.video-track');
+        const videos = Array.from(expandContent.querySelectorAll('.wide-video'));
+        const totalVideos = 5; // real videos only
+        let index = 0;
+    
+        // Calculate widths dynamically
+        const slideWidthPercent = 100 / (totalVideos + 1); // +1 for duplicate
+        videos.forEach(v => v.style.width = slideWidthPercent + "%");
+        track.style.width = (totalVideos + 1) * 100 + "%";
+    
+        // ensure only first video auto-plays to start
+        videos.forEach((v, i) => {
+          v.pause();
+          v.currentTime = 0;
+          v.removeEventListener('ended', v._playNextHandler);
+        });
+    
+        let currentVideo = videos[index];
+        currentVideo.play().catch(()=>{});
+    
+        function playNextVideo() {
+          index++;
+          track.style.transition = "transform 0.5s ease";
+          track.style.transform = `translateX(-${index * slideWidthPercent}%)`;
+    
+          if (index === totalVideos) {
+            // When we hit the duplicate slide, snap back after animation
+            setTimeout(() => {
+              // snap back without transition
+              track.style.transition = "none";
+              track.style.transform = "translateX(0)";
+              index = 0;
+              // reset video playback to first
+              videos.forEach(v => {
+                v.pause();
+                v.currentTime = 0;
+              });
+              currentVideo = videos[index];
+              currentVideo.play().catch(()=>{});
+              // rebind ended handler
+              currentVideo.addEventListener('ended', playNextVideo);
+            }, 500);
+            return;
+          }
+    
+          // normal next
+          if (currentVideo) currentVideo.removeEventListener('ended', playNextVideo);
+          currentVideo = videos[index];
+          currentVideo.currentTime = 0;
+          currentVideo.play().catch(()=>{});
+          currentVideo.addEventListener('ended', playNextVideo);
+        }
+    
+        // bind
+        currentVideo.addEventListener('ended', playNextVideo);
+        // store handler ref in case we want to remove later
+        currentVideo._playNextHandler = playNextVideo;
+    
 
-        <ul class="footer-col">
-            <li><a class="footer-link" href="#">GITHUB</a></li>
-            <li><a class="footer-link" href="#">LENIS</a></li>
-        </ul>
 
-        <ul class="footer-col">
-            <li><a class="footer-link" href="#">AWWWARDS</a></li>
-            <li><a class="footer-link" href="#">TWITTER</a></li>
-        </ul>
 
-        <ul class="footer-col">
-            <li><a class="footer-link" href="#">INSTAGRAM</a></li>
-            <li><a class="footer-link" href="#">VIMEO</a></li>
-        </ul>
+        // ------------------------------------------
+// MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE
+// ------------------------------------------
 
-        <ul class="footer-col">
-            <li><a class="footer-link" href="#">P: +1 380.238.9363</a></li>
-            <li><a class="footer-link" href="#">E: hello@email.com</a></li>
-        </ul>
+let startX = 0;
+let isDragging = false;
+let initialTranslate = 0;
+let currentTranslate = 0;
 
-        <!-- Row 2 -->
-        <ul class="footer-col"></ul>
+// actual pixel width of one slide
+const slideWidthPx = track.offsetWidth / (totalVideos + 1);
 
-        <ul class="footer-col">
-            <li class="footer-muted">© 2025</li>
-        </ul>
+track.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    startX = e.touches[0].clientX;
 
-    </div>
-</footer>
+    // current transform translateX → number
+    const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
+    initialTranslate = matrix.m41;
+
+    track.style.transition = "none"; // disable snapping during drag
+}, { passive: true });
+
+track.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+
+    const x = e.touches[0].clientX;
+    const delta = x - startX;
+
+    currentTranslate = initialTranslate + delta;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+
+    e.preventDefault();
+}, { passive: false });
+
+track.addEventListener("touchend", () => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    // Determine nearest slide index
+    let newIndex = Math.round(-currentTranslate / slideWidthPx);
+
+    // Clamp (0–5) because last one is duplicate
+    if (newIndex < 0) newIndex = 0;
+    if (newIndex > totalVideos) newIndex = totalVideos;
+
+    index = newIndex;
+
+    // snap
+    track.style.transition = "transform 0.3s ease";
+    track.style.transform = `translateX(${-index * slideWidthPx}px)`;
+
+    // handle duplicate (index=5)
+    if (index === totalVideos) {
+        setTimeout(() => {
+            track.style.transition = "none";
+            track.style.transform = "translateX(0)";
+            index = 0;
+        }, 300);
+    }
+});
+
+
+        // ---------------------------
+        // HEIGHT ANIMATION (open)
+        // ---------------------------
+    
+        // Freeze current height (px)
+        item.style.maxHeight = px(item.offsetHeight);
+        void item.offsetHeight; // force layout
+    
+        // set content visible (by adding .open, CSS handles opacity/transform of inner expand-content)
+        item.classList.add('open');
+    
+        // compute full height
+        const fullHeight = item.scrollHeight;
+        item.style.transition = "max-height 0.35s ease";
+        item.style.maxHeight = px(fullHeight);
+    
+        function onOpenEnd(ev) {
+          if (ev.propertyName !== "max-height") return;
+          item.removeEventListener("transitionend", onOpenEnd);
+          // let it grow naturally after the transition
+          item.style.maxHeight = "none"; // allow auto height after animation completes
+          item.style.transition = ""; // clear explicit transition
+        }
+        item.addEventListener("transitionend", onOpenEnd);
+      }
+    
+      // Main click handler
+      document.querySelectorAll('.project-list-mobile').forEach(list => {
+        list.addEventListener('click', async (e) => {
+          const clickable = e.target.closest('.clickable-mobile');
+          if (!clickable) return;
+    
+          const li = clickable.closest('.item-mobile');
+          
+          const fontleft = li.querySelector('.left');
+          fontleft.style.color = 'yellowgreen';
+          
+          
+            const leftText = li.querySelector('.left').textContent.trim();
+          const folder = leftText.toLowerCase();
+          const alreadyOpen = li.classList.contains('open');
+    
+          // Close any currently open items with animation (but keep their content until close completes)
+          const openItems = Array.from(document.querySelectorAll('.item-mobile.open'));
+          // If the clicked item is the only open item and we're toggling it closed, just close it
+          if (alreadyOpen && openItems.length === 1) {
+            await closeItem(li);
+            return;
+          }
+    
+          // Close others (not the clicked one) first
+                    // Close others in parallel (do NOT await)
+            const othersToClose = openItems.filter(it => it !== li);
+            othersToClose.forEach(closeItem); // fire & forget
+
+            // If clicked item was already open, do nothing more
+            if (alreadyOpen) return;
+
+            // Open clicked item immediately
+            openItem(li, folder);
+
+        });
+      });
+    })();
+    </script>
+    
+    
+    
 
 </body>
 </html>
+ 
