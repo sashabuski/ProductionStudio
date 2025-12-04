@@ -1122,6 +1122,7 @@ infoButton.addEventListener("click", () => {
       async function openItem(item, folder) {
         const expandContent = item.querySelector('.expand-content');
     
+
         // fill content (same template you had)
         let infoText = "";
         try {
@@ -1133,7 +1134,7 @@ infoButton.addEventListener("click", () => {
     
         expandContent.innerHTML = `
           <div class="video-carousel" style="position: relative; width: 100%; border-radius: 10px; overflow: hidden; margin-top: calc(3.5vw + 5px); aspect-ratio: 16/9;">
-              <div class="video-track" style="display: flex; width: 600%; transition: transform 0.5s ease; height: 100%;">
+              <div class="video-track" style="display: flex; gap: 10px; width: 600%; transition: transform 0.5s ease; height: 100%;">
                   ${[1,2,3,4,5].map(i => `
                       <video muted playsinline class="wide-video" 
                           style="width: 17%; flex-shrink: 0; height: 100%; object-fit: cover;">
@@ -1155,7 +1156,20 @@ infoButton.addEventListener("click", () => {
         const videos = Array.from(expandContent.querySelectorAll('.wide-video'));
         const totalVideos = 5; // real videos only
         let index = 0;
+
+                
+        let autoScrollTimer = null;
+        const autoScrollDelay = 5000; // ms between automatic slides
     
+function startAutoScroll() {
+    if (autoScrollTimer) clearTimeout(autoScrollTimer);
+
+    autoScrollTimer = setTimeout(() => {
+        playNextVideo(); // move to next video
+        startAutoScroll(); // schedule next
+    }, autoScrollDelay);
+}
+
         // Calculate widths dynamically
         const slideWidthPercent = 100 / (totalVideos + 1); // +1 for duplicate
         videos.forEach(v => v.style.width = slideWidthPercent + "%");
@@ -1174,8 +1188,7 @@ infoButton.addEventListener("click", () => {
         function playNextVideo() {
           index++;
           track.style.transition = "transform 0.5s ease";
-          track.style.transform = `translateX(-${index * slideWidthPercent}%)`;
-    
+          track.style.transform = `translateX(-${index * slideWidthPx}px)`;    
           if (index === totalVideos) {
             // When we hit the duplicate slide, snap back after animation
             setTimeout(() => {
@@ -1208,6 +1221,7 @@ infoButton.addEventListener("click", () => {
         currentVideo.addEventListener('ended', playNextVideo);
         // store handler ref in case we want to remove later
         currentVideo._playNextHandler = playNextVideo;
+        startAutoScroll();
     
 
 
@@ -1215,7 +1229,12 @@ infoButton.addEventListener("click", () => {
         // ------------------------------------------
 // MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE
 // ------------------------------------------
-
+// ---------------------------
+// MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE (with flick support)
+// ---------------------------
+// ---------------------------
+// MOBILE SWIPE-TO-SCRUB + SNAP-TO-SLIDE (gap-aware)
+// ---------------------------
 let startX = 0;
 let startY = 0;
 let isDragging = false;
@@ -1223,8 +1242,9 @@ let isHorizontal = false;
 let initialTranslate = 0;
 let currentTranslate = 0;
 
-const threshold = 10;
-const slideWidthPx = track.offsetWidth / (totalVideos + 1);
+const threshold = 5; // min horizontal swipe to count
+const gapPx = 10; // same gap as in CSS
+const slideWidthPx = videos[0].offsetWidth + gapPx; // one slide + gap
 
 track.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
@@ -1234,8 +1254,9 @@ track.addEventListener("touchstart", (e) => {
 
     const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
     initialTranslate = matrix.m41;
-
     track.style.transition = "none";
+
+    if (autoScrollTimer) clearTimeout(autoScrollTimer);
 }, { passive: true });
 
 track.addEventListener("touchmove", (e) => {
@@ -1250,7 +1271,7 @@ track.addEventListener("touchmove", (e) => {
         if (Math.abs(dx) > threshold && Math.abs(dx) > Math.abs(dy)) {
             isHorizontal = true;
         } else if (Math.abs(dy) > threshold) {
-            isDragging = false; 
+            isDragging = false;
             return;
         }
     }
@@ -1263,7 +1284,7 @@ track.addEventListener("touchmove", (e) => {
     track.style.transform = `translateX(${currentTranslate}px)`;
 }, { passive: false });
 
-track.addEventListener("touchend", () => {
+track.addEventListener("touchend", (e) => {
     if (!isHorizontal) {
         isDragging = false;
         return;
@@ -1271,7 +1292,18 @@ track.addEventListener("touchend", () => {
 
     isDragging = false;
 
-    let newIndex = Math.round(-currentTranslate / slideWidthPx);
+    // detect swipe distance
+    const swipeDistance = e.changedTouches[0].clientX - startX;
+    let newIndex = index;
+
+    // if swipe distance is > 30px in either direction, move one slide
+    if (swipeDistance < -30 && index < totalVideos) newIndex++;
+    else if (swipeDistance > 30 && index > 0) newIndex--;
+
+    // snap to nearest slide if small drag
+    const nearestIndex = Math.round(-currentTranslate / slideWidthPx);
+    if (Math.abs(swipeDistance) < 30) newIndex = nearestIndex;
+
     if (newIndex < 0) newIndex = 0;
     if (newIndex > totalVideos) newIndex = totalVideos;
 
@@ -1287,7 +1319,10 @@ track.addEventListener("touchend", () => {
             index = 0;
         }, 300);
     }
+
+  
 });
+
 
 
 

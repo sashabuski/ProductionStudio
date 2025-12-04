@@ -672,6 +672,7 @@ footer {
     opacity: 0;
     transform: translateY(-5px);
     transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 130;
 }
 
 .item-mobile.open .expand-content {

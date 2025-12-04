@@ -47,6 +47,7 @@ body {
     opacity: 0;
     transform: translateY(-5px);
     transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 130;
 }
 
 .item-mobile.open .expand-content {
@@ -427,7 +428,8 @@ body {
     
         expandContent.innerHTML = `
           <div class="video-carousel" style="position: relative; width: 100%; border-radius: 10px; overflow: hidden; margin-top: calc(3.5vw + 5px); aspect-ratio: 16/9;">
-              <div class="video-track" style="display: flex; width: 600%; transition: transform 0.5s ease; height: 100%;">
+             <div class="video-track" style="display: flex; gap: 10px; width: 600%; transition: transform 0.5s ease; height: 100%;">
+
                   ${[1,2,3,4,5].map(i => `
                       <video muted playsinline class="wide-video" 
                           style="width: 17%; flex-shrink: 0; height: 100%; object-fit: cover;">
@@ -468,7 +470,7 @@ body {
         function playNextVideo() {
           index++;
           track.style.transition = "transform 0.5s ease";
-          track.style.transform = `translateX(-${index * slideWidthPercent}%)`;
+          track.style.transform = `translateX(-${index * slideWidthPx}px)`;
     
           if (index === totalVideos) {
             // When we hit the duplicate slide, snap back after animation
@@ -522,7 +524,7 @@ let initialTranslate = 0;
 let currentTranslate = 0;
 
 const threshold = 10;
-const slideWidthPx = track.offsetWidth / (totalVideos + 1);
+const slideWidthPx = videos[0].offsetWidth + 10;
 
 track.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
