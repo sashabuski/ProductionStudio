@@ -61,6 +61,23 @@ body::-webkit-scrollbar {
     cursor: pointer;
 }
 
+
+.formbox-mobile {
+    z-index: 90;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid white;
+    color: white;
+    border-radius: 20px;
+    font-size: 3vw;
+    font-weight: bold;
+    padding: 1.5vw 3vw;
+   
+   
+ 
+    transition: background-color 0.1s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
 .formbox {
     z-index: 90;
     background-color: rgba(0,0,0,0);
@@ -751,6 +768,74 @@ footer {
       /* Disable all clicks on background */
 }
 
+
+
+/* --- Slide-in Contact Panel --- */
+#contact-panel-mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100vw; /* Initially hidden off-screen */
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    color: white;
+    padding: 4vw;
+    padding-top: 0vw;
+    box-sizing: border-box;
+    transition: right 0.4s ease;
+    z-index: 100;
+    
+    flex-direction: column;
+    scrollbar-width: 0px;
+}
+
+
+#contact-panel-mobile::-webkit-scrollbar { display: none; }
+
+/* Close button */
+#close-contact-mobile {
+    z-index: 90;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid greenyellow;
+    color: greenyellow;
+    border-radius: 8px;
+    font-size: 4vw;
+    font-weight: bold;
+   padding: 1vw 2vw;
+   
+    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s ease, color 0.3s ease;
+    cursor: pointer;
+}
+.contact-header-mobile {
+    padding-bottom: 0.5vw;
+    z-index: 130; 
+    padding-top: 4vw;
+    position: fixed; 
+    width: 92vw; 
+    height: auto; 
+    background-color: black; 
+    display: flex; 
+    flex-direction: column;
+}
+#close-contact-mobile:hover {
+    background-color: greenyellow;
+    color: #000;
+}
+
+/* Form styling */
+#contact-panel-mobile form {
+  
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+
 /* --- Slide-in Contact Panel --- */
 #contact-panel {
     display: none;
@@ -771,6 +856,7 @@ footer {
     scrollbar-width: 0px;
 }
 
+
 #contact-panel::-webkit-scrollbar { display: none; }
 
 /* Close button */
@@ -790,7 +876,17 @@ footer {
     transition: background-color 0.1s ease, color 0.3s ease;
     cursor: pointer;
 }
-
+.contact-header{
+    padding-bottom: 0.5vw;
+    z-index: 130; 
+    padding-top: 1vw;
+    position: fixed; 
+    width: 47.5vw; 
+    height: auto; 
+    background-color: black; 
+    display: flex; 
+    flex-direction: column;
+}
 #close-contact:hover {
     background-color: greenyellow;
     color: #000;
@@ -803,6 +899,36 @@ footer {
     flex-direction: column;
     
 }
+
+#contact-panel-mobile label {
+  font-size: 2vw;
+  margin-bottom: 2vw;
+}
+
+
+.contact-panel-input-mobile {
+    
+    height: 8vw;
+  
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border: 2px solid #444;
+    background: #222;
+    color: white;
+    border-radius: 2vw;
+    margin-bottom: 3vw;
+    font-size: 2.5vw;
+    font-weight: bold;
+    font-variant: petite-caps;
+
+}
+
+
+.contact-panel-input-mobile:focus {
+    border-color: greenyellow; /* Change to any color you like */
+    outline: none; /* Optional: removes default focus outline */
+}
+
 
 .contact-panel-input,
 .contact-panel-textarea {
@@ -830,6 +956,17 @@ footer {
     font-weight: bold;
 }
 
+#contact-panel-mobile button[type="submit"] {
+    padding: 2vw;
+    background: rgba(0,0,0,0);
+    border: none;
+    color: yellowgreen;
+    cursor: pointer;
+    border-radius: 2vw;
+    font-weight: bold;
+    border: yellowgreen 2px solid;
+}
+
 /* --- Active class toggles --- */
 #overlay.active {
     opacity: 1;
@@ -837,6 +974,10 @@ footer {
 }
 
 #contact-panel.active {
+    right: 0;
+    overflow: auto;
+}
+#contact-panel-mobile.active {
     right: 0;
     overflow: auto;
 }
@@ -866,17 +1007,7 @@ label{
     margin-top: 1.5vw;
     margin-bottom: 0.4vw;
 }
-.contact-header{
-    padding-bottom: 0.5vw;
-    z-index: 130; 
-    padding-top: 1vw;
-    position: fixed; 
-    width: 47.5vw; 
-    height: auto; 
-    background-color: black; 
-    display: flex; 
-    flex-direction: column;
-}
+
 .wide-video{
     width: 100%; 
     margin-bottom: 0.3vw;   

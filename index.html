@@ -24,7 +24,7 @@
          
         
          
-          <button class="contact-mobile">CONTACT</button>
+          <button class="contact-mobile" style="cursor: pointer;">CONTACT</button>
       </div>
 
       <div class="divider-mobile" >
@@ -60,6 +60,90 @@
 
 
   </div>
+
+
+
+    <div id="contact-panel-mobile">
+          
+          <div class = "contact-header-mobile" style="
+    padding-bottom: 2.5vw;">
+          <button id="close-contact-mobile" >CLOSE</button>
+            
+            <div class="divider" style="margin: 2.5vw 0 0 0; gap: 2vw;">
+              <img src="g.svg" class="white-g" style="width: 2.5vw;">
+              <div class="line"></div>
+              <img src="g.svg" class="white-g" style="width: 2.5vw;">
+            </div>
+        </div>
+
+        <h2 class="subtitle-mobile" style="margin-top: 20vw; margin-left: 0px; padding-left: 0px;">PROJECT INQUIRY</h2>
+
+        <p class="para" style="font-size: 4vw;">Hey! We’d love to learn more about what you’re creating so we can determine whether we’re the right production partner. As a next step, please review the information below and submit our Project Kickoff form.<br><br>
+
+        <strong style="font-weight: 800;">Timing.</strong> We’re a hands-on production company focused on delivering exceptional craft, so we take on only a limited number of projects at a time. Because of this, last-minute turnarounds or rushed timelines are not typically feasible — we prefer to plan ahead to ensure the highest production quality.<br><br>
+        
+        <strong style="font-weight: 800;">Scope.</strong> Our core work includes creative development, cinematography, directing, full-service production, and post-production (editing, VFX, sound, and color). We’re open to unconventional or experimental requests (!) but generally focus on meaningful, high-impact projects rather than small fixes or minor content updates.<br><br>
+        
+        <strong style="font-weight: 800;">Budget.</strong> Production budgets vary depending on concept, locations, talent, crew size, and post-production needs. Our smallest engagements typically begin around $15k–$20k, with larger campaigns and multi-deliverable productions ranging from $50k–$150k+. If your expectations differ, you’re still encouraged to reach out — we’re happy to hear your ideas and discuss budget realities.<br><br>
+        
+        If you have questions or aren’t sure whether we’re a fit, please feel free to start a conversation with us anytime.</p>
+        <form>
+            
+                <label>YOUR NAME *</label>
+                <input type="text" class="contact-panel-input-mobile" required>
+         
+         
+                <label>YOUR EMAIL *</label>
+                <input type="email" class="contact-panel-input-mobile" required>
+             
+            
+            <label>COMPANY NAME *</label>
+            <input type="text" class="contact-panel-input-mobile" required>
+
+
+
+             <label>PROJECT TYPE *</label>
+        <div style="display: flex; flex-direction: row; width: 100%;    flex-wrap: wrap;
+    gap: 2vw; margin-bottom: 2vw;">
+        <button class="formbox-mobile">VIDEO</button>
+        <button class="formbox-mobile">FILM</button>
+        <button class="formbox-mobile">ANIMATION</button>
+        <button class="formbox-mobile">PHOTO</button>
+        <button class="formbox-mobile">LIVE</button>
+        <button class="formbox-mobile">OTHER</button>
+        </div>   
+
+        <label style="margin-top: 2vw;">PROJECT DESCRIPTION *</label>
+            <textarea type="email" class="contact-panel-input-mobile" style="resize: none; font-variant: normal; height: 40vw; padding-top: 2vw;" required></textarea>
+
+
+
+
+                <label>BUDGET EXPECTATION *</label>
+                <input type="text" class="contact-panel-input-mobile" required>
+            
+
+           
+                <label>TIMELINE EXPECTATION *</label>
+                <input type="email" class="contact-panel-input-mobile" required>
+    
+      
+        
+      
+                <label>HOW YOU FOUND US *</label>
+                <input type="text" class="contact-panel-input-mobile" required>
+        
+                <label>FAVORITE MOVIE OR ALBUM</label>
+                <input type="email" class="contact-panel-input-mobile">
+    
+            
+            <button type="submit" style="margin: 2vw 0 2vw 0;"> <strong>SEND</strong> </button>
+        </form>
+
+                </div>
+
+
+  
 
  
   <div class = "mobile-content-container">
@@ -442,7 +526,7 @@
  </div>   
 
 <label style="margin-top: 2vw;">PROJECT DESCRIPTION *</label>
-    <textarea type="email" class="contact-panel-input" style="height: 8vw;" required></textarea>
+    <textarea type="email" class="contact-panel-input" style="resize: none; height: 8vw;" required></textarea>
 
 
 
@@ -705,6 +789,27 @@ if (contactPanel) {
 
         requestAnimationFrame(raf);
         });
+
+
+
+    const contactPanelMobile = document.getElementById("contact-panel-mobile");
+        if (contactPanelMobile) {
+            contactMobileLenis = new Lenis({
+                wrapper: contactPanelMobile,
+                content: contactPanelMobile,
+                smooth: true,
+                smoothWheel: true,
+                smoothTouch: true,
+                wheelMultiplier: 0.8,
+                touchMultiplier: 1.2,
+            });
+
+            function rafContactMobile(time) {
+                contactMobileLenis.raf(time);
+                requestAnimationFrame(rafContactMobile);
+            }
+            requestAnimationFrame(rafContactMobile);
+        }
         
     window.onload = function () {
     
@@ -917,6 +1022,11 @@ if (contactPanel) {
 </script>
   
 
+
+
+
+
+
 <script>
   const openBtn = document.querySelector(".contact");
   const closeBtn = document.getElementById("close-contact");
@@ -972,6 +1082,55 @@ if (contactPanel) {
   
   
   </script> 
+
+
+
+
+
+
+
+<script>
+                const openBtnMob = document.querySelector(".contact-mobile");
+                const closeBtnMob = document.getElementById("close-contact-mobile");
+                const panelMob = document.getElementById("contact-panel-mobile");
+
+                openBtnMob.addEventListener("click", () => {
+                    
+                    panelMob.style.display = "flex"; 
+                
+                    requestAnimationFrame(() => {
+                    panelMob.classList.add("active");
+                });
+                
+                 
+                    body.classList.add("body-lock");
+                   
+                });
+                
+                // Close panel
+                function closePanelMob() {
+                    
+                    panelMob.classList.remove("active");
+                    // after transition, hide visibility
+                    setTimeout(() => {
+                   
+                        panelMob.style.display = "none"; 
+                    }, 300);
+
+
+                    body.classList.remove("body-lock");
+                  
+                }               
+                closeBtnMob.addEventListener("click", closePanelMob);
+ 
+  </script> 
+
+
+
+
+
+
+
 
 <script>
   // Select all formbox buttons
