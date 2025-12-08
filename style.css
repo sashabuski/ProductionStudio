@@ -465,15 +465,15 @@ footer {
 
 
 .headerbox-mobile{
-    width: 94vw;
-    margin-left: 3vw;
-    margin-right: 3vw;
+    width: 92vw;
+    margin-left: 4vw;
+    margin-right: 4vw;
 }
 
 .linksbox-mobile {
    
     margin-bottom: calc(1vw - 0.35vw);
-    margin-top: 3vw;
+    margin-top: 4vw;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -511,7 +511,7 @@ footer {
 
 .headerstyle-mobile {
     filter: brightness(0) invert(1);
-    width: 94vw;
+    width: 92vw;
     height: auto;
     display: block;
    
@@ -540,7 +540,7 @@ footer {
 }
 .white-g-mobile {
     filter: brightness(0) invert(1);
-    width: 2vw;
+    width: 2.5vw;
     height: auto;
 }
 
@@ -621,8 +621,8 @@ footer {
  
     color: #fff;
     border-top: 1px solid #939393;
-    margin-left: 3vw;
-    margin-right: 3vw;
+    margin-left: 4vw;
+    margin-right: 4vw;
     
     overflow: hidden;
     max-height: 14vw;
@@ -648,7 +648,7 @@ footer {
 
 .subtitle-mobile {
     z-index: 90;
-    margin-left: 3vw;  
+    margin-left: 4vw;  
     font-size: 4vw;
     color: #959595;
     font-weight: bold;
@@ -711,8 +711,8 @@ footer {
 .para-mobile { 
     color: white; 
     font-size: calc(4vw + 2px); 
-    margin-left: 3vw; 
-    margin-right: 3vw;
+    margin-left: 4vw; 
+    margin-right: 4vw;
     margin-top: 0px;
     margin-bottom: 0px;}
 
@@ -720,7 +720,7 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;   /* 2 equal columns */
     gap: 2vw;                          /* space between items */
-    padding: 4vw 3vw;                  /* side padding */
+    padding: 4vw 4vw;                  /* side padding */
     width: 100%;
     box-sizing: border-box;
 }
