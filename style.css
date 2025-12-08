@@ -1,8 +1,9 @@
 :root {
     --footer-height: calc(3vw + 40px);
+    --accent-color: #EC1F26;   
+    --text-color: #EEEFEA; 
+    --bg-color: #272727;    
 }
-
-
 
 html, body {
    
@@ -47,8 +48,8 @@ body::-webkit-scrollbar {
 .contact {
     z-index: 90;
     background-color: rgba(0,0,0,0);
-    border: 1px solid greenyellow;
-    color: greenyellow;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     border-radius: 8px;
     font-size: 1.1vw;
     font-weight: bold;
@@ -95,17 +96,17 @@ body::-webkit-scrollbar {
 }
 
 .formbox:hover {
-    border-color: greenyellow;
-    color: greenyellow;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .formbox.active {
-    border-color: greenyellow;
-    color: greenyellow;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .contact:hover {
-    background-color: greenyellow;
+    background-color: var(--accent-color);
     color: #000;
 }
 
@@ -125,7 +126,7 @@ body::-webkit-scrollbar {
 }
 
 .cornerbutton:hover img {
-   filter: brightness(0) saturate(100%) invert(72%) sepia(10%) saturate(2673%) hue-rotate(38deg) brightness(100%) contrast(93%);
+  filter: brightness(0) saturate(100%) invert(11%) sepia(69%) saturate(6969%) hue-rotate(353deg) brightness(119%) contrast(85%);
 }
 
 
@@ -153,7 +154,7 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'akira';
-    src: url('Akira.otf') format('opentype');
+    src: url('fonts/Akira.otf') format('opentype');
 }
 .akira { font-family: 'akira', sans-serif; }
 
@@ -296,20 +297,20 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'ConsolasCustom';
-    src: url('consolas.ttf') format('truetype');
+    src: url('fonts/consolas.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Lol-Bold';
-    src: url('Lol-Bold.otf') format('opentype');
+    src: url('fonts/Lol-Bold.otf') format('opentype');
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Lol-Regular';
-    src: url('Lol-Regular.otf') format('opentype');
+    src: url('fonts/Lol-Regular.otf') format('opentype');
     font-style: normal;
 }
 
@@ -363,12 +364,12 @@ footer {
     bottom: -0.1vw;      /* distance from text */
     width: 0%;
     height: 1px;       /* thickness of underline */
-    background-color: yellowgreen;
+    background-color: var(--accent-color);
     transition: width 0.3s ease;
 }
 
 .footer-link:hover {
-    color: yellowgreen;
+    color: var(--accent-color);
 }
 
 .footer-link:hover::after {
@@ -376,7 +377,7 @@ footer {
 }
 
 .accent {
-    color: yellowgreen;
+    color: var(--accent-color);
 }
 
 .footer-muted {
@@ -426,7 +427,7 @@ footer {
 .scrolling-text {
     display: inline-block;
     white-space: nowrap;
-    color: greenyellow;
+    color: var(--accent-color);
     font-size: 1vw;
     font-weight: bold;
     animation: scroll 20s linear infinite;
@@ -543,8 +544,8 @@ footer {
 .contact-mobile {
     z-index: 90;
     background-color: rgba(0,0,0,0);
-    border: 1px solid greenyellow;
-    color: greenyellow;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     border-radius: 8px;
     font-size: 4vw;
     font-weight: bold;
@@ -555,7 +556,7 @@ footer {
     transition: background-color 0.1s ease, color 0.3s ease;
 }
 .contact-mobile:hover {
-    background-color: greenyellow;
+    background-color: var(--accent-color);
     color: #000;
 }
 .white-g-mobile {
@@ -577,7 +578,7 @@ footer {
 .scrolling-text-mobile {
     display: inline-block;
     white-space: nowrap;
-    color: greenyellow;
+    color: var(--accent-color);
     font-size: 4vw;
     font-weight: bold;
     animation: scroll 20s linear infinite;
@@ -818,8 +819,8 @@ footer {
 #close-contact-mobile {
     z-index: 90;
     background-color: rgba(0,0,0,0);
-    border: 1px solid greenyellow;
-    color: greenyellow;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     border-radius: 8px;
     font-size: 4vw;
     font-weight: bold;
@@ -843,7 +844,7 @@ footer {
     flex-direction: column;
 }
 #close-contact-mobile:hover {
-    background-color: greenyellow;
+    background-color: var(--accent-color);
     color: #000;
 }
 
@@ -884,8 +885,8 @@ footer {
 #close-contact {
     z-index: 90;
     background-color: rgba(0,0,0,0);
-    border: 1px solid greenyellow;
-    color: greenyellow;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     border-radius: 8px;
     font-size: 1.1vw;
     font-weight: bold;
@@ -909,7 +910,7 @@ footer {
     flex-direction: column;
 }
 #close-contact:hover {
-    background-color: greenyellow;
+    background-color: var(--accent-color);
     color: #000;
 }
 
@@ -946,7 +947,7 @@ footer {
 
 
 .contact-panel-input-mobile:focus {
-    border-color: greenyellow; /* Change to any color you like */
+    border-color: var(--accent-color); /* Change to any color you like */
     outline: none; /* Optional: removes default focus outline */
 }
 
@@ -963,13 +964,13 @@ footer {
 
 .contact-panel-input:focus,
 .contact-panel-textarea:focus {
-    border-color: greenyellow; /* Change to any color you like */
+    border-color: var(--accent-color); /* Change to any color you like */
     outline: none; /* Optional: removes default focus outline */
 }
 
 #contact-panel button[type="submit"] {
     padding: 1vw;
-    background: yellowgreen;
+    background: var(--accent-color);
     border: none;
     color: black;
     cursor: pointer;
@@ -981,11 +982,11 @@ footer {
     padding: 2vw;
     background: rgba(0,0,0,0);
     border: none;
-    color: yellowgreen;
+    color: var(--accent-color);
     cursor: pointer;
     border-radius: 2vw;
     font-weight: bold;
-    border: yellowgreen 2px solid;
+    border: var(--accent-color) 2px solid;
 }
 
 /* --- Active class toggles --- */
@@ -1067,7 +1068,7 @@ label{
     border: 0; 
     background-color: rgba(0,0,0,0); 
     margin-left: auto; 
-    color: greenyellow;
+    color: var(--accent-color);
     font-family: 'ConsolasCustom', monospace;
     font-size: 0.9vw;
 }
@@ -1080,7 +1081,7 @@ label{
     bottom: -0.1vw;      /* distance from text */
     width: 0%;
     height: 1px;       /* thickness of underline */
-    background-color: yellowgreen;
+    background-color: var(--accent-color);
     transition: width 0.3s ease;
 }
 
@@ -1102,3 +1103,17 @@ label{
 .slide {
     flex: 0 0 auto;
 }
+
+ .cursor-circle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+    opacity: 0.1; /* 50% opacity */
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
