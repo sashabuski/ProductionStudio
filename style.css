@@ -163,8 +163,8 @@ body::-webkit-scrollbar {
     grid-template-columns: repeat(8, 1fr);
     gap: 1vw;
     padding: 0.75vw;
-    padding-top: 1vw;
-    padding-bottom: 1vw;
+    padding-top: 1.5vw;
+    padding-bottom: 1.5vw;
     overflow: hidden;
 }
 
@@ -212,6 +212,7 @@ body::-webkit-scrollbar {
     color: #959595;
     font-weight: bold;
     margin-bottom: 1vw;
+    font-family: 'Lol-Bold', monospace;
 }
 
 .project-list {
@@ -277,10 +278,10 @@ body::-webkit-scrollbar {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    font-size: calc(1vw + 2px);
+    font-size: calc(1vw);
     z-index: 2;
     transition: transform 0.25s ease, color 0.15s ease;
-    font-weight: bold;
+    font-family: 'Lol-Bold', monospace;
 }
 
 /* right text pinned to far right */
@@ -297,6 +298,18 @@ body::-webkit-scrollbar {
     font-family: 'ConsolasCustom';
     src: url('consolas.ttf') format('truetype');
     font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lol-Bold';
+    src: url('Lol-Bold.otf') format('opentype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lol-Regular';
+    src: url('Lol-Regular.otf') format('opentype');
     font-style: normal;
 }
 
@@ -375,7 +388,12 @@ footer {
 /* Optional: mobile-friendly */
 
 
-.para { color: white; font-size: calc(1vw + 2px); }
+.para { 
+    color: white; 
+    font-size: calc(1vw + 2px); 
+    font-family: 'Lol-Regular', monospace;
+    font-weight: 100;
+}
 .headerstyle {
     filter: brightness(0) invert(1);
     width: calc(100% - 3vw);
@@ -413,6 +431,8 @@ footer {
     font-weight: bold;
     animation: scroll 20s linear infinite;
     filter: blur(1.2px);
+    font-family: 'Lol-Regular', monospace;
+
 }
 
 .scrolling-text-container::before,
@@ -652,6 +672,7 @@ footer {
     font-size: 4vw;
     color: #959595;
     font-weight: bold;
+    font-family: 'Lol-Bold', monospace;
    
 }
 
@@ -668,7 +689,7 @@ footer {
     position: absolute;
     left: 0;
     top: 50%;
-    font-weight: bold;
+    font-family: 'Lol-Bold', monospace;
     transform: translateY(-50%);
     font-size: calc(3vw + 2px);
     z-index: 2;
@@ -1034,6 +1055,8 @@ label{
     padding-right: calc(40vw - 400px);
     font-size: calc(1vw + 2px);
     display: none; /* start hidden */
+    font-family: 'Lol-Regular', monospace;
+    
 }
 
 .info-butt {

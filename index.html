@@ -479,14 +479,14 @@
           <div class = "contact-header">
           <button id="close-contact" >CLOSE</button>
             
-            <div class="divider" style="margin: 1vw 0 0 0">
+            <div class="divider" style="margin: 0.8vw 0 0 0">
               <img src="g.svg" class="white-g">
               <div class="line"></div>
               <img src="g.svg" class="white-g">
             </div>
         </div>
 
-          <h2 class="subtitle" style="margin-top: 7vw; padding-left: 0px;">PROJECT INQUIRY</h2>
+          <h2 class="subtitle" style="margin-top: 6.8vw; padding-left: 0px;">PROJECT INQUIRY</h2>
 
 <p class="para">Hey! We’d love to learn more about what you’re creating so we can determine whether we’re the right production partner. As a next step, please review the information below and submit our Project Kickoff form.<br><br>
 
@@ -516,6 +516,8 @@
     <label>COMPANY NAME *</label>
     <input type="text" class="contact-panel-input" required>
 
+
+      <label>PROJECT TYPE *</label>
 <div style="display: flex; flex-direction: row; width: 100%; margin-top: 2vw;">
 <button class="formbox">VIDEO</button>
 <button class="formbox">FILM</button>
@@ -541,7 +543,7 @@
 
       <div class="col">
           <label>TIMELINE EXPECTATION *</label>
-          <input type="email" class="contact-panel-input" required>
+          <input  class="contact-panel-input" required>
       </div>
   </div>
   
@@ -828,7 +830,7 @@ if (contactPanel) {
     let newContent = `
     <div id="video-box-content" style="display: flex; flex-direction: column; transition: opacity 0.3s ease;">
 
-        <video autoplay muted loop playsinline class="wide-video">
+        <video autoplay muted loop playsinline class="wide-video" style = "margin-top: 0.6vw;">
             <source src="projects/${folder}/1.mp4" type="video/mp4">
         </video>
 
@@ -968,7 +970,7 @@ if (contactPanel) {
       
 
 
-      <canvas id="noiseCanvas"></canvas>
+      <!--<canvas id="noiseCanvas"></canvas>-->
 <script>
   const canvas = document.getElementById('noiseCanvas');
   const ctx = canvas.getContext('2d');
