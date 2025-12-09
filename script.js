@@ -420,7 +420,7 @@ window.onload = function () {
                   </video>
               </div>
           </div>
-          <p style="font-weight: normal; white-space: pre-line; margin-top: calc(7vw + 10px); font-size: 4vw">${infoText}</p>
+          <p style="font-family: 'Lol-Regular', monospace; font-weight: normal; white-space: pre-line; margin-top: calc(7vw + 10px); font-size: 4vw">${infoText}</p>
         `;
     
         const track = expandContent.querySelector('.video-track');

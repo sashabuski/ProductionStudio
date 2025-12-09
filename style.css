@@ -583,6 +583,7 @@ footer {
     font-weight: bold;
     animation: scroll 20s linear infinite;
     filter: blur(1.2px);
+    font-family: 'Lol-Regular', monospace;
 }
 
 .scrolling-text-container-mobile::before,
@@ -736,7 +737,9 @@ footer {
     margin-left: 4vw; 
     margin-right: 4vw;
     margin-top: 0px;
-    margin-bottom: 0px;}
+    margin-bottom: 0px;
+ font-family: 'Lol-Regular', monospace;
+}
 
 .footer-mobile-grid {
     display: grid;
