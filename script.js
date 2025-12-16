@@ -97,7 +97,7 @@ async function loadProjects() {
     const list = document.querySelector(".project-list"); 
 
     try {
-        const res = await fetch("http://localhost:5000/folders");
+        const res = await fetch("https://ccx-cloudinary.onrender.com/folders");
         const folders = await res.json();
 
         list.innerHTML = ""; 
@@ -202,7 +202,7 @@ async function loadProjectVideos(folder) {
 
     // FETCH FROM BACKEND
     try {
-        const response = await fetch(`http://localhost:5000/videos/${folder}`);
+        const response = await fetch(`https://ccx-cloudinary.onrender.com/videos/${folder}`);
         const data = await response.json();
 
         videos = data.videos || [];
@@ -457,7 +457,7 @@ async function loadProjectsMobile() {
 
     try {
         // Fetch folder names
-        const res = await fetch("http://localhost:5000/folders");
+        const res = await fetch("https://ccx-cloudinary.onrender.com/folders");
         const folders = await res.json();
 
         // Clear list
@@ -626,7 +626,7 @@ function animateOpen(item) {
 
 async function fetchProjectData(folder) {
     try {
-        const res = await fetch(`http://localhost:5000/videos/${folder}`);
+        const res = await fetch(`https://ccx-cloudinary.onrender.com/videos/${folder}`);
         const data = await res.json();
 
         return {
