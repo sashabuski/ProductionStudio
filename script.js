@@ -1,6 +1,6 @@
 const ACCENT_COLOR = '#EC1F26';
 let videoBoxLenis = null;
-
+let lenis;
 document.addEventListener("DOMContentLoaded", () => {
     const contactPanel = document.getElementById("contact-panel");
 
@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    document.addEventListener("DOMContentLoaded", () => {
+   document.addEventListener("DOMContentLoaded", () => {
 
-        const lenis = new Lenis({
+        lenis = new Lenis({
         smooth: true,
         smoothTouch: true,
         wheelMultiplier: 0.8,
@@ -87,71 +87,76 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             requestAnimationFrame(rafContactMobile);
         }
-        
-window.onload = function () {
+
+
+
+
 
     let currentListItem = null;
-    const items = document.querySelectorAll('.item');
-    const videoBox = document.getElementById('video-scroll-box');
-    
-      
-    function loadProjectVideos(folder) {
-    videoBoxLenis.scrollTo(0);
+async function loadProjects() {
+    const list = document.querySelector(".project-list"); 
 
-    let newContent = `
-        <div id="video-box-content" style="display: flex; flex-direction: column; transition: opacity 0.3s ease;">
-            <video autoplay muted loop playsinline class="wide-video" style="margin-top: 0.8vw;">
-                <source src="projects/${folder}/1.mp4" type="video/mp4">
-            </video>
+    try {
+        const res = await fetch("http://localhost:5000/folders");
+        const folders = await res.json();
 
-            <div style="display: flex; flex-direction: row; width: 100%; gap: 0.4vw;">
-                <video autoplay muted loop playsinline class="half-video">
-                    <source src="projects/${folder}/2.mp4" type="video/mp4">
-                </video>
+        list.innerHTML = ""; 
 
-                <video autoplay muted loop playsinline class="half-video">
-                    <source src="projects/${folder}/3.mp4" type="video/mp4">
-                </video>
-            </div>
+        folders.forEach(folderName => {
+            const [left, right] = folderName.split("_");
 
-            <video autoplay muted loop playsinline class="wide-video">
-                <source src="projects/${folder}/4.mp4" type="video/mp4">
-            </video>
+            const li = document.createElement("li");
+            li.className = "item";
 
-            <video autoplay muted loop playsinline class="wide-video">
-                <source src="projects/${folder}/5.mp4" type="video/mp4">
-            </video>
-        </div>
+            li.innerHTML = `
+                <div class="bg-icon">
+                    <img src="res/globe.gif" alt="globe">
+                </div>
+                <div class="clickable">
+                    <span class="left">${left}</span>
+                    <span class="right">${right || ""}</span>
+                </div>
+            `;
 
-        <div id="info-text" class="info-text"></div>
-    `;
-
-    videoBox.innerHTML = newContent;
-
-    const videos = videoBox.querySelectorAll("video");
-    let loadedCount = 0;
-
-    videos.forEach(video => {
-        video.addEventListener("loadeddata", () => {
-            loadedCount++;
-            if (loadedCount === videos.length) {
-                if (videoBoxLenis) {
-                    videoBoxLenis.resize();
-                    setTimeout(() => videoBoxLenis.resize(), 120);
-                }
-            }
+            list.appendChild(li);
         });
-    });
-
-    fetch(`projects/${folder}/info.txt`)
-        .then(res => res.text())
-        .then(txt => {
-            const infoDiv = videoBox.querySelector("#info-text");
-            infoDiv.textContent = txt;
-        })
-        .catch(err => console.error("Could not load info.txt:", err));
+        attachItemClickHandlers();
+    } catch (err) {
+        console.error("Failed to load folders:", err);
     }
 
+
+
+ const items = document.querySelectorAll('.item');
+    
+    
+   
+
+  
+
+        const firstItem = items[0];
+        if (firstItem) {
+            const firstLeft = firstItem.querySelector('.left');
+            const firstRight = firstItem.querySelector('.right');
+    
+            currentListItem = firstItem;
+            firstItem.classList.add('active');
+    
+            firstLeft.style.transform = 'translateY(-50%) translateX(1.5vw)';
+            firstLeft.style.color = ACCENT_COLOR;
+            firstRight.style.color = ACCENT_COLOR;
+    
+           let firstFolder = firstLeft.textContent+"_"+firstRight.textContent;
+            loadProjectVideos(firstFolder);
+        }
+
+}
+
+loadProjects();
+
+
+ function attachItemClickHandlers() {
+    const items = document.querySelectorAll(".item"); 
     items.forEach(item => {
 
         const clickable = item.querySelector('.clickable');
@@ -159,7 +164,7 @@ window.onload = function () {
         const right = item.querySelector('.right');
 
         clickable.onclick = () => {
-
+       
             const infoButton = document.querySelector(".info-butt");
 
             if (infoButton.textContent.trim().toLowerCase() === "close") {
@@ -183,27 +188,119 @@ window.onload = function () {
             left.style.color = ACCENT_COLOR;
             right.style.color = ACCENT_COLOR;
 
-            let folder = left.textContent.trim().toLowerCase();
+            let folder = left.textContent+"_"+right.textContent;
             loadProjectVideos(folder);
         };
     });
+}
+async function loadProjectVideos(folder) {
+    console.log("Folder:", folder);
+    const videoBox = document.getElementById("video-scroll-box");
+    videoBox.innerHTML = '';
+    let videos = [];
+    let info = "";
 
-        const firstItem = items[0];
-        if (firstItem) {
-            const firstLeft = firstItem.querySelector('.left');
-            const firstRight = firstItem.querySelector('.right');
+    // FETCH FROM BACKEND
+    try {
+        const response = await fetch(`http://localhost:5000/videos/${folder}`);
+        const data = await response.json();
+
+        videos = data.videos || [];
+        info = data.info || "";
+
+        console.log("VIDEOS:", videos);
+        console.log("INFO:", info);
+
+    } catch (err) {
+        console.error("Error loading:", err);
+        return;
+    }
+
     
-            currentListItem = firstItem;
-            firstItem.classList.add('active');
-    
-            firstLeft.style.transform = 'translateY(-50%) translateX(1.5vw)';
-            firstLeft.style.color = ACCENT_COLOR;
-            firstRight.style.color = ACCENT_COLOR;
-    
-            let firstFolder = firstLeft.textContent.trim().toLowerCase();
-            loadProjectVideos(firstFolder);
+    if (!videoBox) {
+        console.error("ERROR: #video-scroll-box NOT FOUND");
+        return;
+    }
+
+    if (videoBoxLenis) videoBoxLenis.scrollTo(0);
+
+    if (videos.length === 0) {
+        videoBox.innerHTML = `
+            <div id="video-box-content">
+                <p>No videos found in this folder.</p>
+            </div>
+            <div id="info-text" class="info-text">${info}</div>
+        `;
+        return;
+    }
+
+    // BUILD HTML ACCORDING TO YOUR PATTERN
+    let html = `<div id="video-box-content" style="display:flex; flex-direction:column; transition:opacity .3s;">`;
+
+    let i = 0;
+    let firstVideo = true; // flag for margin-top
+
+    while (i < videos.length) {
+        const remaining = videos.length - i;
+
+        // 1. Wide video
+        html += `
+            <video autoplay muted loop playsinline class="wide-video" ${firstVideo ? 'style="margin-top:0.8vw;"' : ''}>
+                <source src="${videos[i]}" type="video/mp4">
+            </video>
+        `;
+        i++;
+        firstVideo = false; // only the first video gets margin-top
+
+        // 2. Row of 2 half-width videos
+        if (remaining - 1 >= 2) {
+            html += `<div style="display:flex; flex-direction:row; width:100%; gap:0.4vw;">`;
+
+            html += `
+                <video autoplay muted loop playsinline class="half-video">
+                    <source src="${videos[i]}" type="video/mp4">
+                </video>`;
+            i++;
+
+            html += `
+                <video autoplay muted loop playsinline class="half-video">
+                    <source src="${videos[i]}" type="video/mp4">
+                </video>`;
+            i++;
+
+            html += `</div>`;
+        } else if (remaining - 1 === 1) {
+            // Only 1 video left — make it wide instead of half-width
+            html += `
+                <video autoplay muted loop playsinline class="wide-video">
+                    <source src="${videos[i]}" type="video/mp4">
+                </video>`;
+            i++;
         }
-    };
+    }
+
+    html += `</div>`; // close video-box-content
+
+    // INFO TEXT
+    html += `<div id="info-text" class="info-text">${info}</div>`;
+
+    // INSERT INTO DOM
+    videoBox.innerHTML = html;
+
+    // LENIS RESIZE AFTER VIDEOS LOAD
+    const allVideos = videoBox.querySelectorAll("video");
+    let loadedCount = 0;
+    allVideos.forEach(v => {
+        v.addEventListener("loadeddata", () => {
+            loadedCount++;
+            if (loadedCount === allVideos.length && videoBoxLenis) {
+                videoBoxLenis.resize();
+                setTimeout(() => videoBoxLenis.resize(), 150);
+            }
+        });
+    });
+}
+
 
     function updateOverflow() {
       if (window.innerWidth < 800) {
@@ -352,7 +449,90 @@ window.onload = function () {
         });
       }
     
-      function closeItem(item) {
+    
+    
+    
+async function loadProjectsMobile() {
+    const list = document.querySelector(".project-list-mobile");
+
+    try {
+        // Fetch folder names
+        const res = await fetch("http://localhost:5000/folders");
+        const folders = await res.json();
+
+        // Clear list
+        list.innerHTML = `
+            <p class="subtitle-mobile" style="margin-bottom: 6vw;">PROJECTS</p>
+        `;
+
+        // Build list items
+        folders.forEach(folderName => {
+            const [left, right] = folderName.split("_");
+
+            const li = document.createElement("li");
+            li.className = "item-mobile";
+            li.style.display = "flex";
+            li.style.flexDirection = "column";
+
+            li.innerHTML = `
+                <div class="mobile-item-content" style="width: 100%;">
+                    <div class="bg-icon-mobile"><img src="res/globe.gif"></div>
+                    <div class="clickable-mobile">
+                        <span class="left">${left}</span>
+                        <span class="right">${right || ""}</span>
+                        <img src="res/exp.svg" class="exp-button">
+                    </div>
+                </div>
+                <div class="expand-content"></div>
+            `;
+
+            list.appendChild(li);
+        });
+requestAnimationFrame(() => {
+    lenis.resize();
+});
+    } catch (err) {
+        console.error("FAILED TO LOAD MOBILE FOLDERS:", err);
+    }
+
+   
+    document.querySelectorAll('.project-list-mobile').forEach(list => {
+        list.addEventListener('click', async (e) => {
+            const clickable = e.target.closest('.clickable-mobile');
+            if (!clickable) return;
+
+            const li = clickable.closest('.item-mobile');
+
+            const fontleft = li.querySelector('.left');
+            fontleft.style.color = ACCENT_COLOR;
+
+            const leftText = li.querySelector('.left').textContent;
+            const rightText = li.querySelector('.right').textContent;
+            const folder = leftText + "_" + rightText;
+
+            const alreadyOpen = li.classList.contains('open');
+            const openItems = Array.from(document.querySelectorAll('.item-mobile.open'));
+
+            if (alreadyOpen && openItems.length === 1) {
+                await closeItem(li);
+                return;
+            }
+
+            const othersToClose = openItems.filter(it => it !== li);
+            othersToClose.forEach(closeItem);
+
+            if (alreadyOpen) return;
+
+            openItem(li, folder);
+        });
+    });
+}
+
+
+loadProjectsMobile();
+
+
+  function closeItem(item) {
         return new Promise(resolve => {
           if (!item.classList.contains('open')) {
           
@@ -393,43 +573,125 @@ window.onload = function () {
           item.addEventListener("transitionend", onEnd);
         });
       }
-    
-      async function openItem(item, folder) {
-        const expandContent = item.querySelector('.expand-content');
-        let infoText = "";
-        try {
-          const r = await fetch(`projects/${folder}/info.txt`);
-          infoText = r.ok ? await r.text() : "Info not found.";
-        } catch {
-          infoText = "Error loading info.";
-        }
-    
-        expandContent.innerHTML = `
+
+async function openItem(item, folder) {
+    const expandContent = item.querySelector('.expand-content');
+
+ expandContent.innerHTML = `
+    <div style="display: flex; justify-content: center;">
+        <div class="dot-loader" style="color: ${ACCENT_COLOR};">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+`;
+
+    animateOpen(item);
+
+    const { videos, infoText } = await fetchProjectData(folder);
+
+    renderProjectContent(expandContent, videos, infoText);
+
+    requestAnimationFrame(() => lenis.resize());
+
+    if (videos.length > 0) {
+        initVideoCarousel(expandContent, videos);
+    }
+}
+
+
+function animateOpen(item) {
+    item.style.maxHeight = px(item.offsetHeight);
+    void item.offsetHeight;
+
+    item.classList.add('open');
+
+    const fullHeight = item.scrollHeight;
+    item.style.transition = "max-height 0.35s ease";
+    item.style.maxHeight = px(fullHeight);
+
+    function onEnd(ev) {
+        if (ev.propertyName !== "max-height") return;
+        item.removeEventListener("transitionend", onEnd);
+
+        item.style.maxHeight = "none";
+        item.style.transition = "";
+
+        requestAnimationFrame(() => lenis.resize());
+    }
+
+    item.addEventListener("transitionend", onEnd);
+}
+
+async function fetchProjectData(folder) {
+    try {
+        const res = await fetch(`http://localhost:5000/videos/${folder}`);
+        const data = await res.json();
+
+        return {
+            videos: data.videos || [],
+            infoText: data.info || ""
+        };
+    } catch (err) {
+        console.error("Failed to load videos:", err);
+        return {
+            videos: [],
+            infoText: "Error loading info."
+        };
+    }
+}
+
+function renderProjectContent(container, videos, infoText) {
+    if (videos.length === 0) {
+        container.innerHTML = `
+            <p style="font-family: 'Lol-Regular', monospace; margin-top: calc(7vw + 10px); font-size: 4vw">
+                No videos found.
+            </p>
+        `;
+    } else {
+        const allVideos = [...videos, videos[0]];
+
+        container.innerHTML = `
           <div class="video-carousel" style="position: relative; width: 100%; border-radius: 10px; overflow: hidden; margin-top: calc(3.5vw + 5px); aspect-ratio: 16/9;">
-              <div class="video-track" style="display: flex; gap: 10px; width: 600%; transition: transform 0.5s ease; height: 100%;">
-                  ${[1,2,3,4,5].map(i => `
+              <div class="video-track" style="display: flex; gap: 10px; width: ${allVideos.length * 100}%; transition: transform 0.5s ease; height: 100%;">
+                  ${allVideos.map(url => `
                       <video muted playsinline class="wide-video" 
-                          style="width: 17%; flex-shrink: 0; height: 100%; object-fit: cover;">
-                          <source src="projects/${folder}/${i}.mp4" type="video/mp4">
+                          style="flex-shrink: 0; height: 100%; object-fit: cover;">
+                          <source src="${url}" type="video/mp4">
                       </video>
                   `).join('')}
-                  <!-- duplicate first video for seamless loop -->
-                  <video muted playsinline class="wide-video" 
-                      style="width: 17%; flex-shrink: 0; height: 100%; object-fit: cover;">
-                      <source src="projects/${folder}/1.mp4" type="video/mp4">
-                  </video>
               </div>
           </div>
-          <p style="font-family: 'Lol-Regular', monospace; font-weight: normal; white-space: pre-line; margin-top: calc(7vw + 10px); font-size: 4vw">${infoText}</p>
+
+          <p style="font-family: 'Lol-Regular', monospace; white-space: pre-line; margin-top: calc(7vw + 10px); font-size: 4vw">${infoText}</p>
         `;
-    
+    }
+
+    requestAnimationFrame(() => {
+        lenis.resize();
+    });
+}
+
+
+
+
+function initVideoCarousel(expandContent, videos) {
+   
+
+
+
         const track = expandContent.querySelector('.video-track');
-        const videos = Array.from(expandContent.querySelectorAll('.wide-video'));
-        const totalVideos = 5; 
+        const videoEls = Array.from(expandContent.querySelectorAll('.wide-video'));
+        const totalVideos = videos.length;; 
         let index = 0;    
         let autoScrollTimer = null;
         const autoScrollDelay = 5000; 
     
+
+
+
+
         function startAutoScroll() {
             if (autoScrollTimer) clearTimeout(autoScrollTimer);
 
@@ -440,16 +702,16 @@ window.onload = function () {
         }
 
         const slideWidthPercent = 100 / (totalVideos + 1); 
-        videos.forEach(v => v.style.width = slideWidthPercent + "%");
+        videoEls.forEach(v => v.style.width = slideWidthPercent + "%");
         track.style.width = (totalVideos + 1) * 100 + "%";
 
-        videos.forEach((v, i) => {
+        videoEls.forEach((v, i) => {
           v.pause();
           v.currentTime = 0;
           v.removeEventListener('ended', v._playNextHandler);
         });
     
-        let currentVideo = videos[index];
+        let currentVideo = videoEls[index];
         currentVideo.play().catch(()=>{});
     
         function playNextVideo() {
@@ -464,11 +726,11 @@ window.onload = function () {
               track.style.transform = "translateX(0)";
               index = 0;
              
-              videos.forEach(v => {
+              videoEls.forEach(v => {
                 v.pause();
                 v.currentTime = 0;
               });
-              currentVideo = videos[index];
+              currentVideo = videoEls[index];
               currentVideo.play().catch(()=>{});
              
               currentVideo.addEventListener('ended', playNextVideo);
@@ -477,7 +739,7 @@ window.onload = function () {
           }
     
           if (currentVideo) currentVideo.removeEventListener('ended', playNextVideo);
-          currentVideo = videos[index];
+          currentVideo = videoEls[index];
           currentVideo.currentTime = 0;
           currentVideo.play().catch(()=>{});
           currentVideo.addEventListener('ended', playNextVideo);
@@ -496,7 +758,7 @@ window.onload = function () {
 
         const threshold = 5; 
         const gapPx = 10; 
-        const slideWidthPx = videos[0].offsetWidth + gapPx; 
+        const slideWidthPx = videoEls[0].offsetWidth + gapPx; 
 
         track.addEventListener("touchstart", (e) => {
             startX = e.touches[0].clientX;
@@ -563,13 +825,13 @@ window.onload = function () {
 
 
 
-    videos.forEach(v => {
+    videoEls.forEach(v => {
         v.pause();
         v.currentTime = 0;
         v.removeEventListener('ended', playNextVideo);
     });
 
-    currentVideo = videos[index];
+    currentVideo = videoEls[index];
     currentVideo.play().catch(()=>{});
     currentVideo.addEventListener('ended', playNextVideo);
 
@@ -580,70 +842,23 @@ window.onload = function () {
             track.style.transform = "translateX(0)";
             index = 0;
 
-            videos.forEach(v => {
+            videoEls.forEach(v => {
                 v.pause();
                 v.currentTime = 0;
                 v.removeEventListener('ended', playNextVideo);
             });
 
-            currentVideo = videos[0];
+            currentVideo = videoEls[0];
             currentVideo.play().catch(()=>{});
             currentVideo.addEventListener('ended', playNextVideo);
         }, 300);
     }
 });
 
+   
+}
 
-        item.style.maxHeight = px(item.offsetHeight);
-        void item.offsetHeight; 
-    
-        item.classList.add('open');
 
-        const fullHeight = item.scrollHeight;
-        item.style.transition = "max-height 0.35s ease";
-        item.style.maxHeight = px(fullHeight);
-    
-        function onOpenEnd(ev) {
-          if (ev.propertyName !== "max-height") return;
-          item.removeEventListener("transitionend", onOpenEnd);
-        
-          item.style.maxHeight = "none"; 
-          item.style.transition = ""; 
-        }
-        item.addEventListener("transitionend", onOpenEnd);
-      }
-    
-        document.querySelectorAll('.project-list-mobile').forEach(list => {
-        list.addEventListener('click', async (e) => {
-          const clickable = e.target.closest('.clickable-mobile');
-          if (!clickable) return;
-    
-          const li = clickable.closest('.item-mobile');
-          
-          const fontleft = li.querySelector('.left');
-          fontleft.style.color = ACCENT_COLOR;
-          
-          
-            const leftText = li.querySelector('.left').textContent.trim();
-          const folder = leftText.toLowerCase();
-          const alreadyOpen = li.classList.contains('open');
-
-          const openItems = Array.from(document.querySelectorAll('.item-mobile.open'));
-
-          if (alreadyOpen && openItems.length === 1) {
-            await closeItem(li);
-            return;
-          }
-
-            const othersToClose = openItems.filter(it => it !== li);
-            othersToClose.forEach(closeItem); 
-
-            if (alreadyOpen) return;
-
-            openItem(li, folder);
-
-        });
-      });
     })();
 
  const circle = document.querySelector('.cursor-circle');
