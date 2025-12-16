@@ -365,7 +365,8 @@ async function loadProjectVideos(folder) {
         const panelMob = document.getElementById("contact-panel-mobile");
 
         openBtnMob.addEventListener("click", () => {
-            
+            lenis.stop();
+
             panelMob.style.display = "flex"; 
             requestAnimationFrame(() => {
             panelMob.classList.add("active");
@@ -374,7 +375,7 @@ async function loadProjectVideos(folder) {
         });
         
         function closePanelMob() {
-            
+            lenis.start();
             panelMob.classList.remove("active");
             setTimeout(() => {
                 panelMob.style.display = "none"; 
