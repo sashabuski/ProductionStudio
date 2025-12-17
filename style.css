@@ -72,12 +72,17 @@ body::-webkit-scrollbar {
     font-size: 3vw;
     font-weight: bold;
     padding: 1.5vw 3vw;
-   
-   
- 
     transition: background-color 0.1s ease, color 0.3s ease;
     cursor: pointer;
 }
+
+
+
+.formbox-mobile.active {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
 
 .formbox {
     z-index: 90;
@@ -933,8 +938,7 @@ footer {
 
 .contact-panel-input-mobile {
     
-    height: 8vw;
-  
+    height: 11vw;
     padding-left: 2vw;
     padding-right: 2vw;
     border: 2px solid #444;
@@ -942,9 +946,9 @@ footer {
     color: white;
     border-radius: 2vw;
     margin-bottom: 3vw;
-    font-size: 2.5vw;
+    font-size: 4vw;
     font-weight: bold;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-family: 'Lol-Bold', monospace;
 
 }
@@ -995,13 +999,15 @@ footer {
 }
 
 #contact-panel-mobile button[type="submit"] {
+    height: 11vw;
+    font-size: 3.5vw;
     padding: 2vw;
     background: rgba(0,0,0,0);
     border: none;
     color: var(--accent-color);
     cursor: pointer;
     border-radius: 2vw;
-    font-weight: bold;
+    font-family: 'Lol-Bold', monospace;
     border: var(--accent-color) 2px solid;
 }
 
@@ -1176,7 +1182,7 @@ label{
 }
 
 .budget-dropdown-mob {
-  color: #000;
+  color: var(--text-color);
 }
 
 .budget-dropdown-mob:invalid {
@@ -1197,3 +1203,4 @@ label{
                         transparent 100%
                     );
                 }
+                

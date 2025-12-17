@@ -391,6 +391,15 @@ async function loadProjectVideos(folder) {
         });
     });
 
+
+     const formBoxesMob = document.querySelectorAll('.formbox-mobile');
+
+        formBoxesMob.forEach(box => {
+        box.addEventListener('click', () => {
+        box.classList.toggle('active');
+        });
+    });
+
     const infoButton = document.querySelector(".info-butt");
     infoButton.addEventListener("click", () => {
     const videoContent = document.getElementById("video-box-content");
