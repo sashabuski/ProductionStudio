@@ -815,7 +815,7 @@ footer {
     box-sizing: border-box;
     transition: right 0.4s ease;
     z-index: 100;
-    
+    overscroll-behavior: contain;
     flex-direction: column;
     scrollbar-width: 0px;
 }
