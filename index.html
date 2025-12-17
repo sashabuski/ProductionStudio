@@ -68,8 +68,7 @@
 
     <div id="contact-panel-mobile">
           
-          <div class = "contact-header-mobile" style="
-    padding-bottom: 2.5vw;">
+          <div class = "contact-header-mobile" style="padding-bottom: 2.5vw;">
           <button id="close-contact-mobile" >CLOSE</button>
             
             <div class="divider" style="margin: 2.5vw 0 0 0; gap: 2vw;">
@@ -93,15 +92,15 @@
         <form>
             
                 <label>YOUR NAME *</label>
-                <input type="text" class="contact-panel-input-mobile" required>
+                <input type="text" class="contact-panel-input-mobile" placeholder="TYPE HERE" required>
          
          
                 <label>YOUR EMAIL *</label>
-                <input type="email" class="contact-panel-input-mobile" required>
+                <input type="email" class="contact-panel-input-mobile" placeholder="TYPE HERE" required>
              
             
             <label>COMPANY NAME *</label>
-            <input type="text" class="contact-panel-input-mobile" required>
+            <input type="text" class="contact-panel-input-mobile" placeholder="TYPE HERE" required>
 
 
 
@@ -117,27 +116,27 @@
         </div>   
 
         <label style="margin-top: 2vw;">PROJECT DESCRIPTION *</label>
-            <textarea type="email" class="contact-panel-input-mobile" style="resize: none; font-variant: normal; height: 40vw; padding-top: 2vw;" required></textarea>
-
+            <textarea type="email" class="contact-panel-input-mobile" style="resize: none; font-variant: normal; height: 40vw; padding-top: 2vw; font-family: 'ConsolasCustom', monospace;" placeholder="Thoughts, plans and dreams..." required></textarea>
 
 
 
                 <label>BUDGET EXPECTATION *</label>
-                <input type="text" class="contact-panel-input-mobile" required>
-            
+                <select class="contact-panel-input-mobile budget-dropdown-mob" required>
+                 <option value="" disabled selected hidden>SELECT YOUR BUDGET</option>            
+                <option value="15k-20k">$15k–$20k</option>
+                <option value="20k-50k">$20k–$50k</option>
+                <option value="50k-150k">$50k–$150k</option>
+                <option value="150k+">$150k+</option>
+                </select>
 
-           
                 <label>TIMELINE EXPECTATION *</label>
-                <input type="email" class="contact-panel-input-mobile" required>
-    
-      
-        
-      
+                <input type="email" class="contact-panel-input-mobile" placeholder="TYPE HERE" required>
+
                 <label>HOW YOU FOUND US *</label>
-                <input type="text" class="contact-panel-input-mobile" required>
+                <input type="text" class="contact-panel-input-mobile" placeholder="TYPE HERE" required>
         
                 <label>FAVORITE MOVIE OR ALBUM</label>
-                <input type="email" class="contact-panel-input-mobile">
+                <input type="email" class="contact-panel-input-mobile"  placeholder="TYPE HERE">
     
             
             <button type="submit" style="margin: 2vw 0 2vw 0;"> <strong>SEND</strong> </button>
@@ -281,7 +280,7 @@
           <div class = "contact-header">
           <button id="close-contact" >CLOSE</button>
             
-            <div class="divider" style="margin: 1vw 0 0 0">
+            <div class="divider" style="margin: 0.8vw 0 0 0">
               <img src="res/g.svg" class="white-g">
               <div class="line"></div>
               <img src="res/g.svg" class="white-g">
@@ -292,11 +291,11 @@
 
 <p class="para">Hey! We’d love to learn more about what you’re creating so we can determine whether we’re the right production partner. As a next step, please review the information below and submit our Project Kickoff form.<br><br>
 
-  <strong style="font-weight: 800;">Timing.</strong> We’re a hands-on production company focused on delivering exceptional craft, so we take on only a limited number of projects at a time. Because of this, last-minute turnarounds or rushed timelines are not typically feasible — we prefer to plan ahead to ensure the highest production quality.<br><br>
+  <strong style="font-family: 'Lol-Bold', monospace;">Timing.</strong> We’re a hands-on production company focused on delivering exceptional craft, so we take on only a limited number of projects at a time. Because of this, last-minute turnarounds or rushed timelines are not typically feasible — we prefer to plan ahead to ensure the highest production quality.<br><br>
   
-  <strong style="font-weight: 800;">Scope.</strong> Our core work includes creative development, cinematography, directing, full-service production, and post-production (editing, VFX, sound, and color). We’re open to unconventional or experimental requests (!) but generally focus on meaningful, high-impact projects rather than small fixes or minor content updates.<br><br>
+  <strong style="font-family: 'Lol-Bold', monospace; ">Scope.</strong> Our core work includes creative development, cinematography, directing, full-service production, and post-production (editing, VFX, sound, and color). We’re open to unconventional or experimental requests (!) but generally focus on meaningful, high-impact projects rather than small fixes or minor content updates.<br><br>
   
-  <strong style="font-weight: 800;">Budget.</strong> Production budgets vary depending on concept, locations, talent, crew size, and post-production needs. Our smallest engagements typically begin around $15k–$20k, with larger campaigns and multi-deliverable productions ranging from $50k–$150k+. If your expectations differ, you’re still encouraged to reach out — we’re happy to hear your ideas and discuss budget realities.<br><br>
+  <strong style="font-family: 'Lol-Bold', monospace;">Budget.</strong> Production budgets vary depending on concept, locations, talent, crew size, and post-production needs. Our smallest engagements typically begin around $15k–$20k, with larger campaigns and multi-deliverable productions ranging from $50k–$150k+. If your expectations differ, you’re still encouraged to reach out — we’re happy to hear your ideas and discuss budget realities.<br><br>
   
   If you have questions or aren’t sure whether we’re a fit, please feel free to start a conversation with us anytime.</p>
   <form>
@@ -306,31 +305,31 @@
   
       <div class="col">
           <label>YOUR NAME *</label>
-          <input type="text" class="contact-panel-input" required>
+          <input type="text" class="contact-panel-input" placeholder="TYPE HERE" required>
       </div>
 
       <div class="col">
           <label>YOUR EMAIL *</label>
-          <input type="email" class="contact-panel-input" required>
+          <input type="email" class="contact-panel-input" style="text-transform: none;" placeholder="TYPE HERE" required>
       </div>
   </div>
     
     <label>COMPANY NAME *</label>
-    <input type="text" class="contact-panel-input" required>
+    <input type="text" class="contact-panel-input" placeholder="TYPE HERE" required>
 
 
       <label>PROJECT TYPE *</label>
-<div style="display: flex; flex-direction: row; width: 100%; margin-top: 2vw;">
-<button class="formbox">VIDEO</button>
-<button class="formbox">FILM</button>
-<button class="formbox">ANIMATION</button>
-<button class="formbox">PHOTO</button>
-<button class="formbox">LIVE</button>
-<button class="formbox">OTHER</button>
- </div>   
+        <div style="display: flex; flex-direction: row; width: 100%;">
+        <button type="button" class="formbox">VIDEO</button>
+        <button type="button" class="formbox">FILM</button>
+        <button type="button" class="formbox">ANIMATION</button>
+        <button type="button" class="formbox">PHOTO</button>
+        <button type="button" class="formbox">LIVE</button>
+        <button type="button" class="formbox">OTHER</button>
+        </div>   
 
-<label style="margin-top: 2vw;">PROJECT DESCRIPTION *</label>
-    <textarea type="email" class="contact-panel-input" style="resize: none; height: 8vw;" required></textarea>
+    <label style="margin-top: 2vw;">PROJECT DESCRIPTION *</label>
+    <textarea type="email" class="contact-panel-input" style="resize: none; height: 8vw; font-family: 'ConsolasCustom', monospace; text-transform: none;"  placeholder="Thoughts, plans and dreams..." required></textarea>
 
 
 
@@ -339,13 +338,19 @@
       
   
       <div class="col">
-          <label>BUDGET EXPECTATION *</label>
-          <input type="text" class="contact-panel-input" required>
+         <label>BUDGET EXPECTATION *</label>
+            <select class="budget-select contact-panel-input" required>
+            <option value="" disabled selected hidden>Select your budget</option>            
+            <option value="15k-20k">$15k–$20k</option>
+            <option value="20k-50k">$20k–$50k</option>
+            <option value="50k-150k">$50k–$150k</option>
+            <option value="150k+">$150k+</option>
+            </select>
       </div>
 
       <div class="col">
           <label>TIMELINE EXPECTATION *</label>
-          <input  class="contact-panel-input" required>
+          <input  class="contact-panel-input" placeholder="TYPE HERE" required>
       </div>
   </div>
   
@@ -354,16 +359,16 @@
   
     <div class="col">
         <label>HOW YOU FOUND US *</label>
-        <input type="text" class="contact-panel-input" required>
+        <input type="text" class="contact-panel-input" placeholder="TYPE HERE" required>
     </div>
 
     <div class="col">
         <label>FAVORITE MOVIE OR ALBUM</label>
-        <input type="email" class="contact-panel-input">
+        <input class="contact-panel-input"  placeholder="TYPE HERE">
     </div>
 </div>
     
-    <button type="submit" style="margin: 2vw 0 2vw 0;"> <strong>SEND</strong> </button>
+    <button type="submit"> SEND </button>
 </form>
 
         </div>
@@ -373,7 +378,7 @@
             <section class="box1">
                 <p class="subtitle" style="">ABOUT</p>
                 <div class="scroll-box" style="">
-                    <p class="para">
+                    <p class="para" style="margin-top: 0.6vw;">
                         CCX Productions is an independent production company creating bold visuals and unforgettable stories. We mix creativity, technical skill, and a bit of chaos to bring ideas to life in a way that feels fresh and real.
                         <br><br>
                         Clients work with us because we care about the work as much as they do. Every project gets full attention. Every detail matters. Whether it is film, music videos, commercials, or experimental pieces, we aim to make something that stands out and stays in people’s minds.
@@ -405,7 +410,7 @@
 
             <section class="box2">
                 <p class="subtitle" style="margin-bottom: 1vw;">PROJECTS</p>
-                <div class="scroll-box" style="padding-top: 1vw;">
+                <div class="scroll-box" style="padding-top: 0.9vw;">
                     <ul class="project-list">
                      
                       
@@ -432,23 +437,6 @@
                 
             </section>
            
-
-            <style>
-                #video-scroll-box {
-                    mask-image: linear-gradient(
-                        to bottom,
-                        black 0px,
-                        black calc(100% - 2vw),
-                        transparent 100%
-                    );
-                    -webkit-mask-image: linear-gradient(
-                        to bottom,
-                        black 0px,
-                        black calc(100% - 2vw),
-                        transparent 100%
-                    );
-                }
-                </style>
         </div>
 
     </div>
@@ -470,7 +458,7 @@
 
           <ul class="footer-col">
               <li><a target="_blank" class="footer-link" href="https://youtube.com/">YOUTUBE</a></li>
-              <li><a target="_blank" class="footer-link" href="https://youtu.be/YUuSdrCojPE?si=_Y3Ug0-S9QlNucpN">HEAVEN</a></li>
+              <li><a target="_blank" class="footer-link" href="https://youtu.be/YUuSdrCojPE?si=kYJ8vp4wA_bhCM-d&t=680">HEAVEN</a></li>
           </ul>
   
           <ul class="footer-col">

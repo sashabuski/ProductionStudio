@@ -8,9 +8,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-
-
-
 const express = require('express');
 const multer = require('multer');
 
@@ -18,12 +15,12 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const upload = multer({ dest: 'temp/' }); // temporary file storage
+const upload = multer({ dest: 'temp/' }); 
 
 app.use(cors());
 app.use(express.json());
 
-// Upload video
+
 app.post('/upload', upload.single('video'), async (req, res) => {
   try {
     const folder = req.body.folder || 'default';
@@ -32,7 +29,7 @@ app.post('/upload', upload.single('video'), async (req, res) => {
       folder: folder
     });
 
-    // delete temp file
+    
     fs.unlinkSync(req.file.path);
 
     res.json(result);
@@ -42,7 +39,7 @@ app.post('/upload', upload.single('video'), async (req, res) => {
   }
 });
 
-// List folders
+
 app.get('/folders', async (req, res) => {
   try {
     const result = await cloudinary.api.root_folders();
@@ -56,9 +53,9 @@ app.get('/videos/:folder', async (req, res) => {
   try {
     const { folder } = req.params;
 
-    // Fetch all video resources (Cloudinary may still include TXT in here)
+    
     const result = await cloudinary.api.resources_by_asset_folder(folder, {
-      resource_type: 'video', // still fetch videos
+      resource_type: 'video', 
       type: 'upload'
     });
 
@@ -71,7 +68,7 @@ app.get('/videos/:folder', async (req, res) => {
       const url = r.secure_url;
 
       if (url.toLowerCase().endsWith(".txt")) {
-        // This is the info text
+        
         try {
           const txtRes = await fetch(url);
           infoText = await txtRes.text();
@@ -79,7 +76,7 @@ app.get('/videos/:folder', async (req, res) => {
           console.log("Failed to load TXT:", e);
         }
       } else {
-        // Everything else is a video
+        
         videoUrls.push(url);
       }
     }

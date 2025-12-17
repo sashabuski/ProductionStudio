@@ -200,7 +200,7 @@ async function loadProjectVideos(folder) {
     let videos = [];
     let info = "";
 
-    // FETCH FROM BACKEND
+   
     try {
         const response = await fetch(`https://ccx-cloudinary.onrender.com/videos/${folder}`);
         const data = await response.json();
@@ -208,8 +208,8 @@ async function loadProjectVideos(folder) {
         videos = data.videos || [];
         info = data.info || "";
 
-        console.log("VIDEOS:", videos);
-        console.log("INFO:", info);
+        //console.log("VIDEOS:", videos);
+       // console.log("INFO:", info);
 
     } catch (err) {
         console.error("Error loading:", err);
@@ -234,25 +234,25 @@ async function loadProjectVideos(folder) {
         return;
     }
 
-    // BUILD HTML ACCORDING TO YOUR PATTERN
+ 
     let html = `<div id="video-box-content" style="display:flex; flex-direction:column; transition:opacity .3s;">`;
 
     let i = 0;
-    let firstVideo = true; // flag for margin-top
+    let firstVideo = true; 
 
     while (i < videos.length) {
         const remaining = videos.length - i;
 
-        // 1. Wide video
+      
         html += `
             <video autoplay muted loop playsinline class="wide-video" ${firstVideo ? 'style="margin-top:0.8vw;"' : ''}>
                 <source src="${videos[i]}" type="video/mp4">
             </video>
         `;
         i++;
-        firstVideo = false; // only the first video gets margin-top
+        firstVideo = false; 
 
-        // 2. Row of 2 half-width videos
+    
         if (remaining - 1 >= 2) {
             html += `<div style="display:flex; flex-direction:row; width:100%; gap:0.4vw;">`;
 
@@ -270,7 +270,7 @@ async function loadProjectVideos(folder) {
 
             html += `</div>`;
         } else if (remaining - 1 === 1) {
-            // Only 1 video left — make it wide instead of half-width
+           
             html += `
                 <video autoplay muted loop playsinline class="wide-video">
                     <source src="${videos[i]}" type="video/mp4">
@@ -279,15 +279,15 @@ async function loadProjectVideos(folder) {
         }
     }
 
-    html += `</div>`; // close video-box-content
+    html += `</div>`; 
 
-    // INFO TEXT
+ 
     html += `<div id="info-text" class="info-text">${info}</div>`;
 
-    // INSERT INTO DOM
+
     videoBox.innerHTML = html;
 
-    // LENIS RESIZE AFTER VIDEOS LOAD
+
     const allVideos = videoBox.querySelectorAll("video");
     let loadedCount = 0;
     allVideos.forEach(v => {
@@ -325,7 +325,7 @@ async function loadProjectVideos(folder) {
   const panel = document.getElementById("contact-panel");
   const overlay = document.getElementById("overlay");
   const body = document.body;
-  const noiseCanvas = document.getElementById("noiseCanvas");  
+  //const noiseCanvas = document.getElementById("noiseCanvas");  
   const scrollBoxes = document.querySelectorAll(".scroll-box");
 
   openBtn.addEventListener("click", () => {
@@ -338,7 +338,7 @@ async function loadProjectVideos(folder) {
    
     overlay.classList.add("active");
     body.classList.add("body-lock");
-    noiseCanvas.classList.add("noise-lowered");
+    //noiseCanvas.classList.add("noise-lowered");
   });
   
   function closePanel() {
@@ -353,7 +353,7 @@ async function loadProjectVideos(folder) {
     }, 300);
 
       body.classList.remove("body-lock");
-      noiseCanvas.classList.remove("noise-lowered");
+     // noiseCanvas.classList.remove("noise-lowered");
   }
   
   closeBtn.addEventListener("click", closePanel);

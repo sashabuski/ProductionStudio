@@ -944,7 +944,8 @@ footer {
     margin-bottom: 3vw;
     font-size: 2.5vw;
     font-weight: bold;
-    font-variant: petite-caps;
+    text-transform: capitalize;
+    font-family: 'Lol-Bold', monospace;
 
 }
 
@@ -963,22 +964,34 @@ footer {
     background: #222;
     color: white;
     border-radius: .4vw;
+    font-family: 'Lol-Bold', monospace;
+     text-transform: uppercase;
+    font-size: 1vw;
 }
 
 .contact-panel-input:focus,
 .contact-panel-textarea:focus {
-    border-color: var(--accent-color); /* Change to any color you like */
-    outline: none; /* Optional: removes default focus outline */
+    border-color: var(--accent-color); 
+    outline: none; 
 }
 
 #contact-panel button[type="submit"] {
     padding: 1vw;
-    background: var(--accent-color);
-    border: none;
-    color: black;
+    background: black;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     cursor: pointer;
     border-radius: .4vw;
     font-weight: bold;
+    margin: 2vw 0 2vw 0; 
+    font-family: 'Lol-Bold', monospace; 
+    font-size: 1vw;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#contact-panel button[type="submit"]:hover {
+    background: var(--accent-color);         
+    color: black;
 }
 
 #contact-panel-mobile button[type="submit"] {
@@ -1144,3 +1157,43 @@ label{
     0%, 80%, 100% { opacity: 0.3; }
     40% { opacity: 1; }
 }
+
+.budget-select {
+  width: 103.6777%;              /* make it span full width of container */
+  box-sizing: border-box;   /* include padding and border in width */
+}
+.budget-select:invalid {
+  color: #888888; /* placeholder color */
+}
+
+.budget-select option {
+  color: #EEEFEA; /* normal options color */
+}
+
+.contact-panel-input::placeholder {
+  color: #888888;
+  opacity: 1; /* Firefox fix */
+}
+
+.budget-dropdown-mob {
+  color: #000;
+}
+
+.budget-dropdown-mob:invalid {
+  color: #888888;
+}
+
+   #video-scroll-box {
+                    mask-image: linear-gradient(
+                        to bottom,
+                        black 0px,
+                        black calc(100% - 2vw),
+                        transparent 100%
+                    );
+                    -webkit-mask-image: linear-gradient(
+                        to bottom,
+                        black 0px,
+                        black calc(100% - 2vw),
+                        transparent 100%
+                    );
+                }
