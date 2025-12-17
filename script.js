@@ -366,7 +366,7 @@ async function loadProjectVideos(folder) {
 
         openBtnMob.addEventListener("click", () => {
             lenis.stop();
-
+           document.documentElement.style.overflow = '';
             panelMob.style.display = "flex"; 
             requestAnimationFrame(() => {
             panelMob.classList.add("active");
@@ -376,6 +376,7 @@ async function loadProjectVideos(folder) {
         
         function closePanelMob() {
             lenis.start();
+            document.documentElement.style.overflow = 'hidden auto';
             panelMob.classList.remove("active");
             setTimeout(() => {
                 panelMob.style.display = "none"; 
