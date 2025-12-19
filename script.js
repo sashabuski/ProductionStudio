@@ -1,6 +1,7 @@
 const ACCENT_COLOR = '#EC1F26';
 let videoBoxLenis = null;
 let lenis;
+let projectListLenis;
 document.addEventListener("DOMContentLoaded", () => {
     const contactPanel = document.getElementById("contact-panel");
 
@@ -36,6 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (box.id === 'video-scroll-box') {
             videoBoxLenis = scroller;
+        }
+
+        if (box.id === 'projectscrollbox') {
+            projectListLenis = scroller;
         }
 
         function raf(time) {
@@ -98,15 +103,26 @@ async function loadProjects() {
 
     try {
         const res = await fetch("https://ccx-cloudinary.onrender.com/folders");
-        const folders = await res.json();
+        let folders = await res.json();
+
+        // Parse + sort by order number
+        folders = folders
+            .map(folderName => {
+                const firstUnderscore = folderName.indexOf("_");
+                const order = parseInt(folderName.slice(0, firstUnderscore), 10);
+                const rest = folderName.slice(firstUnderscore + 1);
+                return { order, rest, full: folderName };
+            })
+            .sort((a, b) => a.order - b.order);
 
         list.innerHTML = ""; 
 
-        folders.forEach(folderName => {
-            const [left, right] = folderName.split("_");
+        folders.forEach(({ rest, full }) => {
+            const [left, right] = rest.split("_");
 
             const li = document.createElement("li");
             li.className = "item";
+            li.dataset.folder = full; // store full folder name incl number
 
             li.innerHTML = `
                 <div class="bg-icon">
@@ -120,42 +136,42 @@ async function loadProjects() {
 
             list.appendChild(li);
         });
+
         attachItemClickHandlers();
+
     } catch (err) {
         console.error("Failed to load folders:", err);
     }
 
+    const items = document.querySelectorAll('.item');
 
+    const firstItem = items[0];
+    if (firstItem) {
+        const firstLeft = firstItem.querySelector('.left');
+        const firstRight = firstItem.querySelector('.right');
 
- const items = document.querySelectorAll('.item');
-    
-    
-   
+        currentListItem = firstItem;
+        firstItem.classList.add('active');
 
-  
+        firstLeft.style.transform = 'translateY(-50%) translateX(1.5vw)';
+        firstLeft.style.color = ACCENT_COLOR;
+        firstRight.style.color = ACCENT_COLOR;
 
-        const firstItem = items[0];
-        if (firstItem) {
-            const firstLeft = firstItem.querySelector('.left');
-            const firstRight = firstItem.querySelector('.right');
-    
-            currentListItem = firstItem;
-            firstItem.classList.add('active');
-    
-            firstLeft.style.transform = 'translateY(-50%) translateX(1.5vw)';
-            firstLeft.style.color = ACCENT_COLOR;
-            firstRight.style.color = ACCENT_COLOR;
-    
-           let firstFolder = firstLeft.textContent+"_"+firstRight.textContent;
-            loadProjectVideos(firstFolder);
-        }
+        // use stored full folder name (with order number)
+
+        //console.log("FUCKKKKK: "+firstItem.dataset.folder);
+        loadProjectVideos(firstItem.dataset.folder);
+    }
+
+requestAnimationFrame(() => {
+    if (projectListLenis) projectListLenis.resize();
+});
 
 }
 
 loadProjects();
 
-
- function attachItemClickHandlers() {
+function attachItemClickHandlers() {
     const items = document.querySelectorAll(".item"); 
     items.forEach(item => {
 
@@ -166,9 +182,7 @@ loadProjects();
         clickable.onclick = () => {
        
             const infoButton = document.querySelector(".info-butt");
-
             if (infoButton.textContent.trim().toLowerCase() === "close") {
-             
                 infoButton.textContent = "INFO";
             }
 
@@ -188,11 +202,13 @@ loadProjects();
             left.style.color = ACCENT_COLOR;
             right.style.color = ACCENT_COLOR;
 
-            let folder = left.textContent+"_"+right.textContent;
+            // USE THE DATASET FOLDER (with number) INSTEAD OF CONCATENATING LEFT + RIGHT
+            const folder = item.dataset.folder;
             loadProjectVideos(folder);
         };
     });
 }
+
 async function loadProjectVideos(folder) {
     console.log("Folder:", folder);
     const videoBox = document.getElementById("video-scroll-box");
@@ -208,7 +224,7 @@ async function loadProjectVideos(folder) {
         videos = data.videos || [];
         info = data.info || "";
 
-        //console.log("VIDEOS:", videos);
+        console.log("VIDEOS:", videos);
        // console.log("INFO:", info);
 
     } catch (err) {
@@ -467,9 +483,18 @@ async function loadProjectsMobile() {
     const list = document.querySelector(".project-list-mobile");
 
     try {
-        // Fetch folder names
         const res = await fetch("https://ccx-cloudinary.onrender.com/folders");
-        const folders = await res.json();
+        let folders = await res.json();
+
+        // Parse + sort by order number
+        folders = folders
+            .map(folderName => {
+                const firstUnderscore = folderName.indexOf("_");
+                const order = parseInt(folderName.slice(0, firstUnderscore), 10);
+                const rest = folderName.slice(firstUnderscore + 1);
+                return { order, rest, full: folderName };
+            })
+            .sort((a, b) => a.order - b.order);
 
         // Clear list
         list.innerHTML = `
@@ -477,13 +502,14 @@ async function loadProjectsMobile() {
         `;
 
         // Build list items
-        folders.forEach(folderName => {
-            const [left, right] = folderName.split("_");
+        folders.forEach(({ rest, full }) => {
+            const [left, right] = rest.split("_");
 
             const li = document.createElement("li");
             li.className = "item-mobile";
             li.style.display = "flex";
             li.style.flexDirection = "column";
+            li.dataset.folder = full; // store full folder name
 
             li.innerHTML = `
                 <div class="mobile-item-content" style="width: 100%;">
@@ -499,14 +525,15 @@ async function loadProjectsMobile() {
 
             list.appendChild(li);
         });
-requestAnimationFrame(() => {
-    lenis.resize();
-});
+
+        requestAnimationFrame(() => {
+            lenis.resize();
+        });
+
     } catch (err) {
         console.error("FAILED TO LOAD MOBILE FOLDERS:", err);
     }
 
-   
     document.querySelectorAll('.project-list-mobile').forEach(list => {
         list.addEventListener('click', async (e) => {
             const clickable = e.target.closest('.clickable-mobile');
@@ -514,12 +541,9 @@ requestAnimationFrame(() => {
 
             const li = clickable.closest('.item-mobile');
 
-            const fontleft = li.querySelector('.left');
-            fontleft.style.color = ACCENT_COLOR;
+            li.querySelector('.left').style.color = ACCENT_COLOR;
 
-            const leftText = li.querySelector('.left').textContent;
-            const rightText = li.querySelector('.right').textContent;
-            const folder = leftText + "_" + rightText;
+            const folder = li.dataset.folder; // use full name with order number
 
             const alreadyOpen = li.classList.contains('open');
             const openItems = Array.from(document.querySelectorAll('.item-mobile.open'));
@@ -529,8 +553,7 @@ requestAnimationFrame(() => {
                 return;
             }
 
-            const othersToClose = openItems.filter(it => it !== li);
-            othersToClose.forEach(closeItem);
+            openItems.filter(it => it !== li).forEach(closeItem);
 
             if (alreadyOpen) return;
 
@@ -538,6 +561,7 @@ requestAnimationFrame(() => {
         });
     });
 }
+
 
 
 loadProjectsMobile();
