@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-
    document.addEventListener("DOMContentLoaded", () => {
 
         lenis = new Lenis({
@@ -71,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         requestAnimationFrame(raf);
     });
-
 
 
     const contactPanelMobile = document.getElementById("contact-panel-mobile");
@@ -94,9 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-
-
-
     let currentListItem = null;
 async function loadProjects() {
     const list = document.querySelector(".project-list"); 
@@ -105,7 +99,6 @@ async function loadProjects() {
         const res = await fetch("https://ccx-cloudinary.onrender.com/folders");
         let folders = await res.json();
 
-        // Parse + sort by order number
         folders = folders
             .map(folderName => {
                 const firstUnderscore = folderName.indexOf("_");
@@ -122,7 +115,7 @@ async function loadProjects() {
 
             const li = document.createElement("li");
             li.className = "item";
-            li.dataset.folder = full; // store full folder name incl number
+            li.dataset.folder = full; 
 
             li.innerHTML = `
                 <div class="bg-icon">
@@ -161,9 +154,6 @@ async function loadProjects() {
         firstLeft.style.color = ACCENT_COLOR;
         firstRight.style.color = ACCENT_COLOR;
 
-        // use stored full folder name (with order number)
-
-        //console.log("FUCKKKKK: "+firstItem.dataset.folder);
         loadProjectVideos(firstItem.dataset.folder);
     }
 
@@ -206,7 +196,6 @@ function attachItemClickHandlers() {
             left.style.color = ACCENT_COLOR;
             right.style.color = ACCENT_COLOR;
 
-            // USE THE DATASET FOLDER (with number) INSTEAD OF CONCATENATING LEFT + RIGHT
             const folder = item.dataset.folder;
             loadProjectVideos(folder);
         };
@@ -228,8 +217,7 @@ async function loadProjectVideos(folder) {
         videos = data.videos || [];
         info = data.info || "";
 
-        console.log("VIDEOS:", videos);
-       // console.log("INFO:", info);
+       // console.log("VIDEOS:", videos);
 
     } catch (err) {
         console.error("Error loading:", err);
@@ -490,7 +478,6 @@ async function loadProjectsMobile() {
         const res = await fetch("https://ccx-cloudinary.onrender.com/folders");
         let folders = await res.json();
 
-        // Parse + sort by order number
         folders = folders
             .map(folderName => {
                 const firstUnderscore = folderName.indexOf("_");
@@ -500,12 +487,10 @@ async function loadProjectsMobile() {
             })
             .sort((a, b) => a.order - b.order);
 
-        // Clear list
         list.innerHTML = `
           
         `;
 
-        // Build list items
         folders.forEach(({ rest, full }) => {
             const [left, right] = rest.split("_");
 
@@ -513,7 +498,7 @@ async function loadProjectsMobile() {
             li.className = "item-mobile";
             li.style.display = "flex";
             li.style.flexDirection = "column";
-            li.dataset.folder = full; // store full folder name
+            li.dataset.folder = full;
 
             li.innerHTML = `
                 <div class="mobile-item-content" style="width: 100%;">
@@ -549,7 +534,7 @@ async function loadProjectsMobile() {
 
             li.querySelector('.left').style.color = ACCENT_COLOR;
 
-            const folder = li.dataset.folder; // use full name with order number
+            const folder = li.dataset.folder; 
 
             const alreadyOpen = li.classList.contains('open');
             const openItems = Array.from(document.querySelectorAll('.item-mobile.open'));
@@ -915,7 +900,7 @@ function initVideoCarousel(expandContent, videos) {
   });
 
   function animate() {
-    // Move the circle slightly toward the mouse
+  
     circleX += (mouseX - circleX) * 0.25;
     circleY += (mouseY - circleY) * 0.25;
 

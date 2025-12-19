@@ -13,13 +13,13 @@ html, body {
     overflow: hidden;
     font-family: Arial, sans-serif;
     background-color: #000000;
-    -ms-overflow-style: none;    /* IE + Edge */
-    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;     
 }
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-    display: none;               /* Chrome, Safari, Edge */
+    display: none;             
 }
 
 .main-content {
@@ -32,7 +32,6 @@ body::-webkit-scrollbar {
     flex-direction: column;
 }
 
-/* -------------------------- HEADER --------------------------- */
 .headerbox { width: 100%; }
 
 .linksbox {
@@ -62,7 +61,6 @@ body::-webkit-scrollbar {
     cursor: pointer;
 }
 
-
 .formbox-mobile {
     z-index: 90;
     background-color: rgba(0,0,0,0);
@@ -76,13 +74,10 @@ body::-webkit-scrollbar {
     cursor: pointer;
 }
 
-
-
 .formbox-mobile.active {
     border-color: var(--accent-color);
     color: var(--accent-color);
 }
-
 
 .formbox {
     z-index: 90;
@@ -95,7 +90,6 @@ body::-webkit-scrollbar {
     padding: 0.3vw 0.6vw;
     padding-top: 0.4vw;
     margin: 0 1vw 0 0;
- 
     transition: background-color 0.1s ease, color 0.3s ease;
     cursor: pointer;
 }
@@ -124,7 +118,6 @@ body::-webkit-scrollbar {
     z-index: 90;
 }
 
-
 .cornerbutton img {
     transition: filter 0.3s ease;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
@@ -134,15 +127,12 @@ body::-webkit-scrollbar {
   filter: brightness(0) saturate(100%) invert(11%) sepia(69%) saturate(6969%) hue-rotate(353deg) brightness(119%) contrast(85%);
 }
 
-
-
 .whiteicon {
     width: 2vw;
     height: 2vw;
     filter: brightness(0) invert(1);
 }
 
-/* -------------------------- REST --------------------------- */
 .divider {
     display: flex;
     align-items: center;
@@ -239,14 +229,13 @@ body::-webkit-scrollbar {
     border-top: 1px solid #939393;
 }
 
-/* SVG stacked behind left text */
 .bg-icon {
     position: absolute;
     left: 0;
     top: 50%;
-    width: 1.2vw;          /* scales with viewport width */
-    height: 1.2vw;         /* scales with viewport width */
-    min-width: 5px;        /* prevents being too small */
+    width: 1.2vw;         
+    height: 1.2vw;        
+    min-width: 5px;      
     min-height: 5px;
     transform: translateY(-50%);
     opacity: 0;
@@ -256,10 +245,10 @@ body::-webkit-scrollbar {
 }
 
 .bg-icon img {
-    width: 100%;            /* fill the container */
-    height: 100%;           /* fill the container */
-    object-fit: contain;    /* maintain aspect ratio */
-    display: block;         /* remove inline spacing */
+    width: 100%;           
+    height: 100%;          
+    object-fit: contain;    
+    display: block;         
 }
 
 .item.active .bg-icon {
@@ -267,18 +256,16 @@ body::-webkit-scrollbar {
     transform: translateY(-50%);
 }
 
-/* clickable text */
 .clickable {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    position: relative; /* for absolute left */
+    position: relative; 
     align-items: center;
     cursor: pointer;
-    padding-left: 2vw; /* leave space for left + SVG */
+    padding-left: 2vw; 
 }
 
-/* left text */
 .item .left {
     position: absolute;
     left: 0;
@@ -290,9 +277,8 @@ body::-webkit-scrollbar {
     font-family: 'Lol-Bold', monospace;
 }
 
-/* right text pinned to far right */
 .item .right {
-    margin-left: auto; /* push to far right */
+    margin-left: auto; 
     text-align: right;
     opacity: 0.7;
     font-size: calc(0.8vw + 2px);
@@ -358,17 +344,16 @@ footer {
     transition: color 0.2s ease;
     font-family: 'ConsolasCustom', monospace;
     text-align: left;
-
-    position: relative; /* required for pseudo-element positioning */
+    position: relative; 
 }
 
 .footer-link::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -0.1vw;      /* distance from text */
+    bottom: -0.1vw;      
     width: 0%;
-    height: 1px;       /* thickness of underline */
+    height: 1px;      
     background-color: var(--accent-color);
     transition: width 0.3s ease;
 }
@@ -378,7 +363,7 @@ footer {
 }
 
 .footer-link:hover::after {
-    width: 100%;       /* animate underline to full width */
+    width: 100%;       
 }
 
 .accent {
@@ -390,9 +375,6 @@ footer {
     opacity: 0.5;
     text-align: end;
 }
-
-/* Optional: mobile-friendly */
-
 
 .para { 
     color: white; 
@@ -417,7 +399,6 @@ footer {
     height: auto;
 }
 
-/* scrolling text */
 .scrolling-text-container {
     overflow: hidden;
     flex: 1;
@@ -477,8 +458,6 @@ footer {
     background: linear-gradient(to bottom, transparent, black);
     z-index: 10;
 }
-
-
 
 .main-content-mobile { display: none; }
 .main-content { display: flex; }
@@ -628,7 +607,6 @@ footer {
 }
 
 .project-list-mobile {
-   
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -645,26 +623,22 @@ footer {
     align-items: center;
     padding: calc(3.5vw + 5px) 0;
     background-color: rgba(0,0,0,0);
- 
     color: #fff;
     border-top: 1px solid #939393;
     margin-left: 4vw;
     margin-right: 4vw;
-    
     overflow: hidden;
     max-height: 14vw;
     transition: all 0.35s ease;
 }
 
-
-/* SVG stacked behind left text */
 .bg-icon-mobile {
     position: absolute;
     left: 0;
     top: 50%;
-    width: 1.2vw;          /* scales with viewport width */
-    height: 1.2vw;         /* scales with viewport width */
-    min-width: 5px;        /* prevents being too small */
+    width: 1.2vw;         
+    height: 1.2vw;        
+    min-width: 5px;        
     min-height: 5px;
     transform: translateY(-50%);
     opacity: 0;
@@ -687,10 +661,9 @@ footer {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    position: relative; /* for absolute left */
+    position: relative; 
     align-items: center;
     cursor: pointer;
-     /* leave space for left + SVG */
 }
 .item-mobile .left {
     position: absolute;
@@ -703,9 +676,8 @@ footer {
     transition: transform 0.25s ease, color 0.15s ease;
 }
 
-/* right text pinned to far right */
 .item-mobile .right {
-    margin-left: 40vw; /* push to far right */
+    margin-left: 40vw; 
     text-align: left;
     opacity: 0.7;
     font-size: calc(2.8vw + 2px);
@@ -713,7 +685,6 @@ footer {
     transition: color 0.1s ease;
     font-weight: normal;
 }
-
 
 .expand-content {
     opacity: 0;
@@ -726,8 +697,6 @@ footer {
     opacity: 1;
     transform: translateY(0);
 }
-
-
 
 .item-mobile .exp-button {
     margin-left: auto;
@@ -743,14 +712,14 @@ footer {
     margin-right: 4vw;
     margin-top: 0px;
     margin-bottom: 0px;
- font-family: 'Lol-Regular', monospace;
+    font-family: 'Lol-Regular', monospace;
 }
 
 .footer-mobile-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;   /* 2 equal columns */
-    gap: 2vw;                          /* space between items */
-    padding: 4vw 4vw;                  /* side padding */
+    grid-template-columns: 1fr 1fr;   
+    gap: 2vw;                          
+    padding: 4vw 4vw;                 
     width: 100%;
     box-sizing: border-box;
 }
@@ -762,13 +731,9 @@ footer {
     transition: color 0.2s ease;
     font-family: 'ConsolasCustom', monospace;
     text-align: left;
-
-    position: relative; /* required for pseudo-element positioning */
+    position: relative; 
 }
 
-
-
-  /* Make canvas sit on top but allow clicks to pass through */
    #noiseCanvas {
       position: fixed;
       top: 0;
@@ -778,7 +743,7 @@ footer {
       pointer-events: none;
       z-index: 5;
     }
-/* --- Overlay background dimmer --- */
+
 #overlay {
     position: fixed;
     top: 0;
@@ -794,18 +759,14 @@ footer {
 }
 
 .body-lock {
-    overflow: hidden;       /* Disable scrolling */
-      /* Disable all clicks on background */
+    overflow: hidden;      
 }
 
-
-
-/* --- Slide-in Contact Panel --- */
 #contact-panel-mobile {
     display: none;
     position: fixed;
     top: 0;
-    right: -100vw; /* Initially hidden off-screen */
+    right: -100vw; 
     width: 100vw;
     height: 100vh;
     background: #000;
@@ -820,10 +781,8 @@ footer {
     scrollbar-width: 0px;
 }
 
-
 #contact-panel-mobile::-webkit-scrollbar { display: none; }
 
-/* Close button */
 #close-contact-mobile {
     z-index: 90;
     background-color: rgba(0,0,0,0);
@@ -832,14 +791,14 @@ footer {
     border-radius: 8px;
     font-size: 4vw;
     font-weight: bold;
-   padding: 1vw 2vw;
-   
+    padding: 1vw 2vw;
     margin-left: auto;
     align-items: center;
     justify-content: center;
     transition: background-color 0.1s ease, color 0.3s ease;
     cursor: pointer;
 }
+
 .contact-header-mobile {
     padding-bottom: 0.5vw;
     z-index: 130; 
@@ -851,12 +810,12 @@ footer {
     display: flex; 
     flex-direction: column;
 }
+
 #close-contact-mobile:hover {
     background-color: var(--accent-color);
     color: #000;
 }
 
-/* Form styling */
 #contact-panel-mobile form {
   
     display: flex;
@@ -864,14 +823,11 @@ footer {
     
 }
 
-
-
-/* --- Slide-in Contact Panel --- */
 #contact-panel {
     display: none;
     position: fixed;
     top: 0;
-    right: -50.5vw; /* Initially hidden off-screen */
+    right: -50.5vw; 
     width: 50.5vw;
     height: 100vh;
     background: #000;
@@ -881,15 +837,12 @@ footer {
     box-sizing: border-box;
     transition: right 0.4s ease;
     z-index: 100;
-    
     flex-direction: column;
     scrollbar-width: 0px;
 }
 
-
 #contact-panel::-webkit-scrollbar { display: none; }
 
-/* Close button */
 #close-contact {
     z-index: 90;
     background-color: rgba(0,0,0,0);
@@ -922,12 +875,9 @@ footer {
     color: #000;
 }
 
-/* Form styling */
 #contact-panel form {
-  
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column; 
 }
 
 #contact-panel-mobile label {
@@ -935,9 +885,7 @@ footer {
   margin-bottom: 2vw;
 }
 
-
 .contact-panel-input-mobile {
-    
     height: 11vw;
     padding-left: 2vw;
     padding-right: 2vw;
@@ -950,15 +898,12 @@ footer {
     font-weight: bold;
     text-transform: uppercase;
     font-family: 'Lol-Bold', monospace;
-
 }
-
 
 .contact-panel-input-mobile:focus {
-    border-color: var(--accent-color); /* Change to any color you like */
-    outline: none; /* Optional: removes default focus outline */
+    border-color: var(--accent-color); 
+    outline: none; 
 }
-
 
 .contact-panel-input,
 .contact-panel-textarea {
@@ -969,7 +914,7 @@ footer {
     color: white;
     border-radius: .4vw;
     font-family: 'Lol-Bold', monospace;
-     text-transform: uppercase;
+    text-transform: uppercase;
     font-size: 1vw;
 }
 
@@ -1011,7 +956,6 @@ footer {
     border: var(--accent-color) 2px solid;
 }
 
-/* --- Active class toggles --- */
 #overlay.active {
     opacity: 1;
     visibility: visible;
@@ -1041,8 +985,8 @@ footer {
 
 .two-col .col {
     width: 46.5%;
-    display: flex;         /* NEW */
-    flex-direction: column;/* NEW */
+    display: flex;         
+    flex-direction: column;
 }
 
 label{
@@ -1066,8 +1010,6 @@ label{
     overflow: hidden; 
 }
 
-
-
 .info-text {
     padding-top: 0.75vw;
     padding-bottom: 0.75vw;
@@ -1077,13 +1019,12 @@ label{
     transition: opacity 0.3s ease;
     padding-right: calc(40vw - 400px);
     font-size: calc(1vw + 2px);
-    display: none; /* start hidden */
+    display: none; 
     font-family: 'Lol-Regular', monospace;
-    
 }
 
 .info-butt {
-    position: relative; /* <<< add this */
+    position: relative; 
     padding-right: 0px; 
     padding-left: 0px; 
     cursor: pointer; 
@@ -1100,15 +1041,15 @@ label{
     position: absolute;
     left: 0;
     right: 0;   
-    bottom: -0.1vw;      /* distance from text */
+    bottom: -0.1vw;      
     width: 0%;
-    height: 1px;       /* thickness of underline */
+    height: 1px;      
     background-color: var(--accent-color);
     transition: width 0.3s ease;
 }
 
 .info-butt:hover::after {
-    width: 100%;       /* animate underline to full width */
+    width: 100%;      
 }
 
 .carousel-track {
@@ -1126,7 +1067,7 @@ label{
     flex: 0 0 auto;
 }
 
- .cursor-circle {
+.cursor-circle {
     position: fixed;
     top: 0;
     left: 0;
@@ -1134,13 +1075,13 @@ label{
     height: 50px;
     background-color: red;
     border-radius: 50%;
-    opacity: 0.1; /* 50% opacity */
+    opacity: 0.1; 
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
-  }
+}
 
-  .dot-loader {
+.dot-loader {
     display: inline-flex;
     gap: 6px;
     margin-top: calc(7vw + 10px);
@@ -1166,20 +1107,20 @@ label{
 }
 
 .budget-select {
-  width: 103.6777%;              /* make it span full width of container */
-  box-sizing: border-box;   /* include padding and border in width */
+  width: 103.6777%;             
+  box-sizing: border-box;  
 }
 .budget-select:invalid {
-  color: #888888; /* placeholder color */
+  color: #888888;
 }
 
 .budget-select option {
-  color: #EEEFEA; /* normal options color */
+  color: #EEEFEA; 
 }
 
 .contact-panel-input::placeholder {
   color: #888888;
-  opacity: 1; /* Firefox fix */
+  opacity: 1; 
 }
 
 .budget-dropdown-mob {
@@ -1204,8 +1145,7 @@ label{
                     transparent 100%
                 );
             }
-
-            
+          
 .loading {
   display: flex;
   justify-content: center;
