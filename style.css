@@ -1162,7 +1162,28 @@ label{
   height: 4vw;
   margin-left: 0.5vw;
   border-radius: 50%;
-  border: 0.1px solid currentColor;
+  border: 0.2px solid currentColor;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+}
+
+.loadingMob {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vw 0;
+  font-family: monospace;
+  font-size: 1.2vw;
+  color: var(--accent-color);
+}
+
+.loadingMob::after {
+  content: '';
+  width: 4vw;
+  height: 4vw;
+  margin-left: 0.5vw;
+  border-radius: 50%;
+  border: 3px solid currentColor;
   border-top-color: transparent;
   animation: spin 0.8s linear infinite;
 }

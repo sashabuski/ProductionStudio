@@ -473,7 +473,7 @@ async function loadProjectVideos(folder) {
     
 async function loadProjectsMobile() {
     const list = document.querySelector(".project-list-mobile");
-    const loader = document.querySelector('.loading');
+    const loader = document.querySelector('.loadingMob');
     try {
         const res = await fetch("https://ccx-cloudinary.onrender.com/folders");
         let folders = await res.json();
