@@ -141,6 +141,10 @@ async function loadProjects() {
 
     } catch (err) {
         console.error("Failed to load folders:", err);
+    } finally {
+       
+        const loader = document.querySelector('#projectscrollbox .loading');
+        if (loader) loader.remove();
     }
 
     const items = document.querySelectorAll('.item');
