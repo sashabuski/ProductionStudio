@@ -485,7 +485,7 @@ async function loadProjectVideos(folder) {
     
 async function loadProjectsMobile() {
     const list = document.querySelector(".project-list-mobile");
-
+    const loader = document.querySelector('.loading');
     try {
         const res = await fetch("https://ccx-cloudinary.onrender.com/folders");
         let folders = await res.json();
@@ -502,7 +502,7 @@ async function loadProjectsMobile() {
 
         // Clear list
         list.innerHTML = `
-            <p class="subtitle-mobile" style="margin-bottom: 6vw;">PROJECTS</p>
+          
         `;
 
         // Build list items
@@ -529,6 +529,8 @@ async function loadProjectsMobile() {
 
             list.appendChild(li);
         });
+
+              if (loader) loader.remove();
 
         requestAnimationFrame(() => {
             lenis.resize();

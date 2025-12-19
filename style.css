@@ -1144,6 +1144,7 @@ label{
     display: inline-flex;
     gap: 6px;
     margin-top: calc(7vw + 10px);
+    margin-bottom: calc(5vw );
 }
 
 .dot-loader span {
