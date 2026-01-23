@@ -1001,6 +1001,7 @@ label{
     margin-bottom: 0.4vw;   
     border-radius: 10px;
     overflow: hidden; 
+    cursor: pointer;
 }
 
 .half-video{
@@ -1008,6 +1009,7 @@ label{
     margin-bottom: 0.4vw;   
     border-radius: 10px;
     overflow: hidden; 
+    cursor: pointer;
 }
 
 .info-text {
@@ -1193,4 +1195,39 @@ label{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+#video-overlay {
+    display: flex;                
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0);  
+    opacity: 0;                        
+    pointer-events: none;              
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    z-index: 1000;
+}
+
+#video-overlay.show {
+    opacity: 1;
+    background-color: rgba(0,0,0,0.8);  
+    pointer-events: auto;               
+}
+
+#overlay-video {
+    width: 50vw;
+    max-height: 80vh;
+    border-radius: 10px;
+    transform: scale(0.9);       
+    transition: transform 0.3s ease;
+    cursor: default;
+}
+
+#video-overlay.show #overlay-video {
+    transform: scale(1);        
 }

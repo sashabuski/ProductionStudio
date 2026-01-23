@@ -307,6 +307,8 @@ async function loadProjectVideos(folder) {
             }
         });
     });
+
+    setupVideoOverlay();
 }
 
 
@@ -911,3 +913,29 @@ function initVideoCarousel(expandContent, videos) {
   }
 
   animate();
+
+  function setupVideoOverlay() {
+    const overlay = document.getElementById('video-overlay');
+    const overlayVideo = document.getElementById('overlay-video');
+
+    if (!overlay || !overlayVideo) return;
+
+    const allVideos = document.querySelectorAll('#video-scroll-box video');
+    allVideos.forEach(video => {
+        video.style.cursor = 'pointer';
+        video.addEventListener('click', () => {
+            const source = video.querySelector('source').src;
+            overlayVideo.src = source;
+            overlay.classList.add('show');  
+            overlayVideo.play();
+        });
+    });
+
+    overlay.addEventListener('click', e => {
+        if (e.target === overlay) {
+            overlayVideo.pause();
+            overlayVideo.src = '';
+            overlay.classList.remove('show');  
+        }
+    });
+}

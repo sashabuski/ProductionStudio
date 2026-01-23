@@ -491,6 +491,10 @@
  <canvas id="noiseCanvas"></canvas>
    
     
+
+ <div id="video-overlay">
+    <video id="overlay-video"></video>
+</div>
 <script src="script.js"></script>
     
       
@@ -502,7 +506,7 @@
   const canvas = document.getElementById('noiseCanvas');
   const ctx = canvas.getContext('2d');
 
-  // Make the canvas cover the whole viewport
+  
   function resizeCanvas() {
       canvas.width = window.innerWidth /6;
       canvas.height = window.innerHeight  /6;
@@ -516,10 +520,10 @@
 
       for (let i = 0; i < data.length; i += 4) {
           const shade = Math.floor(Math.random() * 255);
-          data[i] = shade;     // R
-          data[i + 1] = shade; // G
-          data[i + 2] = shade; // B
-          data[i + 3] = 13;    // Alpha for subtlety
+          data[i] = shade;     
+          data[i + 1] = shade; 
+          data[i + 2] = shade; 
+          data[i + 3] = 13;   
       }
 
       ctx.putImageData(imageData, 0, 0);
