@@ -333,7 +333,7 @@ async function loadProjectVideos(folder) {
   const panel = document.getElementById("contact-panel");
   const overlay = document.getElementById("overlay");
   const body = document.body;
-  //const noiseCanvas = document.getElementById("noiseCanvas");  
+  const noiseCanvas = document.getElementById("noiseCanvas");  
   const scrollBoxes = document.querySelectorAll(".scroll-box");
 
   openBtn.addEventListener("click", () => {
@@ -346,7 +346,7 @@ async function loadProjectVideos(folder) {
    
     overlay.classList.add("active");
     body.classList.add("body-lock");
-    //noiseCanvas.classList.add("noise-lowered");
+    noiseCanvas.classList.add("noise-lowered");
   });
   
   function closePanel() {
@@ -361,7 +361,7 @@ async function loadProjectVideos(folder) {
     }, 300);
 
       body.classList.remove("body-lock");
-     // noiseCanvas.classList.remove("noise-lowered");
+      noiseCanvas.classList.remove("noise-lowered");
   }
   
   closeBtn.addEventListener("click", closePanel);
