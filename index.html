@@ -508,8 +508,8 @@
 
   
   function resizeCanvas() {
-      canvas.width = window.innerWidth /6;
-      canvas.height = window.innerHeight  /6;
+      canvas.width = window.innerWidth /2;
+      canvas.height = window.innerHeight  /2;
   }
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
@@ -523,7 +523,7 @@
           data[i] = shade;     
           data[i + 1] = shade; 
           data[i + 2] = shade; 
-          data[i + 3] = 13;   
+          data[i + 3] =20;   
       }
 
       ctx.putImageData(imageData, 0, 0);
