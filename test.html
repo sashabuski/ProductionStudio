@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Avg video color (direct style)</title>
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:#000;
+      color:#f00;
+      font-family: system-ui, Arial, sans-serif;
+    }
+    .wrap{ width:min(820px, 92vw); position:relative; }
+    video{
+      width:100%;
+      display:block;
+      border-radius:14px;
+      background:#000;
+      border: 0px solid #f00; /* JS will overwrite */
+      box-shadow: 0 0 0 0.5px rgba(255,0,0,0.2), 0 0 10px rgba(255,0,0,0.2); /* JS will overwrite */
+    }
+    .info{ margin-top:12px; font-size:14px; }
+    code{ color:#f00; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <video controls id="v" autoplay muted loop playsinline>
+      <source src="flower.mp4" type="video/mp4">
+    </video>
+    <div class="info">Avg: <code id="t">rgb(0,0,0)</code></div>
+  </div>
+
+  <script>
+    const v = document.getElementById("v");
+    const t = document.getElementById("t");
+
+    const c = document.createElement("canvas");
+    const ctx = c.getContext("2d", { willReadFrequently: true });
+
+    const W = 24, H = 14; // small = fast
+    let sr = 0, sg = 0, sb = 0;
+
+    function frame(){
+      if (v.readyState >= 2) {
+        c.width = W; c.height = H;
+
+        try {
+          ctx.drawImage(v, 0, 0, W, H);
+          const data = ctx.getImageData(0, 0, W, H).data;
+
+          let r=0, g=0, b=0;
+          const count = W * H;
+
+          for (let i=0; i<data.length; i+=4){
+            r += data[i];
+            g += data[i+1];
+            b += data[i+2];
+          }
+
+          r /= count; g /= count; b /= count;
+
+          const SMOOTH = 0.2;
+          sr += (r - sr) * SMOOTH;
+          sg += (g - sg) * SMOOTH;
+          sb += (b - sb) * SMOOTH;
+
+          const R = Math.round(sr), G = Math.round(sg), B = Math.round(sb);
+          const rgb = `rgb(${R}, ${G}, ${B})`;
+
+          // DIRECTLY apply styles (no CSS vars)
+         
+          v.style.boxShadow = `0 0 0 0.5px rgba(${R},${G},${B},0.35), 0 0 5000px rgba(${R},${G},${B},0.55)`;
+
+          t.textContent = rgb;
+        } catch (e) {
+          // If this happens: it's almost always CORS / tainted canvas
+          t.textContent = "Canvas blocked (CORS)";
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    v.addEventListener("play", () => requestAnimationFrame(frame));
+  </script>
+</body>
+</html>

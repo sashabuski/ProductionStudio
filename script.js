@@ -1,4 +1,5 @@
 const ACCENT_COLOR = '#EC1F26';
+let theme = 0;
 let videoBoxLenis = null;
 let lenis;
 let projectListLenis;
@@ -185,8 +186,14 @@ function attachItemClickHandlers() {
                 const prevLeft = currentListItem.querySelector('.left');
                 const prevRight = currentListItem.querySelector('.right');
                 prevLeft.style.transform = 'translateY(-50%) translateX(0vw)';
+               if (theme == 0){
                 prevLeft.style.color = '#fff';
                 prevRight.style.color = '#fff';
+               }
+               else{
+                prevLeft.style.color = '#0b0000';
+                prevRight.style.color = '#0b0000';
+               }
             }
 
             currentListItem = item;
@@ -939,3 +946,14 @@ function initVideoCarousel(expandContent, videos) {
         }
     });
 }
+
+function toggleColours() {
+    document.body.classList.toggle("alt-colours");
+    if(theme == 0){
+        theme = 1;
+    }else{
+        theme = 0;
+    }
+}
+
+
