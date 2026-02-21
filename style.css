@@ -277,7 +277,7 @@ body.alt-colours .box3 {
     padding: 0.75vw;
     padding-right: 1.75vw;
     padding-top: 0px;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     mask-image: linear-gradient(
         to bottom,
         transparent 0px,
@@ -311,7 +311,7 @@ body.alt-colours .scroll-box{
     font-weight: bold;
     margin-bottom: 1vw;
     font-family: 'Lol-Bold', monospace;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 }
 body.alt-colours .subtitle {
     color: #0b0000;
@@ -523,7 +523,7 @@ body.alt-colours .footer-link:hover::after {
     font-size: calc(1vw + 2px); 
     font-family: 'Lol-Regular', monospace;
     font-weight: 100;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 
@@ -552,7 +552,7 @@ body.alt-colours .headerstyle{
     filter: brightness(0) invert(1);
     width: 0.7vw;
     height: auto;
-    transition: all 0.3s ease;
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 body.alt-colours .white-g {
     
