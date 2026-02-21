@@ -5,6 +5,7 @@ let lenis;
 let projectListLenis;
 let rotation = 0;
 let currentIndex = 0;
+let currentListItem = null;
 document.addEventListener("DOMContentLoaded", () => {
     const contactPanel = document.getElementById("contact-panel");
 
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-    let currentListItem = null;
+    
 async function loadProjects() {
     const list = document.querySelector(".project-list"); 
 
@@ -156,7 +157,10 @@ async function loadProjects() {
         firstLeft.style.transform = 'translateY(-50%) translateX(1.5vw)';
         firstLeft.style.color = ACCENT_COLOR;
         firstRight.style.color = ACCENT_COLOR;
-
+        if (theme == 1){
+            firstLeft.style.filter = 'drop-shadow(0px 0px 10px rgba(255, 12, 12, 1))';
+            firstRight.style.filter = 'drop-shadow(0px 0px 10px rgba(255, 12, 12, 1))';
+        }
         loadProjectVideos(firstItem.dataset.folder);
     }
 
@@ -971,19 +975,20 @@ function toggleColours() {
 
 if (theme == 0) {
     theme = 1;
+currentListItem.style.filter = 'drop-shadow(0px 0px 10px rgba(255, 12, 12, 1))';
 
     elements.forEach(el => {
         if (getComputedStyle(el).color === "rgb(255, 255, 255)") {
-            el.style.color = "black";
+          //  el.style.color = "black";
         }
     });
 
 } else {
     theme = 0;
-
+currentListItem.style.filter = 'none';
     elements.forEach(el => {
         if (getComputedStyle(el).color === "rgb(0, 0, 0)" || getComputedStyle(el).color === "rgb(11, 0, 0)") {
-            el.style.color = "white";
+          //  el.style.color = "white";
         }
     });
 }

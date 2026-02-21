@@ -23,7 +23,7 @@ html, body {
 }
 
 body.alt-colours {
-    background-color:  var(--bg-color2);
+   /* background-color:  var(--bg-color2);*/
     
 }
 
@@ -77,18 +77,21 @@ transition: filter 0.3s ease;
     margin-left: auto;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.1s ease, color 0.3s ease;
+    transition: background-color 0.1s ease, color 0.3s ease, filter 0.3s ease;
     cursor: pointer;
 }
 
 body.alt-colours .contact{
-    color: #0b0000;
-    border: 1px solid #0b0000;
+  /* color: #0b0000;
+    border: 1px solid #0b0000;*/ 
+    
+    filter: drop-shadow(0px 0px 10px rgb(255, 27, 27));
 }
 
 body.alt-colours .contact:hover {
-    color: var(--accent-color);
+   /* color: var(--accent-color);
     background-color: #0b0000;
+     filter: drop-shadow(0px 0px 1px rgb(255, 27, 27));*/
 }
 
 
@@ -127,19 +130,19 @@ body.alt-colours .contact:hover {
 
 
 body.alt-colours .formbox {
-    color: black;
-    border: 1px solid black;
+  /*  color: black;
+    border: 1px solid black;*/
 }
 
 body.alt-colours .formbox:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+  /*  border-color: var(--accent-color);
+    color: var(--accent-color);*/
 }
 
 body.alt-colours .formbox.active {
-    border-color: #0b0000;
+  /*  border-color: #0b0000;
     color: var(--accent-color);
-    background-color: #0b0000;
+    background-color: #0b0000;*/
 }
 
 .formbox:hover {
@@ -188,7 +191,7 @@ body.alt-colours .formbox.active {
 }
 
 body.alt-colours .cornerbutton:hover img {
-  filter: brightness(0) invert(1);
+ /* filter: brightness(0) invert(1);*/
 }
 
 .whiteicon {
@@ -200,7 +203,7 @@ body.alt-colours .cornerbutton:hover img {
 
 body.alt-colours .whiteicon {
     
-     filter: brightness(0);
+   /*  filter: brightness(0);*/
 }
 
 .divider {
@@ -219,8 +222,8 @@ body.alt-colours .whiteicon {
 }
 
 
- body.alt-colours .line {
-background-color: #0b0000;
+ body.alt-colours .line {/*
+background-color: #0b0000;*/
 }
 
 @font-face {
@@ -255,14 +258,14 @@ body.alt-colours .grid-container{
     transition: border-right 0.3s ease;
  }
 body.alt-colours .box1 {
-    border-right: 1px solid #0b0000;
+   /* border-right: 1px solid #0b0000;*/
 }
 
 .box2 { grid-column: span 2; border-right: 1px solid #939393; transition: all 0.3s ease;}
 
 body.alt-colours .box2 {
-    border-right: 1px solid #0b0000;
-  /* background-color: #b2abbf;
+    /* border-right: 1px solid #0b0000;
+  background-color: #b2abbf;
     box-shadow: 0 0 5px #0b0000;
     border: solid 1px rgb(85, 85, 85);*/
 
@@ -304,9 +307,9 @@ body.alt-colours .box3 {
 .scroll-box::-webkit-scrollbar { display: none; }
 
 body.alt-colours .scroll-box{
-
+/*
  mask-image: none;
-    -webkit-mask-image: none;
+    -webkit-mask-image: none;*/
 }
 
 .subtitle {
@@ -321,7 +324,7 @@ body.alt-colours .scroll-box{
     transition: color 0.3s ease;
 }
 body.alt-colours .subtitle {
-    color: #0b0000;
+  /* color: #0b0000;*/ 
     
      
 }
@@ -342,12 +345,12 @@ body.alt-colours .subtitle {
    
     color: #fff;
     border-top: 1px solid #939393;
-    transition: color 0.3s ease, border-top 0.3s ease;
+    transition: color 0.3s ease, border-top 0.3s ease, filter 0.3s ease;
 }
 
 body.alt-colours .item {
-    color: black;
-     border-top: 1px solid #0b0000;
+  /*  color: black;
+     border-top: 1px solid #0b0000;*/
 }
 .bg-icon {
     position: absolute;
@@ -438,8 +441,8 @@ footer {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 body.alt-colours footer{
-    background-color: var(--bg-color2);
-    color: #0b0000;
+   /*background-color: var(--bg-color2);
+    color: #0b0000;*/ 
 }
 
 .footer-grid {
@@ -472,27 +475,27 @@ body.alt-colours footer{
     transition: color 0.3s ease;
 }
 body.alt-colours .footer-link{
-    color: #0b0000;
+   /* color: #0b0000;*/
     
 }
 
 body.alt-colours .footer-link::after {
-    content: '';
+  /*  content: '';
     position: absolute;
     left: 0;
     bottom: -0.1vw;      
     width: 0%;
     height: 1px;      
     background-color: #0b0000;
-    transition: width 0.3s ease, color 0.3s ease;
+    transition: width 0.3s ease, color 0.3s ease;*/
 }
 
 body.alt-colours .footer-link:hover {
-    color: var(--accent-color);
+ /*  color: var(--accent-color);*/ 
 }
 body.alt-colours .footer-link:hover::after {
-    width: 100%;   
-    background-color: var(--accent-color);    
+   /* width: 100%;   
+    background-color: var(--accent-color);  */  
 }
 
 
@@ -535,7 +538,7 @@ body.alt-colours .footer-link:hover::after {
 
 
 body.alt-colours .para {
-    color: black;
+  /*  color: black;*/
 }
 .headerstyle {
     
@@ -552,8 +555,8 @@ body.alt-colours .para {
 
  
 body.alt-colours .headerstyle{
-  filter: brightness(0);
-  
+ 
+  filter: brightness(0) invert(1) drop-shadow(0px 0px 7.5px white);
 }
 
 .white-g {
@@ -564,7 +567,8 @@ body.alt-colours .headerstyle{
 }
 body.alt-colours .white-g {
     
-     filter: brightness(0);
+    filter: brightness(0) invert(1) drop-shadow(0px 0px 1px white);
+    /* filter: brightness(0);*/
 }
 
 
@@ -611,7 +615,7 @@ body.alt-colours .white-g {
 }
 
 body.alt-colours .scrolling-text{
-    color:  #0b0000;
+ /*color:  #0b0000;*/   
     
 }/*
 .scrolling-text-container::before,
@@ -1054,8 +1058,8 @@ body.alt-colours .scrolling-text-container::after {
 }
 
 body.alt-colours #contact-panel{
-    background: var(--bg-color2);
-    color: black;
+ /*   background: var(--bg-color2);
+    color: black;*/
 }
 
 
@@ -1079,14 +1083,14 @@ body.alt-colours #contact-panel{
 }
 
 body.alt-colours #close-contact{
-border: 1px solid var(--bg-color);
-    color: var(--bg-color);
+/*border: 1px solid var(--bg-color);
+    color: var(--bg-color);*/
 }
 
 body.alt-colours #close-contact:hover{
-border: 1px solid var(--bg-color);
+/*border: 1px solid var(--bg-color);
 background-color: var(--bg-color);
-    color: var(--accent-color);
+    color: var(--accent-color);*/
 }
 
 .contact-header{
@@ -1104,7 +1108,7 @@ background-color: var(--bg-color);
 
 body.alt-colours .contact-header {
     
-    background-color: var(--bg-color2);
+  /*  background-color: var(--bg-color2);*/
     
   
 }
@@ -1160,7 +1164,7 @@ body.alt-colours .contact-header {
 
 body.alt-colours .contact-panel-input,
 body.alt-colours .contact-panel-textarea {
-    width: 96%;
+   /* width: 96%;
     padding: .8vw;
     border: 1px solid #444;
     background: #fcfaff;
@@ -1168,7 +1172,7 @@ body.alt-colours .contact-panel-textarea {
     border-radius: .4vw;
     font-family: 'Lol-Bold', monospace;
     text-transform: uppercase;
-    font-size: 1vw;
+    font-size: 1vw;*/
 }
 
 
@@ -1193,17 +1197,17 @@ body.alt-colours .contact-panel-textarea {
 }
 
 body.alt-colours #contact-panel button[type="submit"] {
-
+/*
     background: rgba(0,0,0,0);
      color: var(--bg-color);
-     border: 1px solid var(--bg-color);
+     border: 1px solid var(--bg-color);*/
 }
 
 body.alt-colours #contact-panel button[type="submit"]:hover {
 
-    background: var(--bg-color);
+ /*  background: var(--bg-color);
      color: var(--accent-color);
-     border: 1px solid var(--bg-color);
+     border: 1px solid var(--bg-color);*/ 
 }
 
 #contact-panel button[type="submit"]:hover {
@@ -1273,8 +1277,8 @@ label{
 }
 
 body.alt-colours .wide-video{
-
-  box-shadow: 0 0 5px #0b0000;
+/*
+  box-shadow: 0 0 5px #0b0000;*/
 }
 
 .half-video{
@@ -1285,8 +1289,8 @@ body.alt-colours .wide-video{
     cursor: pointer;
 }
 body.alt-colours .half-video{
-
-  box-shadow: 0 0 5px #0b0000;
+/*
+  box-shadow: 0 0 5px #0b0000;*/
 }
 
 .info-text {
@@ -1304,7 +1308,7 @@ body.alt-colours .half-video{
 
 
 body.alt-colours .info-text{
-    color: black;
+  /*  color: black;*/
 }
 
 
@@ -1432,8 +1436,8 @@ body.alt-colours .info-text{
             }
 
 body.alt-colours #video-scroll-box {
-             mask-image: none;
-    -webkit-mask-image: none;
+       /*     mask-image: none;
+    -webkit-mask-image: none;*/ 
 }     
 .loading {
   display: flex;
