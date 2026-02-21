@@ -949,11 +949,35 @@ function initVideoCarousel(expandContent, videos) {
 
 function toggleColours() {
     document.body.classList.toggle("alt-colours");
-    if(theme == 0){
-        theme = 1;
-    }else{
-        theme = 0;
-    }
+ const elements = document.querySelectorAll('.left, .right');
+
+if (theme == 0) {
+    theme = 1;
+
+    elements.forEach(el => {
+        if (getComputedStyle(el).color === "rgb(255, 255, 255)") {
+            el.style.color = "black";
+        }
+    });
+
+} else {
+    theme = 0;
+
+    elements.forEach(el => {
+        if (getComputedStyle(el).color === "rgb(0, 0, 0)" || getComputedStyle(el).color === "rgb(11, 0, 0)") {
+            el.style.color = "white";
+        }
+    });
+}
+
+    const icon = document.querySelector(".cornerbutton img");
+    icon.classList.toggle("rotated");
+
+    const icons = document.querySelectorAll(".white-g");
+
+icons.forEach(icon => {
+    icon.classList.toggle("rotated");
+});
 }
 
 
