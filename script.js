@@ -3,6 +3,8 @@ let theme = 0;
 let videoBoxLenis = null;
 let lenis;
 let projectListLenis;
+let rotation = 0;
+let currentIndex = 0;
 document.addEventListener("DOMContentLoaded", () => {
     const contactPanel = document.getElementById("contact-panel");
 
@@ -170,13 +172,28 @@ function attachItemClickHandlers() {
     const items = document.querySelectorAll(".item"); 
     items.forEach(item => {
 
+
         const clickable = item.querySelector('.clickable');
         const left = item.querySelector('.left');
         const right = item.querySelector('.right');
 
         clickable.onclick = () => {
-       
-            const infoButton = document.querySelector(".info-butt");
+      
+
+
+        const items = Array.from(item.parentElement.children);
+        const index = items.indexOf(item);
+
+        console.log(index); 
+         let moveCount = index - currentIndex;   
+         currentIndex = index; 
+         rotation += moveCount * 60;
+            const icon = document.querySelector(".cornerbutton img");
+        
+        icon.style.transform = `rotate(${rotation}deg)`;
+          
+        
+        const infoButton = document.querySelector(".info-butt");
             if (infoButton.textContent.trim().toLowerCase() === "close") {
                 infoButton.textContent = "INFO";
             }
@@ -205,6 +222,7 @@ function attachItemClickHandlers() {
 
             const folder = item.dataset.folder;
             loadProjectVideos(folder);
+
         };
     });
 }
