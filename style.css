@@ -538,6 +538,7 @@ body.alt-colours .para {
     color: black;
 }
 .headerstyle {
+    
     filter: brightness(0) invert(1);
     width: calc(100% - 3vw);
     height: auto;

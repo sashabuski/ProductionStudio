@@ -988,14 +988,13 @@ if (theme == 0) {
     });
 }
 
-    const icon = document.querySelector(".cornerbutton img");
-    icon.classList.toggle("rotated");
+    let turn = rotation + 180;
+    rotation += 180;
+ icon = document.querySelector(".cornerbutton img");
+        
+        icon.style.transform = `rotate(${turn}deg)`;
 
-    const icons = document.querySelectorAll(".white-g");
 
-icons.forEach(icon => {
-    icon.classList.toggle("rotated");
-});
 }
 
 
